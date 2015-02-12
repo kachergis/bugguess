@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Images to use:</p>
+<!-- <img id="antennae" src="images/antennae.png" width="167" height="77">
+<img id="body_gray" src="images/body_gray.png" width="208" height="340">
+<img id="body_yellow" src="images/body_yellow.png" width="208" height="340">
+<img id="eyes_purple" src="images/eyes_purple.png" width="132" height="84">
+<img id="eyes_white" src="images/eyes_white.png" width="132" height="84">
+
+<img id="freckles" src="images/freckles.png" width="175" height="41">
+<img id="headband_red" src="images/headband_red.png" width="139" height="17">
+<img id="headband_striped" src="images/headband_striped.png" width="139" height="17">
+
+
+<img id="legs_circle" src="images/legs_circle.png" width="316" height="205">
+<img id="legs_square" src="images/legs_square.png" width="316" height="205">
+<img id="star" src="images/star.png" width="107" height="88">
+<img id="triangle" src="images/triangle.png" width="147" height="57">
+<img id="wing_lower" src="images/wing_lower.png" width="651" height="101">
+<img id="wing_upper" src="images/wing_lower.png" width="659" height="117">
+-->
+
+<p>Canvas:</p>
+<canvas id="bug1" width="2048" height="1536" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+
+	var c = document.getElementById("bug1");
+	var ctx = c.getContext("2d");
+
+	//var wing_lower = document.getElementById("wing_lower");
+	//var legs_square = document.getElementById("legs_square");
+	//var body_gray = document.getElementById("body_gray");
+
+	var wing_upper = new Image();
+	var wing_lower = new Image();
+	var legs_square = new Image();
+	var body_gray = new Image();
+	var eyes_purple = new Image();
+
+    body_gray.onload = function() {
+    	ctx.drawImage(wing_upper, -30, 85);
+    	ctx.drawImage(wing_lower, -30, 165);
+		ctx.drawImage(body_gray, 191, 8);
+		ctx.drawImage(legs_square, 140, 207);
+		ctx.drawImage(eyes_purple, 229, 50);
+    };
+
+
+    wing_upper.src = "images/wing_upper.png";
+    wing_lower.src = "images/wing_lower.png";
+    legs_square.src = "images/legs_square.png";
+    body_gray.src = "images/body_gray.png";
+    eyes_purple.src = "images/eyes_purple.png";
+
+
+	//ctx.fillStyle = "rgb(200,0,0)";  
+	//ctx.fillRect(10, 10, 55, 50);
+
+</script>
+
+</body>
+</html>

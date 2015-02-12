@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <title>BugGuess</title>
+ <!-- Prevent scaling -->
+ <meta name="viewport" content="user-scalable=no, width=device-width" />
+ <!-- Eliminate url and button bars if added to home screen -->
+ <meta name="apple-mobile-web-app-capable" content="yes" />
+ <!-- Choose how to handle the phone status bar -->
+ <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+ <!-- Specify a 320x460 start-up image. -->
+ <link rel="apple-touch-startup-image" href="./images/bug_icon_large.png" />
+
+ <!-- Choose a 144x144 image for the icon -->
+ <link rel="apple-touch-icon" href="./images/bug_icon_sm.png" /> 
+
+ <style>
+  body {
+   margin: 0px ;
+   padding: 0px ;
+   color: #222222;
+   font-family: Helvetica;
+   font-size: 14px ;
+  }
+</style>
+ 
+ <script src='./stimuli.js'></source>
+ <script>
+   // To be called when there's a move event on the body itself:
+   function BlockMove(event) {
+     // Tell Safari not to move the window.
+     event.preventDefault() ;
+   }
+ </script>
+</head>
+
+<body ontouchmove="blockMove(event);">
+
+<div id="container">
+
+<h3>Instructions</h3>
+<p>Try to find out which house Rover lives in. You can either click on each house, or you can ask a yes or no question like "Does his house have a window?"</p>
+
+<canvas id="display" width="2048" height="1536" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+  // Tell Safari not to move the window when there's a move event on the body itself
+  function blockMove(event) {
+    event.preventDefault() ;
+  }
+
+  function instructionScreen() {
+      clear();
+      ctx.font="20px Georgia";
+      fillTextMultiLine(ctx, "Hi! Let's play a game:\n\nI have a pet bug, and I want you to figure out which one is mine.\nYou can either click on each bug until you find mine, or you can ask yes or no questions about my bug to figure it out faster.\n\nAre you ready?", 100, HEIGHT * 0.3);
+  }  
+
+  function fillTextMultiLine(ctx, text, x, y) {
+      var lineHeight = ctx.measureText("M").width * 1.2;
+      var lines = text.split("\n");
+      for (var i = 0; i < lines.length; ++i) {
+          ctx.fillText(lines[i], x, y);
+          y += lineHeight;
+      }
+  }
+
+	var margin_x = 100;
+	var margin_y = 100;
+	var offset = 200;
+	var button_size = 120;
+	var button_y = margin_y+2*offset + 40;
+	var button_offset = button_size + 45;
+	var button_text_color = '#EEEEEE';
+	var touches = []; // store time, location, and element for each touch
+
+	var elem = document.getElementById('display'),
+      elemLeft = elem.offsetLeft,
+      elemTop = elem.offsetTop,
+      context = elem.getContext('2d'),
+      elements = getHouses(),
+      buttons = getButtons();
+
+    drawStimuli(elements);
+    drawButtons(buttons);
+
+	// Add event listener for `click` events.
+	elem.addEventListener('click', function(event) {
+    	var x = event.pageX - elemLeft,
+        y = event.pageY - elemTop;
+
+    	// Collision detection between clicked offset and element.
+    	elements.forEach(function(element) {
+        	if (y > element.top && y < element.top + element.height && x > element.left && x < element.left + element.width) {
+            	alert('clicked an element');
+        	}
+    	});
+
+    	buttons.forEach(function(button) {
+        	if (y > button.top && y < button.top + button.height && x > button.left && x < button.left + button.width) {
+            	alert('clicked button: '+button.text);
+        	}
+    	});
+	}, false);
+
+
+	function drawStimuli(elements) {
+		elements.forEach(function(element) {
+			element.image.src = element.src;
+			element.image.onload = function() {
+    			context.drawImage(element.image, element.left, element.top);
+			};
+		});
+	}
+	
+	function drawButtons(buttons) {
+		buttons.forEach(function(button) {
+			context.fillStyle = button.color;
+		    context.fillRect(button.left, button.top, button.width, button.height);
+		    context.font='22px Verdana';
+    	    context.fillStyle = button_text_color;
+    	    context.fillText(button.text, button.left+10, button.top+33);
+		});
+	}
+
+
+</script>
+
+  </div>
+ </body>
+</html>

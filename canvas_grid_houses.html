@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Images to use:</p>
+<!-- <img id="antennae" src="images/antennae.png" width="167" height="77">
+<img id="body_gray" src="images/body_gray.png" width="208" height="340">
+<img id="body_yellow" src="images/body_yellow.png" width="208" height="340">
+<img id="eyes_purple" src="images/eyes_purple.png" width="132" height="84">
+<img id="eyes_white" src="images/eyes_white.png" width="132" height="84">
+
+<img id="freckles" src="images/freckles.png" width="175" height="41">
+<img id="headband_red" src="images/headband_red.png" width="139" height="17">
+<img id="headband_striped" src="images/headband_striped.png" width="139" height="17">
+
+
+<img id="legs_circle" src="images/legs_circle.png" width="316" height="205">
+<img id="legs_square" src="images/legs_square.png" width="316" height="205">
+<img id="star" src="images/star.png" width="107" height="88">
+<img id="triangle" src="images/triangle.png" width="147" height="57">
+<img id="wing_lower" src="images/wing_lower.png" width="651" height="101">
+<img id="wing_upper" src="images/wing_lower.png" width="659" height="117">
+-->
+
+<table>
+  <tr>
+	<td><canvas id="house1" width="200" height="200" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas></td>
+	<td><canvas id="house2" width="200" height="200" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas></td>
+  </tr>
+  <tr>
+	<td><canvas id="house3" width="200" height="200" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas></td>
+	<td><canvas id="house4" width="200" height="200" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas></td>
+  </tr>
+</table>
+
+<script>
+
+	var h1 = document.getElementById("house1");
+	var h2 = document.getElementById("house2");
+	var h3 = document.getElementById("house3");
+	var h4 = document.getElementById("house4");
+	var ctx1 = h1.getContext("2d");
+	var ctx2 = h2.getContext("2d");
+	var ctx3 = h3.getContext("2d");
+	var ctx4 = h4.getContext("2d");
+
+	var house1 = new Image();
+	var house2 = new Image();
+	var house3 = new Image();
+	var house4 = new Image();
+	
+	var margin_x = 10;
+	var margin_y = 10;
+	var offset = 200;
+	var button_size = 80;
+	var button_y = margin_y+2*offset + 40;
+	var button_offset = button_size + 45;
+
+    house1.onload = function() {
+    	ctx1.drawImage(house1, margin_x, margin_y);
+	};
+
+	house2.onload = function() {
+    	ctx2.drawImage(house2, margin_x, margin_y);
+	};
+
+	house3.onload = function() {
+    	ctx3.drawImage(house3, margin_x, margin_y);
+	};
+
+	house4.onload = function() {
+    	ctx4.drawImage(house4, margin_x, margin_y);
+	};
+
+	house1.src = "images/house_red.png";
+    house2.src = "images/house_blue.png";
+    house3.src = "images/house_blue2.png";
+    house4.src = "images/house_red.png";
+
+	//ctx.fillStyle = "rgb(0,0,0)";  
+	//ctx.fillRect(margin_x, button_y, button_size, 50);
+	//ctx.fillRect(margin_x+button_offset, button_y, button_size, 50);
+	//ctx.fillRect(margin_x+2*button_offset, button_y, button_size, 50);
+</script>
+
+</body>
+</html>
