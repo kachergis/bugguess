@@ -1,19 +1,9 @@
-body_gray.onload = function() {
-    	
-		ctx.drawImage(legs_square, 140, 207);
-    };
-
-
-    legs_square.src = "images/legs_square.png";
-    body_gray.src = "images/body_gray.png";
-    eyes_purple.src = "images/eyes_purple.png";
-
 
 function getBugParts() {
 	var parts = [
 		{
 			image: new Image(),
-			src: "images/body_gray.png",
+			src: "static/images/body_gray.png",
 			width: 208,
 			height: 340,
 			top: 50,
@@ -23,7 +13,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/body_yellow.png",
+			src: "static/images/body_yellow.png",
 			width: 208,
 			height: 340,
 			top: 50,
@@ -33,7 +23,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/wing_upper.png",
+			src: "static/images/wing_upper.png",
 			width: 659,
 			height: 117,
 			top: 122,
@@ -43,7 +33,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/wing_lower.png",
+			src: "static/images/wing_lower.png",
 			width: 651,
 			height: 101,
 			top: 207,
@@ -53,7 +43,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/eyes_purple.png",
+			src: "static/images/eyes_purple.png",
 			width: 132,
 			height: 84,
 			top: 92,
@@ -63,7 +53,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/eyes_white.png",
+			src: "static/images/eyes_white.png",
 			width: 132,
 			height: 84,
 			top: 92,
@@ -73,7 +63,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/legs_square.png",
+			src: "static/images/legs_square.png",
 			width: 316,
 			height: 205,
 			top: 249,
@@ -83,7 +73,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/legs_circle.png",
+			src: "static/images/legs_circle.png",
 			width: 316,
 			height: 249,
 			top: 207,
@@ -93,7 +83,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/antennae.png",
+			src: "static/images/antennae.png",
 			width: 169,
 			height: 77,
 			top: 1,
@@ -103,7 +93,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/star.png",
+			src: "static/images/star.png",
 			width: 107,
 			height: 88,
 			top: 266,
@@ -113,7 +103,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/triangle.png",
+			src: "static/images/triangle.png",
 			width: 147,
 			height: 57,
 			top: 211,
@@ -123,7 +113,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/headband_red.png",
+			src: "static/images/headband_red.png",
 			width: 139,
 			height: 17,
 			top: 77,
@@ -133,7 +123,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/headband_striped.png",
+			src: "static/images/headband_striped.png",
 			width: 139,
 			height: 17,
 			top: 77,
@@ -142,7 +132,7 @@ function getBugParts() {
 		},
 		{
 			image: new Image(),
-			src: "images/freckles.png",
+			src: "static/images/freckles.png",
 			width: 175,
 			height: 41,
 			top: 161,
@@ -157,7 +147,7 @@ function getHouses() {
 	var elements = [];
 	elements.push({
 		image: new Image(),
-		src: "images/house_red.png",
+		src: "static/images/house_red.png",
 		width: 173,
 		height: 169,
 		top: margin_y,
@@ -167,7 +157,7 @@ function getHouses() {
 
 	elements.push({
 		image: new Image(),
-		src: "images/house_blue.png",
+		src: "static/images/house_blue.png",
 		width: 173,
 		height: 169,
 		top: margin_y,
@@ -177,7 +167,7 @@ function getHouses() {
 
 	elements.push({
 		image: new Image(),
-		src: "images/house_blue2.png",
+		src: "static/images/house_blue2.png",
 		width: 173,
 		height: 169,
 		top: margin_y+offset,
@@ -187,7 +177,7 @@ function getHouses() {
 
 	elements.push({
 		image: new Image(),
-		src: "images/house_red.png",
+		src: "static/images/house_red.png",
 		width: 173,
 		height: 169,
 		top: margin_y+offset,

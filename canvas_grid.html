@@ -5,13 +5,13 @@
 
 <table>
   <tr>
-	<td><canvas id="house1" width="200" height="200" style="border:0px">
+	<td><canvas id="house1" width="455" height="360" style="border:0px">
 Your browser does not support the HTML5 canvas tag.</canvas></td>
-	<td><canvas id="house2" width="200" height="200" style="border:0px"></canvas></td>
+	<td><canvas id="house2" width="455" height="360" style="border:0px"></canvas></td>
   </tr>
   <tr>
-	<td><canvas id="house3" width="200" height="200" style="border:0px"></canvas></td>
-	<td><canvas id="house4" width="200" height="200" style="border:0px"></canvas></td>
+	<td><canvas id="house3" width="455" height="360" style="border:0px"></canvas></td>
+	<td><canvas id="house4" width="455" height="360" style="border:0px"></canvas></td>
   </tr>
 </table>
 
@@ -30,9 +30,25 @@ Your browser does not support the HTML5 canvas tag.</canvas></td>
 	  }
 	  
 	  /* create the board and set the initial player */
+	  instructionScreen()
 	  drawStimuli();
 	  setInitialPlayer();
 	}
+
+	function instructionScreen() {
+      clear();
+      ctx.font="20px Georgia";
+      fillTextMultiLine(ctx, "Hi! Let's play a game:\n\nI have a pet bug, and I want you to figure out which one is mine.\nYou can either click on each bug until you find mine, or you can ask yes or no questions about my bug to figure it out faster.\n\nAre you ready?", 100, HEIGHT * 0.3);
+  	}  
+
+  	function fillTextMultiLine(ctx, text, x, y) {
+      var lineHeight = ctx.measureText("M").width * 1.2;
+      var lines = text.split("\n");
+      for (var i = 0; i < lines.length; ++i) {
+          ctx.fillText(lines[i], x, y);
+          y += lineHeight;
+      }
+  	}
 
 
 	var h1 = document.getElementById("house1");
@@ -72,10 +88,10 @@ Your browser does not support the HTML5 canvas tag.</canvas></td>
     	ctx4.drawImage(house4, margin_x, margin_y);
 	};
 
-	house1.src = "images/house_red.png";
-    house2.src = "images/house_blue.png";
-    house3.src = "images/house_blue2.png";
-    house4.src = "images/house_red.png";
+	house1.src = "static/images/house_red.png";
+    house2.src = "static/images/house_blue.png";
+    house3.src = "static/images/house_blue2.png";
+    house4.src = "static/images/house_red.png";
 
 	//ctx.fillStyle = "rgb(0,0,0)";  
 	//ctx.fillRect(margin_x, button_y, button_size, 50);

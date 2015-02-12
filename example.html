@@ -25,7 +25,7 @@
   }
 </style>
  
- <script src='./stimuli.js'></source>
+ <script src='./static/js/stimuli.js'></source>
  <script>
    // To be called when there's a move event on the body itself:
    function BlockMove(event) {
@@ -49,21 +49,6 @@ Your browser does not support the HTML5 canvas tag.</canvas>
   // Tell Safari not to move the window when there's a move event on the body itself
   function blockMove(event) {
     event.preventDefault() ;
-  }
-
-  function instructionScreen() {
-      clear();
-      ctx.font="20px Georgia";
-      fillTextMultiLine(ctx, "Hi! Let's play a game:\n\nI have a pet bug, and I want you to figure out which one is mine.\nYou can either click on each bug until you find mine, or you can ask yes or no questions about my bug to figure it out faster.\n\nAre you ready?", 100, HEIGHT * 0.3);
-  }  
-
-  function fillTextMultiLine(ctx, text, x, y) {
-      var lineHeight = ctx.measureText("M").width * 1.2;
-      var lines = text.split("\n");
-      for (var i = 0; i < lines.length; ++i) {
-          ctx.fillText(lines[i], x, y);
-          y += lineHeight;
-      }
   }
 
 	var margin_x = 100;
