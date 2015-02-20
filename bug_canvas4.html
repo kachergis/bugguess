@@ -7,8 +7,10 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 
 <script src="static/js/stimuli.js" type="text/javascript"> </script>
 <script type="text/javascript">
-
-
+	var WIDTH = 2048;
+	var HEIGHT = 1536;
+	var c = document.getElementById("bug1");
+	var ctx = c.getContext("2d");
 	var bugParts = getBugParts();
 
 	var Bug = function(pars) {
@@ -33,7 +35,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 	// var mapBugFeatures() = function() {}
 
 	var buildBugs = function() {
-		// should accept a mapping vector that specifies 
+		// should accept a mapping vector that specifies which parts
 		var bugs = [];
 		// body: 1-2, wings: 3 or 3+4, eyes: 5-6, legs: 7-8, antennae: 9, star: 10, triangle: 11, headband: 12-13
 		var b = new Bug({
@@ -70,38 +72,57 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 		return bugs;
 	}
 
-	var c = document.getElementById("bug1");
-	var ctx = c.getContext("2d");
-	var bugs = buildBugs();
-	drawBug(bugs[0], ctx);
-
 	// to draw on one big canvas? (for now) or an individual (class) canvas for each bug? -- latter may be smarter (easier to update?)
-	function drawBug(bug) {
+	function drawBug(bug, ctx) {
 		// body: 1-2, wings: 3 or 3+4, eyes: 5-6, legs: 7-8, antennae: 9, star: 10, triangle: 11, headband: 12-13
 		for (var key in bug) {
 			if(key!='top' && key!='left' && key!='owner') {
-				bug[key].image.src = bug[key].src; // maybe should do this once in getBugParts?
-				ctx.drawImage(bug[key].image, bug.left + bug[key].left, bug.top + bug[key].top);
-				console.log(bug[key].image.src);
+				if(bug[key]!=0) {
+					bug[key].image.onload = function() {
+						ctx.drawImage(bug[key].image, bug.left + bug[key].left, bug.top + bug[key].top);
+					}
+					//bug[key].image.src = bug[key].src; // maybe should do this once in getBugParts?
+				}
+				//console.log(bug.left + " " + bug[key].left + " " + bug.top + " " + bug[key].top);
 			}
 		}
-		return ctx;
 	}
 
-    function drawStimuli(elements, nrows, ncols) {
-		elements.forEach(function(element) {
+	// drawBug
+	function drawArray(bugs, nrows, ncols, ctx) {
+		bugs.forEach(function(element) {
 			element.image.src = element.src;
 			element.image.onload = function() {
     			ctx.drawImage(element.image, element.left, element.top);
+    			console.log(element.image.src + " " + element.left + " " + element.top);
 			};
 		});
 	}
 
-	//drawStimuli(elements);
+    function drawPart(element, ctx) {
+		element.image.src = element.src;
+		element.image.onload = function() {
+			ctx.drawImage(element.image, element.left, element.top);
+			console.log(element.image.src + " " + element.left + " " + element.top);
+		}
+	}
 
-	//ctx.fillStyle = "rgb(200,0,0)";  
-	//ctx.fillRect(10, 10, 55, 50);
+	//window.onload = function(ctx) {
+		var bugs = buildBugs();
+		console.log(bugs[0]);
+		drawBug(bugs[0], ctx);
+		drawBug(bugs[1], ctx);
+		//drawPart(bugParts[1], ctx);
 
+		//ctx.fillStyle = "rgb(200,0,0)";  
+		//ctx.fillRect(10, 10, 55, 50);
+	//}
+
+	// wait one second before starting
+    //setTimeout(function() {
+   //     var startTime = (new Date()).getTime();
+   //     doExp(ctx, startTime);
+    //}, 1000);
 </script>
 
 </body>

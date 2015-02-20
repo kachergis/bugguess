@@ -1,5 +1,6 @@
 function getBugParts() {
 	var parts = {};
+	var imagesOK = 0;
 	parts[0] = 0; // for missing features
 	parts[1] = {
 			image: new Image(),
@@ -113,6 +114,14 @@ function getBugParts() {
 			top: 161,
 			left: 201
 		};
+
+	for (i = 1; i < parts.length; i++) { 
+		//parts[i].image = new Image();
+		parts[i].image.src = parts[i].src;
+		parts[i].image.onload = function(){ imagesOK++; };
+    	
+	}
+	console.log(imagesOK);
 	return parts;
 }
 
