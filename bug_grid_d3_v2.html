@@ -49,7 +49,7 @@ var buttons = d3.select("body").selectAll("button")
   .enter().insert("button", ":first-child")
     .text(function(d){ return "Add " + d;})
     .on("click", function(d){
-      data.push(maker(d)());
+      //data.push(maker(d)());
       update();
     });
 

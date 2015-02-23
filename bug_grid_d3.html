@@ -16,18 +16,52 @@ body {
 
 <script>
 var img_dir_prefix = "static/images/"
-var images = getImages(img_dir_prefix+"set1")
+var button_dir = img_dir_prefix + "buttons/"
+//var images = getImages(img_dir_prefix+"set1")
 var rects = [];
+var buttons = [];
 
-var width = 2048,
-    height = 1536;
+var screen_width = 2048,
+    screen_height = 1536;
+
+var bug_width = 330,
+    bug_height = 280;
+
+var button_width = 225,
+    button_height = 118;
 
 var bug_images = [
-    "A.png", "B.png", "C.png", "D.png",
-    "E.png", "F.png", "G.png", "H.png",
-    "I.png", "J.png", "K.png", "L.png",
-    "M.png", "N.png", "O.png", "P.png" 
+    "A", "B", "C", "D",
+    "E", "F", "G", "H",
+    "I", "J", "K", "L",
+    "M", "N", "O", "P" 
   ];
+
+// set 1
+var features = {"f1":"body", "f2":"eyes", "f3":"antennae", "f4":"star", "f5":"triangle", "f6":"feet", "f7":"wings", "f8":"freckles", "f9":"headband"};
+// set 2
+//var features = {"f1":"feet", "f2":"eyes", "f3":"triangle", "f4":"star", "f5":"wings", "f6":"headband", "f7":"body", "f8":"freckles", "f9":"antennae"};
+
+var bug_data = [
+  {"id":"A" , "f1":1 , "f2":0 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
+  {"id":"B" , "f1":1 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
+  {"id":"C" , "f1":0 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":1 },
+  {"id":"D" , "f1":0 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
+  {"id":"E" , "f1":1 , "f2":0 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
+  {"id":"F" , "f1":1 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
+  {"id":"G" , "f1":0 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":1 , "f8":1 , "f9":0 },
+  {"id":"H" , "f1":0 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":1 , "f8":0 , "f9":0 },
+  {"id":"I" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":1 , "f7":0 , "f8":0 , "f9":1 },
+  {"id":"J" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":1 , "f7":0 , "f8":0 , "f9":0 },
+  {"id":"K" , "f1":0 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
+  {"id":"L" , "f1":0 , "f2":0 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
+  {"id":"M" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":1 , "f9":0 },
+  {"id":"N" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
+  {"id":"O" , "f1":0 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
+  {"id":"P" , "f1":0 , "f2":0 , "f3":0 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
+  ];
+
+var button_images = ["antennae", "body", "eyes", "feet", "freckles", "headband", "mouth", "star", "triangle", "wings", "ready"];
 
 //var pointGrid = d3.layout.grid()
 //  .points()
@@ -35,54 +69,78 @@ var bug_images = [
 
 var rectGrid = d3.layout.grid()
   .bands()
-  .nodeSize([330, 280]) 
+  .nodeSize([bug_width, bug_height]) 
   .padding([10, 10]); // padding is absolute if nodeSize is used
   // .size([100,100])
 
+var buttonGrid = d3.layout.grid()
+  .bands()
+  .rows(2)
+  .nodeSize([button_width, button_height]) 
+  .padding([20, 20]);
+
 var svg = d3.select("body").append("svg")
   .attr({
-    width: width,
-    height: height
+    width: screen_width,
+    height: screen_height-(2.5*button_height)
   })
 .append("g")
-  .attr("transform", "translate(50,50)");
+  .attr("transform", "translate(50,40)");
 
 //var tick = setInterval(pushAll, 500);
 pushAll(bug_images);
 
-function getImages(dir) {
-  var imagesOK = 0;
-  var parts = [
-    "A.png", "B.png", "C.png", "D.png",
-    "E.png", "F.png", "G.png", "H.png",
-    "I.png", "J.png", "K.png", "L.png",
-    "M.png", "N.png", "O.png", "P.png" 
-  ];
-  var imgs = [];
-  for (i = 0; i < parts.length; i++) { 
-    img = new Image();
-    img.onload = function(){ imagesOK++; };
-    img.src = dir+'/'+parts[i];
-    imgs.push(img);
-  }
-  console.log(imagesOK);
-  return imgs;
-}
 
-function addImages(img) { 
+var svg = d3.select("body").append("svg")
+  .attr({
+    width: screen_width,
+    height: 2.5*button_height
+  })
+.append("g")
+  .attr("transform", "translate(50,10)");
+
+pushButtons(button_images);
+
+// var buttons = d3.select("body").selectAll("button")
+//   .data(buttonGrid(buttons))
+//   .enter().insert("button", ":first-child")
+//     .text(function(d){ return "Add " + d;})
+//     .on("click", function(d){
+//       button.push(maker(d)());
+//       update();
+//     });
+
+
+// function bugClick(d) {
+//   svg.selectAll(".rect")
+//     .filter(function(p) {
+//       return _(d.facets).contains(p.target.name)
+//     })
+//     .transition()
+//     .style("opacity", .9);
+// }
+
+function addImage(img, id) { 
   var rect = svg.selectAll(".rect")
     .data(rectGrid(rects));
   rect.enter().append("image")
     .attr("xlink:href", img)
     .attr("class", "rect")
+    .attr("id", id)
     .attr("width", rectGrid.nodeSize()[0])
     .attr("height", rectGrid.nodeSize()[1])
     .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
-    .style("opacity", 1e-6);
-  //rect.append("image")
-  //  .attr("xlink:href", img)
-  //  .attr("width", 400)
-  //  .attr("height", 299);
+    .style("opacity", 1e-6)
+    .on("click", function(){
+      // Determine if current line is visible
+      var active   = rect.active ? false : true,
+        newOpacity = active ? .15 : 1;
+      // Hide or show the elements
+      d3.select("#"+id).style("opacity", newOpacity);
+      //d3.select("#blueAxis").style("opacity", newOpacity);
+      // Update whether or not the elements are active
+      rect.active = active;
+    });
   rect.transition()
     .attr("width", rectGrid.nodeSize()[0])
     .attr("height", rectGrid.nodeSize()[1])
@@ -98,7 +156,7 @@ function pushAll(bug_images) {
   shuffle(bug_images);
   for(i=0; i<bug_images.length; i++) {
     rects.push({});
-    setTimeout(addImages("static/images/set1/"+bug_images[i]), 5000);
+    setTimeout(addImage("static/images/set1/"+bug_images[i]+".png", bug_images[i]), 500);
   }
   if (rects.length > 16) {
     clearInterval(tick);
@@ -106,24 +164,45 @@ function pushAll(bug_images) {
   }
 }
 
+function addButton(img, id) { 
+  var button = svg.selectAll(".button")
+    .data(buttonGrid(buttons));
+  button.enter().append("image")
+    .attr("xlink:href", img)
+    .attr("class", "button")
+    .attr("id", id)
+    .attr("width", buttonGrid.nodeSize()[0])
+    .attr("height", buttonGrid.nodeSize()[1])
+    .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
+    .style("opacity", 1e-6)
+    .on("click", function(){
+      // Determine if current image is visible
+      var active   = button.active ? false : true,
+        newOpacity = active ? .2 : 1;
+      // Hide or show the elements
+      d3.select("#"+id).style("opacity", newOpacity);
+      //d3.select("#blueAxis").style("opacity", newOpacity);
+      // Update whether or not the elements are active
+      button.active = active;
+    });
+  button.transition()
+    .attr("width", buttonGrid.nodeSize()[0])
+    .attr("height", buttonGrid.nodeSize()[1])
+    .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
+    .style("opacity", 1);
+  button.exit().transition()
+    .style("opacity", 1e-6)
+    .remove();
+}
 
-function push() {
-  rects.push({});
-  addImages("static/images/set1/A.png");
-  if (rects.length > 16) {
-    clearInterval(tick);
-    tick = setInterval(pop, 500);
+function pushButtons(button_images) {
+  shuffle(button_images);
+  for(i=0; i<button_images.length; i++) {
+    buttons.push({});
+    addButton(button_dir+button_images[i]+".png", button_images[i]);
   }
 }
 
-function pop() {
-  rects.pop();
-  update();
-  if (rects.length < 2) {
-    clearInterval(tick);
-    tick = setInterval(push, 500);
-  }
-}
 
 //@ http://jsfromhell.com/array/shuffle [v1.0]
 function shuffle(o) { 
