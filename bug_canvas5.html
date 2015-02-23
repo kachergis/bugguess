@@ -14,9 +14,8 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 	var HEIGHT = 1536;
 	var c = document.getElementById("bug1");
 	var ctx = c.getContext("2d");
-	var bugParts = getBugParts();
-
-	var bugParts2 = getImages();
+	//var bugParts = getBugParts();
+	var bugParts = getImages();
 
 
 	var BugOLD = function(pars) {
@@ -123,8 +122,8 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 	}
 
 	function drawBug2(bug, ctx) {
-		//ctx.drawImage(bugParts[bug.body], bug.left + bugParts[bug.body].left, bug.top + bugParts[bug.body].top);
-		//ctx.drawImage(bugParts[bug.legs], bug.left + bugParts[bug.legs].left, bug.top + bugParts[bug.legs].top);
+		ctx.drawImage(bugParts[bug.body], bug.left + bugParts[bug.body].left, bug.top + bugParts[bug.body].top);
+		ctx.drawImage(bugParts[bug.legs], bug.left + bugParts[bug.legs].left, bug.top + bugParts[bug.legs].top);
 	}
 
 	// drawBug
@@ -139,28 +138,19 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 	}
 
     function drawPart(element, ctx) {
-		element.image.src = element.src;
-		element.image.onload = function() {
-			ctx.drawImage(element.image, element.left, element.top);
-			console.log(element.image.src + " " + element.left + " " + element.top);
+		ctx.drawImage(element.image, element.left, element.top);
+		console.log(imgs.src + " " + element.left + " " + element.top);
+	}
+
+	function drawParts(bugParts, ctx) {
+		for(i = 0; i<bugParts.length; i++) {
+			ctx.drawImage(bugParts[i], 50, 50);
 		}
 	}
 
-	//window.onload = function(ctx) {
-		var bugs = buildBugs();
-		//console.log(bugs[0]);
-		drawBug(bugs[0], ctx, bugParts);
-		//drawPart(bugParts[1]);
-		//drawBug(bugs[1], ctx);
-		//ctx.fillStyle = "rgb(200,0,0)";  
-		//ctx.fillRect(10, 10, 55, 50);
-	//}
+	var bugs = buildBugs();
+	drawParts(bugParts, ctx);
 
-	// wait one second before starting
-    //setTimeout(function() {
-   //     var startTime = (new Date()).getTime();
-   //     doExp(ctx, startTime);
-    //}, 1000);
 </script>
 
 </body>

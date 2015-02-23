@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body {
+  font-family: Helvetica;
+  font-size: 10px;
+}
+.point, .rect {
+  fill: #222;
+}
+</style>
+<body>
+<!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+<script src="static/lib/d3.v3.min.js" type="text/javascript"> </script> 
+<script src="static/js/d3-grid.js"></script>
+
+<script>
+var img_dir_prefix = "static/images/"
+var images = getImages(img_dir_prefix+"set1")
+var rects = [];
+
+var width = 2048,
+    height = 1536;
+
+var bug_images = [
+    "A.png", "B.png", "C.png", "D.png",
+    "E.png", "F.png", "G.png", "H.png",
+    "I.png", "J.png", "K.png", "L.png",
+    "M.png", "N.png", "O.png", "P.png" 
+  ];
+
+//var pointGrid = d3.layout.grid()
+//  .points()
+//  .size([360, 360]);
+
+var rectGrid = d3.layout.grid()
+  .bands()
+  .nodeSize([330, 280]) 
+  .padding([10, 10]); // padding is absolute if nodeSize is used
+  // .size([100,100])
+
+var svg = d3.select("body").append("svg")
+  .attr({
+    width: width,
+    height: height
+  })
+.append("g")
+  .attr("transform", "translate(50,50)");
+
+//var tick = setInterval(pushAll, 500);
+pushAll(bug_images);
+
+function getImages(dir) {
+  var imagesOK = 0;
+  var parts = [
+    "A.png", "B.png", "C.png", "D.png",
+    "E.png", "F.png", "G.png", "H.png",
+    "I.png", "J.png", "K.png", "L.png",
+    "M.png", "N.png", "O.png", "P.png" 
+  ];
+  var imgs = [];
+  for (i = 0; i < parts.length; i++) { 
+    img = new Image();
+    img.onload = function(){ imagesOK++; };
+    img.src = dir+'/'+parts[i];
+    imgs.push(img);
+  }
+  console.log(imagesOK);
+  return imgs;
+}
+
+function addImages(img) { 
+  var rect = svg.selectAll(".rect")
+    .data(rectGrid(rects));
+  rect.enter().append("image")
+    .attr("xlink:href", img)
+    .attr("class", "rect")
+    .attr("width", rectGrid.nodeSize()[0])
+    .attr("height", rectGrid.nodeSize()[1])
+    .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
+    .style("opacity", 1e-6);
+  //rect.append("image")
+  //  .attr("xlink:href", img)
+  //  .attr("width", 400)
+  //  .attr("height", 299);
+  rect.transition()
+    .attr("width", rectGrid.nodeSize()[0])
+    .attr("height", rectGrid.nodeSize()[1])
+    .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
+    .style("opacity", 1);
+  rect.exit().transition()
+    .style("opacity", 1e-6)
+    .remove();
+}
+
+
+function pushAll(bug_images) {
+  shuffle(bug_images);
+  for(i=0; i<bug_images.length; i++) {
+    rects.push({});
+    setTimeout(addImages("static/images/set1/"+bug_images[i]), 5000);
+  }
+  if (rects.length > 16) {
+    clearInterval(tick);
+    //tick = setInterval(pop, 500);
+  }
+}
+
+
+function push() {
+  rects.push({});
+  addImages("static/images/set1/A.png");
+  if (rects.length > 16) {
+    clearInterval(tick);
+    tick = setInterval(pop, 500);
+  }
+}
+
+function pop() {
+  rects.pop();
+  update();
+  if (rects.length < 2) {
+    clearInterval(tick);
+    tick = setInterval(push, 500);
+  }
+}
+
+//@ http://jsfromhell.com/array/shuffle [v1.0]
+function shuffle(o) { 
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+}
+
+</script>

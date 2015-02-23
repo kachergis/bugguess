@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body {
+  font-family: Helvetica;
+  font-size: 10px;
+  background-color: #333333;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.rect {
+  fill: #222;
+}
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="./d3-grid.js"></script>
+<script>
+var color = d3.scale.ordinal()
+  .domain(["error", "nominal", "unknown"])
+  .range(["#bc1919", "#428bca", "#777070"]);
+
+var data = [].concat(
+  d3.range(1).map(maker("error")),
+  d3.range(1).map(maker("nominal")),
+  d3.range(2).map(maker("unknown"))
+);
+
+var padding = {
+    top: 50,
+    right: 50,
+    bottom: 50,
+    left: 50
+  },
+  docEl = document.documentElement,
+  width = docEl.clientWidth - padding.left - padding.right,
+  height = docEl.clientHeight - padding.top - padding.bottom,
+  iconSize = 16;
+
+var icon;
+
+var grid = d3.layout.grid()
+  .bands()
+  .size([width, height]);
+
+var buttons = d3.select("body").selectAll("button")
+  .data(color.domain())
+  .enter().insert("button", ":first-child")
+    .text(function(d){ return "Add " + d;})
+    .on("click", function(d){
+      data.push(maker(d)());
+      update();
+    });
+
+var svg = d3.select("body").append("div").append("svg")
+  .attr({
+    width: width + padding.left + padding.right,
+    height: height + padding.top + padding.bottom
+  })
+.append("g")
+  .attr({
+    transform: "translate(" + padding.left + " " + padding.top +")"
+  });
+
+d3.xml("./person.svg",  "image/svg+xml", function(error, frag) {
+  var node = frag.getElementsByTagName("g")[0];
+  icon = function(){
+    return node.cloneNode(true);
+  }
+  //use plain Javascript to extract the node
+  update();
+});
+
+function update(){
+
+  data.sort(function(a, b){
+    return a.state.localeCompare(b.state) ||  a.id - b.id;
+  });
+
+  grid(data);
+
+  var dot = svg.selectAll(".icon")
+    .data(data, function(d){ return d.id; });
+
+  dot.enter().append(icon)
+    .attr({
+      "class": "icon",
+      transform: tx_xy
+    })
+    .style({opacity: 1e-6})
+    .each(colorize)
+    .on("click", function(d, i){
+      data.splice(data.indexOf(d), 1);
+      update();
+    });
+
+  dot.transition()
+    .delay(function(d, i){ return i / 10; })
+    .attr({
+      transform: tx_xy
+    })
+    .style({opacity: 1})
+    .each(colorize);
+
+  dot.exit().transition()
+    .style({opacity: 1e-6})
+    .remove();
+}
+
+function colorize(d){
+  d3.select(this).selectAll("*")
+    .style({fill: function(){return color(d.state);}});
+}
+
+function tx_xy(d){
+  var scale = Math.min.apply(null,
+    grid.nodeSize().map(function(d){ return d/iconSize; }));
+  var tx = "translate(" + d.x + "," + d.y + ")" + " scale(" + scale + ") ";
+  return tx;
+}
+
+function maker(state){
+  maker._ID = maker._ID ? maker._ID : 1;
+  return function(){
+    return {state: state, id: maker._ID++};
+  }
+}
+</script>

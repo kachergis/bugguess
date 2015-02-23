@@ -1,3 +1,32 @@
+function getImages() {
+	var imagesOK = 0;
+	var parts = [
+		"static/images/body_gray.png",
+		"static/images/body_yellow.png",
+		"static/images/wing_upper.png",
+		"static/images/wing_lower.png",
+		"static/images/eyes_purple.png",
+		"static/images/eyes_white.png",
+		"static/images/legs_square.png",
+		"static/images/legs_circle.png",
+		"static/images/antennae.png",
+		"static/images/star.png",
+		"static/images/triangle.png",
+		"static/images/headband_red.png",
+		"static/images/headband_striped.png",
+		"static/images/freckles.png"
+	];
+	var imgs = [];
+	for (i = 0; i < parts.length; i++) { 
+		img = new Image();
+		img.src = parts[i];
+		img.onload = function(){ imagesOK++; };
+    	imgs.push(img);
+	}
+	console.log(imagesOK);
+	return imgs;
+}
+
 function getBugParts() {
 	var parts = {};
 	var imagesOK = 0;
