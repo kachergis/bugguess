@@ -237,6 +237,23 @@ function pushButtons(button_images) {
 }
 
 
+function buttonPress(b) {
+  console.log(b);
+  if(b.id=="ready") {
+    d3.selectAll(".button")
+      .transition()
+      .style("opacity", 1e-6);
+    // now treat the click on an exemplar as a guess... (modify the .on("click") function??)
+  } else {
+    // select the rects that do not have the answer's d[b.feature] 
+    d3.selectAll(".rect")
+     .filter(function(d) {
+       return d[b.feature] !== answer[b.feature];
+     })
+     .style("opacity", .2);
+  }
+}
+
 //@ http://jsfromhell.com/array/shuffle [v1.0]
 function shuffle(o) { 
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
