@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 
 <head>
- <title>BugGuess</title>
+ <title>BugGuess: Tutorial</title>
  <!-- Prevent scaling -->
  <meta name="viewport" content="user-scalable=no, width=device-width" />
  <!-- Eliminate url and button bars if added to home screen -->
@@ -36,79 +36,65 @@
      event.preventDefault() ;
    }
 </script>
+</head>
 
+<body ontouchmove="blockMove(event);">
 <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
 <script src="static/lib/d3.v3.min.js" type="text/javascript"> </script> 
 <script src="static/js/d3-grid.js"></script>
 
-</head>
-
-<body ontouchmove="blockMove(event);">
-
 <div id="container">
+
+<h3>Instructions</h3>
+<p>Try to find out which house Rover lives in. You can either click on each house, or you can ask a yes or no question like "Does his house have a window?"</p>
+
+
 
 <script>
 var img_dir_prefix = "static/images/"
 var button_dir = img_dir_prefix + "buttons/"
-//var images = getImages(img_dir_prefix+"set1")
+
 var rects = [];
 var buttons = [];
 
-var screen_width = 2048,
-    screen_height = 1536;
+// iPad
+//var screen_width = 2048,
+//    screen_height = 1536;
+// computer
+var screen_width = 1024,
+    screen_height = 768;
 
-var bug_width = 330,
-    bug_height = 280;
+var bug_width = 173,
+    bug_height = 169;
 
-var button_width = 225,
-    button_height = 118;
+var button_width = 149,
+    button_height = 81;
 
-var bug_images = [
-    "A", "B", "C", "D",
-    "E", "F", "G", "H",
-    "I", "J", "K", "L",
-    "M", "N", "O", "P" 
-  ];
+var exemplar_images = ["house_red", "house_red", "house_blue", "house_blue2"];
 
 // set 1
-var features = {"f1":"body", "f2":"eyes", "f3":"antennae", "f4":"star", "f5":"triangle", "f6":"feet", "f7":"wings", "f8":"freckles", "f9":"headband"};
-// set 2
-//var features = {"f1":"feet", "f2":"eyes", "f3":"triangle", "f4":"star", "f5":"wings", "f6":"headband", "f7":"body", "f8":"freckles", "f9":"antennae"};
+var features = {"f1":"red", "f2":"blue", "f3":"window"};
 
-var bug_data = [
-  {"id":"A" , "f1":1 , "f2":0 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
-  {"id":"B" , "f1":1 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
-  {"id":"C" , "f1":0 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":1 },
-  {"id":"D" , "f1":0 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
-  {"id":"E" , "f1":1 , "f2":0 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
-  {"id":"F" , "f1":1 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
-  {"id":"G" , "f1":0 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":1 , "f8":1 , "f9":0 },
-  {"id":"H" , "f1":0 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":1 , "f8":0 , "f9":0 },
-  {"id":"I" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":1 , "f7":0 , "f8":0 , "f9":1 },
-  {"id":"J" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":1 , "f7":0 , "f8":0 , "f9":0 },
-  {"id":"K" , "f1":0 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
-  {"id":"L" , "f1":0 , "f2":0 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
-  {"id":"M" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":1 , "f9":0 },
-  {"id":"N" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
-  {"id":"O" , "f1":0 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
-  {"id":"P" , "f1":0 , "f2":0 , "f3":0 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0 },
+var exemplars = [
+  {"id":"house_red",  "f1":1, "f2":0, "f3":0},
+  {"id":"house_red",  "f1":1, "f2":0, "f3":0},
+  {"id":"house_blue", "f1":0, "f2":1, "f3":0},
+  {"id":"house_blue2","f1":0, "f2":1, "f3":1}
   ];
 
-var button_images = ["antennae", "body", "eyes", "feet", "freckles", "headband", "mouth", "star", "triangle", "wings", "ready"];
+var answer = exemplars[1];
 
-//var pointGrid = d3.layout.grid()
-//  .points()
-//  .size([360, 360]);
+var button_images = ["red", "blue", "window", "ready"];
 
 var rectGrid = d3.layout.grid()
   .bands()
   .nodeSize([bug_width, bug_height]) 
-  .padding([10, 10]); // padding is absolute if nodeSize is used
+  .padding([30, 30]); // padding is absolute if nodeSize is used
   // .size([100,100])
 
 var buttonGrid = d3.layout.grid()
   .bands()
-  .rows(2)
+  .rows(1)
   .nodeSize([button_width, button_height]) 
   .padding([20, 20]);
 
@@ -117,11 +103,11 @@ var svg = d3.select("body").append("svg")
     width: screen_width,
     height: screen_height-(2.5*button_height)
   })
-.append("g")
+  .append("g")
   .attr("transform", "translate(50,40)");
 
 //var tick = setInterval(pushAll, 500);
-pushAll(bug_images);
+pushAll(exemplar_images);
 
 
 var svg = d3.select("body").append("svg")
@@ -129,7 +115,7 @@ var svg = d3.select("body").append("svg")
     width: screen_width,
     height: 2.5*button_height
   })
-.append("g")
+  .append("g")
   .attr("transform", "translate(50,10)");
 
 pushButtons(button_images);
@@ -175,25 +161,23 @@ function addImage(img, id) {
       rect.active = active;
     });
   rect.transition()
+    .delay(700)
     .attr("width", rectGrid.nodeSize()[0])
     .attr("height", rectGrid.nodeSize()[1])
     .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
     .style("opacity", 1);
   rect.exit().transition()
+    .delay(500)
     .style("opacity", 1e-6)
     .remove();
 }
 
 
-function pushAll(bug_images) {
-  shuffle(bug_images);
-  for(i=0; i<bug_images.length; i++) {
+function pushAll(images) {
+  shuffle(images);
+  for(i=0; i<images.length; i++) {
     rects.push({});
-    setTimeout(addImage("static/images/set1/"+bug_images[i]+".png", bug_images[i]), 500);
-  }
-  if (rects.length > 16) {
-    clearInterval(tick);
-    //tick = setInterval(pop, 500);
+    setTimeout(addImage("static/images/"+images[i]+".png", images[i]), 500);
   }
 }
 
@@ -206,7 +190,6 @@ function addButton(img, id) {
     .attr("id", id)
     .attr("width", buttonGrid.nodeSize()[0])
     .attr("height", buttonGrid.nodeSize()[1])
-    .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
     .style("opacity", 1e-6)
     .on("click", function(){
       // Determine if current image is visible
@@ -214,9 +197,9 @@ function addButton(img, id) {
         newOpacity = active ? .2 : 1;
       // Hide or show the elements
       d3.select("#"+id).style("opacity", newOpacity);
-      //d3.select("#blueAxis").style("opacity", newOpacity);
       // Update whether or not the elements are active
       button.active = active;
+      buttonPress(id);
     });
   button.transition()
     .attr("width", buttonGrid.nodeSize()[0])
@@ -236,6 +219,22 @@ function pushButtons(button_images) {
   }
 }
 
+function buttonPress(id) {
+  console.log(id);
+  if(id=="ready") {
+    d3.selectAll(".button")
+      .transition()
+      .style("opacity", 1e-6);
+    // now treat the click on an exemplar as a guess... (modify the .on("click") function??)
+  } else {
+    d3.selectAll(".rect")
+     .filter(function(d) {
+       return _(d.facets).contains(p.target.name)
+     })
+     .transition()
+     .style("opacity", .2);
+  }
+}
 
 //@ http://jsfromhell.com/array/shuffle [v1.0]
 function shuffle(o) { 
@@ -244,7 +243,7 @@ function shuffle(o) {
 }
 
 </script>
-  
-   </div>
+
+  </div>
  </body>
 </html>
