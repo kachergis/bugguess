@@ -24,9 +24,22 @@
    font-size: 14px ;
   }
 
-  .point, .rect {
+ .point, .rect {
    fill: #222;
-  }
+ }
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 120px;
+  height: 33px;
+  padding: 8px;
+  font: 12px sans-serif;
+  background: #ddd;
+  border: solid 1px #aaa;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -52,7 +65,7 @@ var img_dir_prefix = "static/images/";
 var button_dir = img_dir_prefix + "buttons/";
 // need a function to assign/counterbalance image_set
 var image_set = "set1";
-//var images = getImages(img_dir_prefix+"set1")
+// var image_set = function getSet() {}
 
 
 var screen_width = 2048,
@@ -64,12 +77,6 @@ var bug_width = 330,
 var button_width = 225,
     button_height = 118;
 
-var bug_images = [
-    "A", "B", "C", "D",
-    "E", "F", "G", "H",
-    "I", "J", "K", "L",
-    "M", "N", "O", "P" 
-  ];
 
 // set 1
 var features = {"f1":"body", "f2":"eyes", "f3":"antennae", "f4":"star", "f5":"triangle", "f6":"feet", "f7":"wings", "f8":"freckles", "f9":"headband"};
@@ -95,7 +102,8 @@ var exemplars = [
   {"id":"P" , "f1":0 , "f2":0 , "f3":0 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
   ];
 
-var answer = exemplars[1]
+var answer_ind = Math.floor((Math.random() * exemplars.length));
+var answer = exemplars[answer_ind];
 
 // varies with image set, so we need a function to return the right button set
 var buttons = [
@@ -108,13 +116,10 @@ var buttons = [
   {id:"wings", "feature":"f7"},
   {id:"freckles", "feature":"f8"},
   {id:"headband", "feature":"f9"},
-  {id:"mouth", "feature":"f10"},
-  {id:"ready"}
+  {id:"mouth", "feature":"f10"}
+//  {id:"ready"}
   ]
 
-//var pointGrid = d3.layout.grid()
-//  .points()
-//  .size([360, 360]);
 
 var rectGrid = d3.layout.grid()
   .bands()
@@ -132,8 +137,9 @@ var svg = d3.select("body").append("svg")
   .attr({
     width: screen_width,
     height: screen_height-(2.5*button_height)
-  })
-.append("g")
+  }) 
+  .attr("id", "bugArray")
+  .append("g")
   .attr("transform", "translate(50,40)");
 
 
@@ -145,10 +151,49 @@ var svg = d3.select("body").append("svg")
     width: screen_width,
     height: 2.5*button_height
   })
-.append("g")
+  .attr("id", "buttonArray")
+  .append("g")
   .attr("transform", "translate(50,10)");
 
 addButtons(buttons);
+
+var div = d3.select("body").append("div")   
+    .attr("class", "tooltip")               
+    .style("opacity", 0);
+
+// var dialog = d3.select("g")
+//   .append("svg:rect")
+//   .attr("id", "dialog")
+//   .attr("x", 490)
+//   .attr("y", 470)
+//   .attr("height", 200)
+//   .attr("width", 400)
+//   .attr("fill", "#999999")
+//   .style("opacity", 1e-6);
+
+var correct = d3.select("g").append("image")
+  .attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
+  .attr("id", "correct")
+  .attr("x", 490)
+  .attr("y", 430)
+  .attr("height", 400)
+  .attr("width", 400)
+  .style("opacity", 1e-6);
+
+var incorrect = d3.select("g").append("image")
+  .attr("xlink:href", function(d) { return img_dir_prefix+"red_x.svg"; })
+  .attr("id", "incorrect")
+  .attr("x", 490)
+  .attr("y", 430)
+  .attr("height", 400)
+  .attr("width", 400)
+  .style("opacity", 1e-6)
+  .on("click", function(d) {
+    // if active then display for a second then make inactive again (but record click)
+    var active = incorrect.active ? false : false;
+    incorrect.active = false;
+    d3.select("#"+d.id).style("opacity", 1e-6);
+  });
 
 
 function addImages(exemplars, img_dir) { 
@@ -167,21 +212,28 @@ function addImages(exemplars, img_dir) {
     .on("click", function(d){
       // Determine if current line is visible
       var active   = rect.active ? false : true,
-        newOpacity = active ? .15 : 1;
+        newOpacity = active ? .2 : 1;
       // Hide or show the elements
       d3.select("#"+d.id).style("opacity", newOpacity);
       //rect.style("opacity", newOpacity);
       // Update whether or not the elements are active
       rect.active = active;
+
+      // do the 1-click test for now (otherwise use ready button state)
+      if(d.id===answer.id) {
+        correct.style("opacity", 1);
+      } else {
+        incorrect.style("opacity", 1);
+        incorrect.transition().delay(2000).style("opacity", 1e-6);
+      }
     });
   rect.transition()
-    .delay(700)
+    .delay(500)
     .attr("width", rectGrid.nodeSize()[0])
     .attr("height", rectGrid.nodeSize()[1])
     .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
     .style("opacity", 1);
   rect.exit().transition()
-    .delay(500)
     .style("opacity", 1e-6)
     .remove();
 }
@@ -198,13 +250,9 @@ function addButtons(buttons) {
     .attr("height", buttonGrid.nodeSize()[1])
     .style("opacity", 1e-6)
     .on("click", function(d){
-      // Determine if current image is visible
-      var active   = button.active ? false : true,
-        newOpacity = active ? .2 : 1;
-      // Hide or show the elements
-      d3.select("#"+d.id).style("opacity", newOpacity);
-      // Update whether or not the elements are active
-      button.active = active;
+      // press once and remain active (unless ready button..)
+      d3.select("#"+d.id).style("opacity", .2); //
+      button.active = true;
       buttonPress(d);
     });
   button.transition()
@@ -212,9 +260,7 @@ function addButtons(buttons) {
     .attr("height", buttonGrid.nodeSize()[1])
     .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
     .style("opacity", 1);
-  button.exit().transition()
-    .style("opacity", 1e-6)
-    .remove();
+  // could add a toggle 'ready' button here if desired
 }
 
 
@@ -231,14 +277,29 @@ function buttonPress(b) {
      .filter(function(d) {
        return d[b.feature] !== answer[b.feature];
      })
-     .style("opacity", .2);
+     .style("opacity", .2).attr("active", true);
+     // OR show them a dialog with the correct feature in it
+     // tooltip with image in it:
+     // http://bl.ocks.org/jarobertson/1483052
+
+     // text is not showing (incorrect position?)
+     // svg.select("g")
+     //   .append("svg:text")
+     //   .attr("transform", function(d) { 
+     //      console.log(d);
+     //      return "translate(" + (490+50) + "," + (470+50) + ")" ;
+     //    })
+     //   .attr("style", "font-size: 20; font-family: Helvetica, sans-serif")
+     //   .text("Value of correct "+b.id+":"+answer[b.feature])
+     //   .attr("fill", "black");
+     // dialog.style("opacity", 1);
   }
 }
 
 //@ http://jsfromhell.com/array/shuffle [v1.0]
 function shuffle(o) { 
-    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
+  for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  return o;
 }
 
 </script>
