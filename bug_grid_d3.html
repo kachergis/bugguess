@@ -61,6 +61,11 @@ div.tooltip {
 <div id="container">
 
 <script>
+
+// ToDo: (3/2/15)
+// make exp toggle betwen two phases: ask (hypothesis or feature query) and eliminate (gray out hypotheses)
+// (but also keep a version that automatically grays out eliminated options)
+
 var img_dir_prefix = "static/images/";
 var button_dir = img_dir_prefix + "buttons/";
 // need a function to assign/counterbalance image_set
@@ -68,8 +73,10 @@ var image_set = "set1";
 // var image_set = function getSet() {}
 
 
+// iPad Retina
 var screen_width = 2048,
     screen_height = 1536;
+
 
 var bug_width = 330,
     bug_height = 280;
@@ -77,6 +84,7 @@ var bug_width = 330,
 var button_width = 225,
     button_height = 118;
 
+var sidebar_width = 300;
 
 // set 1
 var features = {"f1":"body", "f2":"eyes", "f3":"antennae", "f4":"star", "f5":"triangle", "f6":"feet", "f7":"wings", "f8":"freckles", "f9":"headband"};
@@ -124,14 +132,14 @@ var buttons = [
 var rectGrid = d3.layout.grid()
   .bands()
   .nodeSize([bug_width, bug_height]) 
-  .padding([10, 10]); // padding is absolute if nodeSize is used
+  .padding([20, 20]); // padding is absolute if nodeSize is used
   // .size([100,100])
 
 var buttonGrid = d3.layout.grid()
   .bands()
   .rows(2)
   .nodeSize([button_width, button_height]) 
-  .padding([20, 20]);
+  .padding([30, 30]);
 
 var svg = d3.select("body").append("svg")
   .attr({
@@ -145,10 +153,22 @@ var svg = d3.select("body").append("svg")
 
 addImages(exemplars, img_dir_prefix+image_set+"/");
 
+svg.append("g")
+  .attr("id", "rug")
+  .attr("transform", "translate(10,10)")
+  .append("image")
+  .attr("xlink:href", function(d) { return "static/images/rug.png"; })
+  .attr({
+    width: 261,
+    height: 437
+  })
+  .style("opacity", 1)
+  .attr("transform", "translate(1500,50)");
+
 
 var svg = d3.select("body").append("svg")
   .attr({
-    width: screen_width,
+    width: screen_width-sidebar_width,
     height: 2.5*button_height
   })
   .attr("id", "buttonArray")
@@ -171,30 +191,6 @@ var div = d3.select("body").append("div")
 //   .attr("fill", "#999999")
 //   .style("opacity", 1e-6);
 
-var correct = d3.select("g").append("image")
-  .attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
-  .attr("id", "correct")
-  .attr("x", 490)
-  .attr("y", 430)
-  .attr("height", 400)
-  .attr("width", 400)
-  .style("opacity", 1e-6);
-
-var incorrect = d3.select("g").append("image")
-  .attr("xlink:href", function(d) { return img_dir_prefix+"red_x.svg"; })
-  .attr("id", "incorrect")
-  .attr("x", 490)
-  .attr("y", 430)
-  .attr("height", 400)
-  .attr("width", 400)
-  .style("opacity", 1e-6)
-  .on("click", function(d) {
-    // if active then display for a second then make inactive again (but record click)
-    var active = incorrect.active ? false : false;
-    incorrect.active = false;
-    d3.select("#"+d.id).style("opacity", 1e-6);
-  });
-
 
 function addImages(exemplars, img_dir) { 
   //shuffle(exemplars);
@@ -214,19 +210,37 @@ function addImages(exemplars, img_dir) {
       var active   = rect.active ? false : true,
         newOpacity = active ? .2 : 1;
       // Hide or show the elements
-      d3.select("#"+d.id).style("opacity", newOpacity);
-      //rect.style("opacity", newOpacity);
+      //d3.select("#"+d.id).style("opacity", newOpacity);
       // Update whether or not the elements are active
       rect.active = active;
 
       // do the 1-click test for now (otherwise use ready button state)
       if(d.id===answer.id) {
-        correct.style("opacity", 1);
+          //.attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
+        var correct = d3.select("g").append("image")
+          .attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
+          .attr("id", "correct")
+          .attr("x", 490)
+          .attr("y", 430)
+          .attr("height", 400)
+          .attr("width", 400)
+          .style("opacity", 1)
+          .on("click", function(d) { correct.remove() });
       } else {
-        incorrect.style("opacity", 1);
-        incorrect.transition().delay(2000).style("opacity", 1e-6);
-      }
-    });
+        d3.select("#"+d.id).style("opacity", newOpacity);
+        //incorrect.style("opacity", 1);
+        //incorrect.transition().delay(2000).style("opacity", 1e-6);
+        var incorrect = d3.select("g").append("image")
+          .attr("xlink:href", function(d) { return img_dir_prefix+"red_x.svg"; })
+          .attr("id", "incorrect")
+          .attr("x", d.x + 20)
+          .attr("y", d.y)
+          .attr("height", rectGrid.nodeSize()[0])
+          .attr("width", rectGrid.nodeSize()[1])
+          .style("opacity", 1)
+          .on("click", function(d) { d.remove(); });
+        }
+      });
   rect.transition()
     .delay(500)
     .attr("width", rectGrid.nodeSize()[0])
