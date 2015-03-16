@@ -11,40 +11,9 @@
  <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
  <!-- Specify a 320x460 start-up image. -->
  <link rel="apple-touch-startup-image" href="./images/bug_icon_large.png" />
-
  <!-- Choose a 144x144 image for the icon -->
  <link rel="apple-touch-icon" href="./images/bug_icon_sm.png" /> 
 
- <style>
-  body {
-   margin: 0px ;
-   padding: 0px ;
-   color: #222222;
-   font-family: Helvetica;
-   font-size: 14px ;
-  }
-
- .point, .rect {
-   fill: #222;
- }
-
- div.tooltip {
-  position: absolute;
-  text-align: center;
-  width: 120px;
-  height: 33px;
-  padding: 8px;
-  font: 12px sans-serif;
-  background: #ddd;
-  border: solid 1px #aaa;
-  border-radius: 8px;
-  pointer-events: none;
- }
-
- .container {
-  float: left;
- }
-</style>
 
 <script type="text/javascript">
    // To be called when there's a move event on the body itself:
@@ -54,13 +23,23 @@
    }
 </script>
 
+<!-- external libraries -->
+<script src="static/lib/jquery-min.js" type="text/javascript"> </script>
+<script src="static/lib/underscore-min.js" type="text/javascript"> </script>
+<script src="static/lib/backbone-min.js" type="text/javascript"> </script>
 <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
 <script src="static/lib/d3.v3.min.js" type="text/javascript"> </script> 
-<script src="static/js/d3-grid.js"></script>
+<script src="static/lib/d3-grid.js"></script>
+
+<!-- experiment code -->
+<script src="static/js/stimuli.js" type="text/javascript"> </script> 
+
+<!-- stylesheets -->
+<link rel=stylesheet href="static/css/style.css" type="text/css">
 
 </head>
 
-<body ontouchmove="blockMove(event);">
+<body ontouchmove="BlockMove(event);">
 
 <div id="container">
 

@@ -11,40 +11,8 @@
  <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
  <!-- Specify a 320x460 start-up image. -->
  <link rel="apple-touch-startup-image" href="./images/bug_icon_large.png" />
-
  <!-- Choose a 144x144 image for the icon -->
  <link rel="apple-touch-icon" href="./images/bug_icon_sm.png" /> 
-
- <style>
-  body {
-   margin: 0px ;
-   padding: 0px ;
-   color: #222222;
-   font-family: Helvetica;
-   font-size: 14px ;
-  }
-
- .point, .rect {
-   fill: #222;
- }
-
- div.tooltip {
-  position: absolute;
-  text-align: center;
-  width: 120px;
-  height: 33px;
-  padding: 8px;
-  font: 12px sans-serif;
-  background: #ddd;
-  border: solid 1px #aaa;
-  border-radius: 8px;
-  pointer-events: none;
- }
-
- .container {
-  float: left;
- }
-</style>
 
 <script type="text/javascript">
    // To be called when there's a move event on the body itself:
@@ -54,13 +22,23 @@
    }
 </script>
 
+<!-- external libraries -->
+<script src="static/lib/jquery-min.js" type="text/javascript"> </script>
+<script src="static/lib/underscore-min.js" type="text/javascript"> </script>
+<script src="static/lib/backbone-min.js" type="text/javascript"> </script>
 <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
 <script src="static/lib/d3.v3.min.js" type="text/javascript"> </script> 
-<script src="static/js/d3-grid.js"></script>
+<script src="static/lib/d3-grid.js"></script>
+
+<!-- experiment code -->
+<script src="static/js/stimuli.js" type="text/javascript"> </script> 
+
+<!-- stylesheets -->
+<link rel=stylesheet href="static/css/style.css" type="text/css">
 
 </head>
 
-<body ontouchmove="blockMove(event);">
+<body ontouchmove="BlockMove(event);">
 
 <div id="container">
 
@@ -72,7 +50,6 @@
 // ToDo: (3/2/15)
 // make exp toggle betwen two phases: ask (hypothesis or feature query) and eliminate (gray out hypotheses)
 // (but also keep a version that automatically grays out eliminated options)
-
 
 var img_dir_prefix = "static/images/";
 var button_dir = img_dir_prefix + "buttons/";
@@ -94,44 +71,24 @@ var button_width = 225,
 
 var sidebar_width = 380;
 
+// Initalize psiturk object
+//var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
+//var LOGGING = true;
+
+
+// disable vertical bounce
+$(document).bind(
+      'touchmove',
+          function(e) {
+            e.preventDefault();
+          }
+);
+
+
 // set 1
 var features = {"f1":"body", "f2":"eyes", "f3":"antennae", "f4":"star", "f5":"triangle", "f6":"feet", "f7":"wings", "f8":"freckles", "f9":"headband"};
 // set 2
 //var features = {"f1":"feet", "f2":"eyes", "f3":"triangle", "f4":"star", "f5":"wings", "f6":"headband", "f7":"body", "f8":"freckles", "f9":"antennae"};
-
-var exemplars = [
-  {"id":"A" , "f1":1 , "f2":0 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"B" , "f1":1 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"C" , "f1":0 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":1, "f10":0 },
-  {"id":"D" , "f1":0 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"E" , "f1":1 , "f2":0 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"F" , "f1":1 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"G" , "f1":0 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":1 , "f8":1 , "f9":0, "f10":0 },
-  {"id":"H" , "f1":0 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":1 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"I" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":1 , "f7":0 , "f8":0 , "f9":1, "f10":0 },
-  {"id":"J" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":1 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"K" , "f1":0 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"L" , "f1":0 , "f2":0 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"M" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":1 , "f9":0, "f10":0 },
-  {"id":"N" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"O" , "f1":0 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"P" , "f1":0 , "f2":0 , "f3":0 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  ];
-
-// varies with image set, so we need a function to return the right button set
-var buttons = [
-  {id:"body", "feature":"f1"},
-  {id:"eyes", "feature":"f2"},
-  {id:"antennae", "feature":"f3"},
-  {id:"star", "feature":"f4"},
-  {id:"triangle", "feature":"f5"},
-  {id:"feet", "feature":"f6"},
-  {id:"wings", "feature":"f7"},
-  {id:"freckles", "feature":"f8"},
-  {id:"headband", "feature":"f9"},
-  {id:"mouth", "feature":"f10"}
-//  {id:"ready"}
-  ]
 
 
 var Experiment = function(condition) {
@@ -187,7 +144,7 @@ var Exit = function() {
 
 exp = new PlayRound();
 
-var PlayRound = function() {
+function PlayRound() {
   var self = this;
   self.condition = "automatic"; // "automatic" grays out eliminated bugs on button press; "manual" requires subjects to gray out
   //self.trial_num = trial_num;
@@ -217,7 +174,7 @@ var PlayRound = function() {
     .attr("transform", "translate(50,40)");
 
 
-  addImages(exemplars, img_dir_prefix+image_set+"/");
+  self.addImages(exemplars, img_dir_prefix+image_set+"/");
 
   var sidebar = d3.select("#sideBar").append("svg")
     .attr({
@@ -279,7 +236,7 @@ var PlayRound = function() {
     .append("g")
     .attr("transform", "translate(50,10)");
 
-  addButtons(buttons);
+  self.addButtons(buttons);
 
   var div = d3.select("#container").append("div")   
       .attr("class", "tooltip")               
@@ -296,7 +253,7 @@ var PlayRound = function() {
   //   .style("opacity", 1e-6);
 
 
-  self.addImages = function(exemplars, img_dir) { 
+  var addImages = function(exemplars, img_dir) { 
     //shuffle(exemplars);
     var rect = bugs.selectAll(".rect")
       .data(rectGrid(exemplars)); 
@@ -358,7 +315,7 @@ var PlayRound = function() {
       .remove();
   };
 
-  self.addButtons = function(buttons) { 
+  var addButtons = function(buttons) { 
     //shuffle(buttons);
     var button = buttonbar.selectAll(".button")
       .data(buttonGrid(buttons));
