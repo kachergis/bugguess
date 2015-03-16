@@ -14,7 +14,6 @@
  <!-- Choose a 144x144 image for the icon -->
  <link rel="apple-touch-icon" href="./images/bug_icon_sm.png" /> 
 
-
 <script type="text/javascript">
    // To be called when there's a move event on the body itself:
    function BlockMove(event) {
@@ -78,43 +77,9 @@ var features = {"f1":"body", "f2":"eyes", "f3":"antennae", "f4":"star", "f5":"tr
 // set 2
 //var features = {"f1":"feet", "f2":"eyes", "f3":"triangle", "f4":"star", "f5":"wings", "f6":"headband", "f7":"body", "f8":"freckles", "f9":"antennae"};
 
-var exemplars = [
-  {"id":"A" , "f1":1 , "f2":0 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"B" , "f1":1 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"C" , "f1":0 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":1, "f10":0 },
-  {"id":"D" , "f1":0 , "f2":1 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"E" , "f1":1 , "f2":0 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"F" , "f1":1 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"G" , "f1":0 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":1 , "f8":1 , "f9":0, "f10":0 },
-  {"id":"H" , "f1":0 , "f2":1 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":1 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"I" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":1 , "f7":0 , "f8":0 , "f9":1, "f10":0 },
-  {"id":"J" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":1 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"K" , "f1":0 , "f2":0 , "f3":1 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"L" , "f1":0 , "f2":0 , "f3":0 , "f4":0 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"M" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":1 , "f9":0, "f10":0 },
-  {"id":"N" , "f1":1 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"O" , "f1":0 , "f2":0 , "f3":1 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  {"id":"P" , "f1":0 , "f2":0 , "f3":0 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
-  ];
 
 var answer_ind = Math.floor((Math.random() * exemplars.length));
 var answer = exemplars[answer_ind];
-
-// varies with image set, so we need a function to return the right button set
-var buttons = [
-  {id:"body", "feature":"f1"},
-  {id:"eyes", "feature":"f2"},
-  {id:"antennae", "feature":"f3"},
-  {id:"star", "feature":"f4"},
-  {id:"triangle", "feature":"f5"},
-  {id:"feet", "feature":"f6"},
-  {id:"wings", "feature":"f7"},
-  {id:"freckles", "feature":"f8"},
-  {id:"headband", "feature":"f9"},
-  {id:"mouth", "feature":"f10"}
-//  {id:"ready"}
-  ]
-
 
 var rectGrid = d3.layout.grid()
   .bands()
@@ -207,16 +172,6 @@ addButtons(buttons);
 var div = d3.select("#container").append("div")   
     .attr("class", "tooltip")               
     .style("opacity", 0);
-
-// var dialog = d3.select("g")
-//   .append("svg:rect")
-//   .attr("id", "dialog")
-//   .attr("x", 490)
-//   .attr("y", 470)
-//   .attr("height", 200)
-//   .attr("width", 400)
-//   .attr("fill", "#999999")
-//   .style("opacity", 1e-6);
 
 
 function addImages(exemplars, img_dir) { 

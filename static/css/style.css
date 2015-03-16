@@ -1,0 +1,38 @@
+body {
+   margin: 0px ;
+   padding: 0px ;
+   color: #222222;
+   font-family: Helvetica;
+   font-size: 14px ;
+  }
+
+ .rect {
+   fill: #222;
+ }
+
+ div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 120px;
+  height: 33px;
+  padding: 8px;
+  font: 12px sans-serif;
+  background: #ddd;
+  border: solid 1px #aaa;
+  border-radius: 8px;
+  pointer-events: none;
+ }
+
+ .container {
+  float: left;
+ }
+
+#chooser-buttons {
+  margin: 100px;
+}
+
+#chooser-buttons .btn {
+  width: 150px;
+  height: 150px;
+  font-size: 1.6em;
+}

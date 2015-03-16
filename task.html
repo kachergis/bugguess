@@ -142,29 +142,32 @@ var Exit = function() {
   psiTurk.completeHIT();
 };
 
-exp = new PlayRound();
+var exp = new PlayRound(bug_exemplars, bug_buttons, "automatic");
+//var exp = new PlayRound(train_exemplars, train_buttons, "automatic"); // ToDo: fix image directory (param?) and button rows=1 
 
-function PlayRound() {
+function PlayRound(exemplars, buttons, condition) {
   var self = this;
-  self.condition = "automatic"; // "automatic" grays out eliminated bugs on button press; "manual" requires subjects to gray out
+  self.exemplars = exemplars;
+  self.buttons = buttons;
+  self.condition = condition; // "automatic" grays out eliminated bugs on button press; "manual" requires subjects to gray out
   //self.trial_num = trial_num;
 
   self.answer_ind = Math.floor((Math.random() * exemplars.length));
   self.answer = exemplars[self.answer_ind];
 
-  var rectGrid = d3.layout.grid()
+  self.rectGrid = d3.layout.grid()
     .bands()
     .nodeSize([bug_width, bug_height]) 
     .padding([30, 20]); // padding is absolute if nodeSize is used
     // .size([100,100])
 
-  var buttonGrid = d3.layout.grid()
+  self.buttonGrid = d3.layout.grid()
     .bands()
     .rows(2)
     .nodeSize([button_width, button_height]) 
     .padding([50, 30]);
 
-  var bugs = d3.select("#stimArray").append("svg")
+  self.bugs = d3.select("#stimArray").append("svg")
     .attr({
       width: screen_width-sidebar_width,
       height: screen_height-(2.5*button_height)
@@ -173,97 +176,17 @@ function PlayRound() {
     .append("g")
     .attr("transform", "translate(50,40)");
 
-
-  self.addImages(exemplars, img_dir_prefix+image_set+"/");
-
-  var sidebar = d3.select("#sideBar").append("svg")
-    .attr({
-      width: sidebar_width,
-      height: screen_height-(2.5*button_height)
-    }) 
-    .attr("id", "sidebar");
-
-  var rug = sidebar.append("g")
-    .attr("id", "rug")
-    .attr("transform", "translate(20,50)")
-    .append("image")
-    .attr("xlink:href", function(d) { return "static/images/rug.png"; })
-    .attr({
-      width: 261,
-      height: 437
-    })
-    .style("opacity", 1)
-    .on("mousedown", function(d) {
-      d3.select(this).transition()
-        .attr("width",261+50)
-        .duration(1000) // this is 1s
-        .delay(500);
-      d3.select(this).transition()
-        .attr("width",261)
-        .duration(500)
-        .delay(100);
-    });
-
-  //function wiggle(d) {}
-
-  var callout = sidebar.append("g")
-    .attr("id", "callout")
-    .attr("transform", "translate(0,490)");
-
-  callout.append("image")
-    .attr("xlink:href", function(d) { return "static/images/callout.svg"; })
-    .attr({
-      width: 300,
-      height: 250
-    })
-    .style("opacity", 1);
-    //.attr("transform", "translate(0,0)");
-
-  var text = callout
-    .append("text")
-    .attr("x", 32)
-    .attr("y", 140)
-    .attr("style", "font-size: 50; font-family: Helvetica, sans-serif")
-    .text("Who am I?")
-    .attr("fill", "black");
-
-  var buttonbar = d3.select("#container").append("svg")
-    .attr({
-      width: screen_width-sidebar_width,
-      height: 2.5*button_height
-    })
-    .attr("id", "buttonArray")
-    .append("g")
-    .attr("transform", "translate(50,10)");
-
-  self.addButtons(buttons);
-
-  var div = d3.select("#container").append("div")   
-      .attr("class", "tooltip")               
-      .style("opacity", 0);
-
-  // var dialog = d3.select("g")
-  //   .append("svg:rect")
-  //   .attr("id", "dialog")
-  //   .attr("x", 490)
-  //   .attr("y", 470)
-  //   .attr("height", 200)
-  //   .attr("width", 400)
-  //   .attr("fill", "#999999")
-  //   .style("opacity", 1e-6);
-
-
-  var addImages = function(exemplars, img_dir) { 
-    //shuffle(exemplars);
-    var rect = bugs.selectAll(".rect")
-      .data(rectGrid(exemplars)); 
+  self.addImages = function(exemplars, img_dir) { 
+    //shuffle(self.exemplars);
+    rect = self.bugs.selectAll(".rect")
+      .data(self.rectGrid(self.exemplars)); 
     console.log(rect)
     rect.enter().append("image")
       .attr("xlink:href", function(d) { return img_dir+d.id+".png"; })
       .attr("class", "rect")
       .attr("id", function(d) { return d.id; })
-      .attr("width", rectGrid.nodeSize()[0])
-      .attr("height", rectGrid.nodeSize()[1])
+      .attr("width", self.rectGrid.nodeSize()[0])
+      .attr("height", self.rectGrid.nodeSize()[1])
       .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
       .style("opacity", 1e-6)
       .on("mousedown", function(d){
@@ -297,8 +220,8 @@ function PlayRound() {
             .attr("id", "incorrect")
             .attr("x", d.x + 25)
             .attr("y", d.y)
-            .attr("height", rectGrid.nodeSize()[0])
-            .attr("width", rectGrid.nodeSize()[1])
+            .attr("height", self.rectGrid.nodeSize()[0])
+            .attr("width", self.rectGrid.nodeSize()[1])
             .style("opacity", 1)
             .on("mousedown", function(d) { incorrect.remove(); });
           incorrect.transition().duration(1000).delay(1000).style("opacity", 1e-6);
@@ -306,8 +229,8 @@ function PlayRound() {
         });
     rect.transition()
       .delay(500)
-      .attr("width", rectGrid.nodeSize()[0])
-      .attr("height", rectGrid.nodeSize()[1])
+      .attr("width", self.rectGrid.nodeSize()[0])
+      .attr("height", self.rectGrid.nodeSize()[1])
       .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
       .style("opacity", 1);
     rect.exit().transition()
@@ -315,31 +238,94 @@ function PlayRound() {
       .remove();
   };
 
-  var addButtons = function(buttons) { 
+  self.addImages(self.exemplars, img_dir_prefix+image_set+"/");
+
+  self.sidebar = d3.select("#sideBar").append("svg")
+    .attr({
+      width: sidebar_width,
+      height: screen_height-(2.5*button_height)
+    }) 
+    .attr("id", "sidebar");
+
+  self.rug = self.sidebar.append("g")
+    .attr("id", "rug")
+    .attr("transform", "translate(20,50)")
+    .append("image")
+    .attr("xlink:href", function(d) { return "static/images/rug.png"; })
+    .attr({
+      width: 261,
+      height: 437
+    })
+    .style("opacity", 1)
+    .on("mousedown", function(d) {
+      d3.select(this).transition()
+        .attr("width",261+50)
+        .duration(1000) // this is 1s
+        .delay(500);
+      d3.select(this).transition()
+        .attr("width",261)
+        .duration(500)
+        .delay(100);
+    });
+
+  //function wiggle(d) {}
+
+  self.callout = self.sidebar.append("g")
+    .attr("id", "callout")
+    .attr("transform", "translate(0,490)");
+
+  self.callout.append("image")
+    .attr("xlink:href", function(d) { return "static/images/callout.svg"; })
+    .attr({
+      width: 300,
+      height: 250
+    })
+    .style("opacity", 1);
+    //.attr("transform", "translate(0,0)");
+
+  self.text = self.callout.append("text")
+    .attr("x", 32)
+    .attr("y", 140)
+    .attr("style", "font-size: 50; font-family: Helvetica, sans-serif")
+    .text("Who am I?")
+    .attr("fill", "black");
+
+  self.buttonbar = d3.select("#container").append("svg")
+    .attr({
+      width: screen_width-sidebar_width,
+      height: 2.5*button_height
+    })
+    .attr("id", "buttonArray")
+    .append("g")
+    .attr("transform", "translate(50,10)");
+
+
+  self.addButtons = function(buttons) { 
     //shuffle(buttons);
-    var button = buttonbar.selectAll(".button")
-      .data(buttonGrid(buttons));
+    var button = self.buttonbar.selectAll(".button")
+      .data(self.buttonGrid(buttons));
     button.enter().append("image")
       .attr("xlink:href", function(d) { return button_dir+d.id+".png"; })
       .attr("class", "button")
       .attr("id", function(d) { return d.id; })
-      .attr("width", buttonGrid.nodeSize()[0])
-      .attr("height", buttonGrid.nodeSize()[1])
+      .attr("width", self.buttonGrid.nodeSize()[0])
+      .attr("height", self.buttonGrid.nodeSize()[1])
       .style("opacity", 1e-6)
       .on("mousedown", function(d){
         // press once and remain active (unless ready button..)
         d3.select("#"+d.id).style("opacity", .2); //
         button.active = true;
-        buttonPress(d);
+        self.buttonPress(d);
       });
     button.transition()
-      .attr("width", buttonGrid.nodeSize()[0])
-      .attr("height", buttonGrid.nodeSize()[1])
+      .attr("width", self.buttonGrid.nodeSize()[0])
+      .attr("height", self.buttonGrid.nodeSize()[1])
       .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
       .style("opacity", 1);
     // could add a toggle 'ready' button here if desired
   };
 
+  self.addButtons(self.buttons);
 
   self.buttonPress = function(b) {
     console.log(b);
@@ -350,14 +336,14 @@ function PlayRound() {
       // now treat the click on an exemplar as a guess... (modify the .on("click") function??)
     } else {
       // select the rects that do not have the answer's d[b.feature] 
-      if(condition==="automatic") {
+      if(self.condition==="automatic") {
       d3.selectAll(".rect")
        .filter(function(d) {
          return d[b.feature] !== self.answer[b.feature];
        })
        .style("opacity", .2).attr("active", true);
      } else if(condition==="manual") {
-       text.remove();
+       self.text.remove();
        var tmp = callout.append("text")
          .attr("x", 32)
          .attr("y", 140)
@@ -370,11 +356,18 @@ function PlayRound() {
          .remove();
        }
     }
+  };
+
+  //var div = d3.select("#container").append("div")   
+  //    .attr("class", "tooltip")               
+  //    .style("opacity", 0);
     // OR show them a dialog with the correct feature in it
     // tooltip with image in it:
     // http://bl.ocks.org/jarobertson/1483052
-  };
-}
+
+}; // end PlayRound
+
+
 
 // Generic function for saving data
 function output(arr) {
