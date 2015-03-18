@@ -69,8 +69,6 @@ var bug_width = 330,
 var button_width = 225,
     button_height = 118;
 
-var sidebar_width = 380;
-
 // Initalize psiturk object
 //var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 //var LOGGING = true;
@@ -85,11 +83,8 @@ $(document).bind(
 );
 
 
-// set 1
-var features = {"f1":"body", "f2":"eyes", "f3":"antennae", "f4":"star", "f5":"triangle", "f6":"feet", "f7":"wings", "f8":"freckles", "f9":"headband"};
-// set 2
-//var features = {"f1":"feet", "f2":"eyes", "f3":"triangle", "f4":"star", "f5":"wings", "f6":"headband", "f7":"body", "f8":"freckles", "f9":"antennae"};
-
+//var features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"antennae", "f6":"markings", "f7":"dots", "f8":"fur", "f9":"water", "f10":"leaf"};
+// "basebody"
 
 var Experiment = function(condition) {
   var self = this;
@@ -142,8 +137,9 @@ var Exit = function() {
   psiTurk.completeHIT();
 };
 
-var exp = new PlayRound(bug_exemplars, bug_buttons, "automatic");
-//var exp = new PlayRound(train_exemplars, train_buttons, "automatic"); // ToDo: fix image directory (param?) and button rows=1 
+
+var exp = new PlayRound(train_exemplars, train_buttons, "training"); 
+//var exp = new PlayRound(bug_exemplars, bug_buttons, "manual");
 
 function PlayRound(exemplars, buttons, condition) {
   var self = this;
@@ -151,6 +147,8 @@ function PlayRound(exemplars, buttons, condition) {
   self.buttons = buttons;
   self.condition = condition; // "automatic" grays out eliminated bugs on button press; "manual" requires subjects to gray out
   //self.trial_num = trial_num;
+  // for the "manual" condition, this tracks phase: time to ask a question or eliminate some hypotheses
+  self.button_phase = true; 
 
   self.answer_ind = Math.floor((Math.random() * exemplars.length));
   self.answer = exemplars[self.answer_ind];
@@ -161,9 +159,16 @@ function PlayRound(exemplars, buttons, condition) {
     .padding([30, 20]); // padding is absolute if nodeSize is used
     // .size([100,100])
 
+  if(condition==="training") {
+    var sidebar_width = 800;
+  } else {
+    var sidebar_width = 380;
+  }
+  var nrows = buttons.length>4 ? 2 : 1
+
   self.buttonGrid = d3.layout.grid()
     .bands()
-    .rows(2)
+    .rows(nrows)
     .nodeSize([button_width, button_height]) 
     .padding([50, 30]);
 
@@ -194,37 +199,41 @@ function PlayRound(exemplars, buttons, condition) {
         var active   = rect.active ? false : true,
           newOpacity = active ? .2 : 1;
         // Hide or show the elements
-        //d3.select("#"+d.id).style("opacity", newOpacity);
+        d3.select("#"+d.id).style("opacity", newOpacity);
         // Update whether or not the elements are active
+
         rect.active = active;
 
-        // do the 1-click test for now (otherwise use ready button state)
-        if(d.id===self.answer.id) {
-            //.attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
-          var correct = d3.select("g").append("image")
-            .attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
-            .attr("id", "correct")
-            .attr("x", 490)
-            .attr("y", 430)
-            .attr("height", 400)
-            .attr("width", 400)
-            .style("opacity", 1)
-            .on("mousedown", function(d) { correct.remove() });
-          correct.transition().duration(1000).delay(1000).style("opacity", 1e-6);
-        } else {
-          d3.select("#"+d.id).style("opacity", newOpacity);
-          //incorrect.style("opacity", 1);
-          //incorrect.transition().delay(2000).style("opacity", 1e-6);
-          var incorrect = d3.select("g").append("image")
-            .attr("xlink:href", function(d) { return img_dir_prefix+"red_x.svg"; })
-            .attr("id", "incorrect")
-            .attr("x", d.x + 25)
-            .attr("y", d.y)
-            .attr("height", self.rectGrid.nodeSize()[0])
-            .attr("width", self.rectGrid.nodeSize()[1])
-            .style("opacity", 1)
-            .on("mousedown", function(d) { incorrect.remove(); });
-          incorrect.transition().duration(1000).delay(1000).style("opacity", 1e-6);
+        if(self.button_phase) {
+          // do the 1-click test for now (otherwise use ready button state)
+          if(d.id===self.answer.id) {
+              //.attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
+            var correct = d3.select("g").append("image")
+              .attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
+              .attr("id", "correct")
+              .attr("x", 490)
+              .attr("y", 430)
+              .attr("height", 400)
+              .attr("width", 400)
+              .style("opacity", 1)
+              .on("mousedown", function(d) { correct.remove() });
+            correct.transition().duration(1000).delay(1000).style("opacity", 1e-6);
+          } else {
+            //incorrect.style("opacity", 1);
+            //incorrect.transition().delay(2000).style("opacity", 1e-6);
+            var incorrect = d3.select("g").append("image")
+              .attr("xlink:href", function(d) { return img_dir_prefix+"red_x.svg"; })
+              .attr("id", "incorrect")
+              .attr("x", d.x + 25)
+              .attr("y", d.y)
+              .attr("height", self.rectGrid.nodeSize()[0])
+              .attr("width", self.rectGrid.nodeSize()[1])
+              .style("opacity", 1)
+              .on("mousedown", function(d) { incorrect.remove(); });
+            incorrect.transition().duration(1000).delay(1000).style("opacity", 1e-6);
+            }
+          } else {
+            // it's elimination time...no feedback; just gray out stuff (and un-gray out?)
           }
         });
     rect.transition()
@@ -238,7 +247,15 @@ function PlayRound(exemplars, buttons, condition) {
       .remove();
   };
 
-  self.addImages(self.exemplars, img_dir_prefix+image_set+"/");
+  if(condition==="training") {
+    self.addImages(self.exemplars, img_dir_prefix+"/");
+    callout_txt = "Woof?";
+    side_img = "dog";
+  } else {
+    self.addImages(self.exemplars, img_dir_prefix+image_set+"/");
+    callout_txt = "Who am I?";
+    side_img = "rug";
+  }
 
   self.sidebar = d3.select("#sideBar").append("svg")
     .attr({
@@ -251,7 +268,7 @@ function PlayRound(exemplars, buttons, condition) {
     .attr("id", "rug")
     .attr("transform", "translate(20,50)")
     .append("image")
-    .attr("xlink:href", function(d) { return "static/images/rug.png"; })
+    .attr("xlink:href", function(d) { return "static/images/"+side_img+".png"; })
     .attr({
       width: 261,
       height: 437
@@ -287,7 +304,7 @@ function PlayRound(exemplars, buttons, condition) {
     .attr("x", 32)
     .attr("y", 140)
     .attr("style", "font-size: 50; font-family: Helvetica, sans-serif")
-    .text("Who am I?")
+    .text(callout_txt)
     .attr("fill", "black");
 
   self.buttonbar = d3.select("#container").append("svg")
@@ -299,6 +316,59 @@ function PlayRound(exemplars, buttons, condition) {
     .append("g")
     .attr("transform", "translate(50,10)");
 
+  var phaseButton = self.sidebar.append("g")
+    .attr("id", "phaseButton")
+    .attr("transform", "translate(0,760)")
+    .on("mousedown", function(){
+      self.phaseChange()
+    });
+
+  self.phaseChange = function() {
+    // if they click button in eliminate phase, they're done eliminating: time for buttons/guessing
+    phaseButton.select("text").remove();
+    if(self.button_phase===false) {
+      self.button_phase = true;
+      self.buttonbar.selectAll(".button").style("opacity", 1);
+      // select and deactivate all the clicked exemplars (they already are--in rectGrid code)
+      self.text.remove();
+      self.text = self.callout.append("text")
+        .attr("x", 30)
+        .attr("y", 136)
+        .attr("style", "font-size: 45; font-family: Helvetica, sans-serif")
+        .text(callout_txt)
+        .attr("fill", "black");
+      var phaseText = phaseButton.append("text")
+        .attr("x", 35)
+        .attr("y", 85)
+        .attr("style", "font-size: 45; font-family: Helvetica, sans-serif")
+        .text("Guess!")
+        .attr("fill", "black");
+    } else {
+      self.button_phase = false;
+      var phaseText = phaseButton.append("text")
+        .attr("x", 35)
+        .attr("y", 85)
+        .attr("style", "font-size: 45; font-family: Helvetica, sans-serif")
+        .text("Eliminate!")
+        .attr("fill", "black");
+    }
+  }
+
+  phaseButton.append("rect")
+    .attr("x", 20)
+    .attr("y", 20)
+    .attr("width", 250)
+    .attr("height", 100)
+    .attr("fill", "green");
+    //.attr("transform", "translate(50,0)");
+  
+  var phaseText = phaseButton.append("text")
+    .attr("id", "phaseText")
+    .attr("x", 35)
+    .attr("y", 85)
+    .attr("style", "font-size: 45; font-family: Helvetica, sans-serif")
+    .text("Guess!")
+    .attr("fill", "black");
 
   self.addButtons = function(buttons) { 
     //shuffle(buttons);
@@ -342,18 +412,27 @@ function PlayRound(exemplars, buttons, condition) {
          return d[b.feature] !== self.answer[b.feature];
        })
        .style("opacity", .2).attr("active", true);
-     } else if(condition==="manual") {
-       self.text.remove();
-       var tmp = callout.append("text")
-         .attr("x", 32)
-         .attr("y", 140)
-         .attr("style", "font-size: 40; font-family: Helvetica, sans-serif")
-         .text("Feature: "+b.id+":"+self.answer[b.feature])
-         .attr("fill", "black");
-       tmp.transition()
-         .delay(4000)
-         .style("opacity", 1e-6)
-         .remove();
+     } else if(condition==="manual" || condition==="training") {
+      // is it question asking (button pressing) time, or 
+         if(self.button_phase) { 
+            self.phaseChange()
+            d3.selectAll(".button")
+              .filter(function(d) {
+                return d[b.feature] !== self.answer[b.feature];
+              })
+              .style("opacity", .2).attr("active", true);
+
+            answer_text = self.answer[b.feature]===1 ? "Yes!" : "No!";
+
+            self.text.remove();
+            self.text = self.callout.append("text")
+              .attr("x", 30)
+              .attr("y", 136)
+              .attr("style", "font-size: 40; font-family: Helvetica, sans-serif")
+              .text(b.id+": "+answer_text)
+              .attr("fill", "black");
+         }
+       
        }
     }
   };
