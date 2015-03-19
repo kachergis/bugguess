@@ -3,7 +3,7 @@ body {
    padding: 0px ;
    color: #222222;
    font-family: Helvetica;
-   font-size: 14px ;
+   font-size: 50px ;
   }
 
  .rect {
@@ -35,4 +35,12 @@ body {
   width: 150px;
   height: 150px;
   font-size: 1.6em;
+}
+
+
+.pbutton {
+  fill:red;
+  stroke:black;
+  stroke-width:5;
+  opacity:0.7
 }

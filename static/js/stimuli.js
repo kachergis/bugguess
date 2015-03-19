@@ -1,5 +1,20 @@
-// set 1
-var features = {"f1":"body", "f2":"eyes", "f3":"antennae", "f4":"star", "f5":"triangle", "f6":"feet", "f7":"wings", "f8":"freckles", "f9":"headband"};
+// set1 (old cartoon bugs)
+//var features = {"f1":"body", "f2":"eyes", "f3":"antennae", "f4":"star", "f5":"triangle", "f6":"feet", "f7":"wings", "f8":"freckles", "f9":"headband"};
+
+var features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"markings", "f6":"dots", "f7":"fur", "f8":"water", "f9":"leaf"};
+// "basebody"
+
+var bug_buttons = [
+  {id:"legs", "feature":"f1"},
+  {id:"antennae", "feature":"f2"},
+  {id:"bodycolor", "feature":"f3"},
+  {id:"eyes", "feature":"f4"},
+  {id:"markings", "feature":"f5"},
+  {id:"dots", "feature":"f6"},
+  {id:"fur", "feature":"f7"},
+  {id:"water", "feature":"f8"},
+  {id:"leaf", "feature":"f9"}
+  ]
 
 var bug_exemplars = [
   {"id":"A" , "f1":1 , "f2":0 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
@@ -20,8 +35,8 @@ var bug_exemplars = [
   {"id":"P" , "f1":0 , "f2":0 , "f3":0 , "f4":0 , "f5":1 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
   ];
 
-// varies with image set, so we need a function to return the right button set
-var bug_buttons = [
+// FOR CARTOON BUGS: varies with image set, so we need a function to return the right button set
+var bug_buttons_set1 = [
   {id:"body", "feature":"f1"},
   {id:"eyes", "feature":"f2"},
   {id:"antennae", "feature":"f3"},

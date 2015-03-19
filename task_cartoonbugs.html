@@ -303,9 +303,7 @@ function PlayRound(exemplars, buttons, condition) {
   self.text = self.callout.append("text")
     .attr("x", 32)
     .attr("y", 140)
-    .attr("style", "font-size: 50; font-family: Helvetica, sans-serif")
-    .text(callout_txt)
-    .attr("fill", "black");
+    .text(callout_txt);
 
   self.buttonbar = d3.select("#container").append("svg")
     .attr({
@@ -334,31 +332,28 @@ function PlayRound(exemplars, buttons, condition) {
       self.text = self.callout.append("text")
         .attr("x", 30)
         .attr("y", 136)
-        .attr("style", "font-size: 45; font-family: Helvetica, sans-serif")
-        .text(callout_txt)
-        .attr("fill", "black");
+        .text(callout_txt);
       var phaseText = phaseButton.append("text")
         .attr("x", 35)
         .attr("y", 85)
-        .attr("style", "font-size: 45; font-family: Helvetica, sans-serif")
-        .text("Guess!")
-        .attr("fill", "black");
+        .text("Guess!");
     } else {
       self.button_phase = false;
       var phaseText = phaseButton.append("text")
         .attr("x", 35)
         .attr("y", 85)
-        .attr("style", "font-size: 45; font-family: Helvetica, sans-serif")
-        .text("Eliminate!")
-        .attr("fill", "black");
+        .text("Eliminate!");
     }
   }
 
   phaseButton.append("rect")
     .attr("x", 20)
     .attr("y", 20)
+    .attr("rx",20) 
+    .attr("ry",20)
     .attr("width", 250)
     .attr("height", 100)
+    .attr("class", "pbutton")
     .attr("fill", "green");
     //.attr("transform", "translate(50,0)");
   
@@ -366,9 +361,7 @@ function PlayRound(exemplars, buttons, condition) {
     .attr("id", "phaseText")
     .attr("x", 35)
     .attr("y", 85)
-    .attr("style", "font-size: 45; font-family: Helvetica, sans-serif")
-    .text("Guess!")
-    .attr("fill", "black");
+    .text("Guess!");
 
   self.addButtons = function(buttons) { 
     //shuffle(buttons);
@@ -428,9 +421,7 @@ function PlayRound(exemplars, buttons, condition) {
             self.text = self.callout.append("text")
               .attr("x", 30)
               .attr("y", 136)
-              .attr("style", "font-size: 40; font-family: Helvetica, sans-serif")
-              .text(b.id+": "+answer_text)
-              .attr("fill", "black");
+              .text(b.id+": "+answer_text);
          }
        
        }

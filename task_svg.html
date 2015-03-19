@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+ <title>BugGuess</title>
+ <!-- Prevent scaling -->
+ <meta name="viewport" content="user-scalable=no, width=device-width" />
+ <!-- Eliminate url and button bars if added to home screen -->
+ <meta name="apple-mobile-web-app-capable" content="yes" />
+ <!-- Choose how to handle the phone status bar -->
+ <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+ <!-- Specify a 320x460 start-up image. -->
+ <link rel="apple-touch-startup-image" href="./images/bug_icon_large.png" />
+ <!-- Choose a 144x144 image for the icon -->
+ <link rel="apple-touch-icon" href="./images/bug_icon_sm.png" /> 
+
+<script type="text/javascript">
+   // To be called when there's a move event on the body itself:
+   function BlockMove(event) {
+     // Tell Safari not to move the window.
+     event.preventDefault() ;
+   }
+</script>
+
+<!-- external libraries -->
+<script src="static/lib/jquery-min.js" type="text/javascript"> </script>
+<script src="static/lib/underscore-min.js" type="text/javascript"> </script>
+<script src="static/lib/backbone-min.js" type="text/javascript"> </script>
+<!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+<script src="static/lib/d3.v3.min.js" type="text/javascript"> </script> 
+<script src="static/lib/d3-grid.js"></script>
+
+<!-- experiment code -->
+<script src="static/js/stimuli.js" type="text/javascript"> </script> 
+
+<!-- stylesheets -->
+<link rel=stylesheet href="static/css/style.css" type="text/css">
+
+</head>
+
+<body ontouchmove="BlockMove(event);">
+
+<!-- <object data='static/images/beetle1.svg' id="bug1"></object> -->
+
+<div id="container">
+
+<div class="container" id="stimArray"></div>
+<div class="container" id="sideBar"></div>
+
+<script>
+
+// ToDo: (3/2/15)
+// make exp toggle betwen two phases: ask (hypothesis or feature query) and eliminate (gray out hypotheses)
+// (but also keep a version that automatically grays out eliminated options)
+
+var img_dir_prefix = "static/images/";
+var button_dir = img_dir_prefix + "buttons/";
+// need a function to assign/counterbalance image_set
+var image_set = "set1";
+// var image_set = function getSet() {}
+
+
+// iPad Retina
+var screen_width = 2048,
+    screen_height = 1536;
+
+
+var bug_width = 330,
+    bug_height = 280;
+
+var button_width = 225,
+    button_height = 118;
+
+// Initalize psiturk object
+var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
+var LOGGING = mode != "debug";
+var LOGGING = true;
+
+psiTurk.preloadPages(['instruct.html',
+            'chooser.html',
+            'stage.html']); // 'feedback.html'
+
+
+// disable vertical bounce
+$(document).bind(
+      'touchmove',
+          function(e) {
+            e.preventDefault();
+          }
+);
+
+
+//var features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"antennae", "f6":"markings", "f7":"dots", "f8":"fur", "f9":"water", "f10":"leaf"};
+// "basebody"
+
+var Experiment = function(condition) {
+  var self = this;
+  self.trial_num = -1;
+  self.condition = condition;
+
+  self.play = function() {
+    self.trial_num += 1;
+    if (self.trial_num == N_STUDY_BLOCKS) {
+      self.chooser();
+    } else {
+      self.view = new PlayRound(self.condition, self.trial_num);
+    }
+  };
+
+  self.chooser = function() {
+    psiTurk.showPage('chooser.html');
+
+
+    $('#choose-setup').on('click', function() {
+      self.setup();
+    })
+
+    $('#choose-fam').on('click', function() {
+      self.view = new FamiliarizationPhase();
+    })
+
+    $('#choose-study').on('click', function() {
+      self.play();
+    })
+
+    $('#choose-test').on('click', function() {
+      self.test();
+    })
+
+    $('#choose-finish').on('click', function() {
+      self.finish();
+    })
+
+  };
+
+  self.finish = function() {
+    Exit();
+  };
+}
+
+var Exit = function() {
+  output('COMPLETE');
+  psiTurk.saveData();
+  psiTurk.completeHIT();
+};
+
+
+// Load bug and return callback
+var loadBug = function(callback, canvas) {
+// append svg file from filename to canvas div
+    d3.xml('static/images/beetle1.svg', "image/svg+xml", function( xml ) {
+        var node = document.importNode(xml.documentElement, true);
+        $(canvas).append(node); 
+
+        // Initialize ciruit board selectors
+        board = d3.selectAll(canvas).select("svg");
+        callback();
+    });
+};
+
+//var exp = new PlayRound(train_exemplars, train_buttons, "training"); 
+var exp = new PlayRound(bug_exemplars, bug_buttons, "manual");
+
+function PlayRound(exemplars, buttons, condition) {
+  var self = this;
+  self.exemplars = exemplars;
+  self.buttons = buttons;
+  self.condition = condition; // "automatic" grays out eliminated bugs on button press; "manual" requires subjects to gray out
+  //self.trial_num = trial_num;
+  // for the "manual" condition, this tracks phase: time to ask a question or eliminate some hypotheses
+  self.button_phase = true; 
+
+  self.answer_ind = Math.floor((Math.random() * exemplars.length));
+  self.answer = exemplars[self.answer_ind];
+
+  //self.bug = loadBug(function () { console.log("hi"); }, "body");
+  self.bug = d3.xml('static/images/beetle1.svg', "image/svg+xml", function(xml) {
+    document.body.appendChild(xml.documentElement);
+  });
+
+  self.rectGrid = d3.layout.grid()
+    .bands()
+    .nodeSize([bug_width, bug_height]) 
+    .padding([30, 20]); // padding is absolute if nodeSize is used
+    // .size([100,100])
+
+  if(condition==="training") {
+    var sidebar_width = 800;
+  } else {
+    var sidebar_width = 380;
+  }
+  var nrows = buttons.length>4 ? 2 : 1
+
+  self.buttonGrid = d3.layout.grid()
+    .bands()
+    .rows(nrows)
+    .nodeSize([button_width, button_height]) 
+    .padding([50, 30]);
+
+  self.bugs = d3.select("#stimArray").append("svg")
+    .attr({
+      width: screen_width-sidebar_width,
+      height: screen_height-(2.5*button_height)
+    }) 
+    .attr("id", "bugArray")
+    .append("g")
+    .attr("transform", "translate(50,40)");
+
+
+  self.addImages = function(exemplars, img_dir) { 
+    //shuffle(self.exemplars);
+    rect = self.bugs.selectAll(".rect")
+      .data(self.rectGrid(self.exemplars)); 
+    console.log(rect)
+    rect.enter().append("image")
+      .attr("xlink:href", function(d) { return img_dir+d.id+".png"; })
+      .attr("class", "rect")
+      .attr("id", function(d) { return d.id; })
+      .attr("width", self.rectGrid.nodeSize()[0])
+      .attr("height", self.rectGrid.nodeSize()[1])
+      .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
+      .style("opacity", 1e-6)
+      .on("mousedown", function(d){
+        // Determine if current line is visible
+        var active   = rect.active ? false : true,
+          newOpacity = active ? .2 : 1;
+        // Hide or show the elements
+        d3.select("#"+d.id).style("opacity", newOpacity);
+        // Update whether or not the elements are active
+
+        rect.active = active;
+
+        if(self.button_phase) {
+          // do the 1-click test for now (otherwise use ready button state)
+          if(d.id===self.answer.id) {
+              //.attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
+            var correct = d3.select("g").append("image")
+              .attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
+              .attr("id", "correct")
+              .attr("x", 490)
+              .attr("y", 430)
+              .attr("height", 400)
+              .attr("width", 400)
+              .style("opacity", 1)
+              .on("mousedown", function(d) { correct.remove() });
+            correct.transition().duration(1000).delay(1000).style("opacity", 1e-6);
+          } else {
+            //incorrect.style("opacity", 1);
+            //incorrect.transition().delay(2000).style("opacity", 1e-6);
+            var incorrect = d3.select("g").append("image")
+              .attr("xlink:href", function(d) { return img_dir_prefix+"red_x.svg"; })
+              .attr("id", "incorrect")
+              .attr("x", d.x + 25)
+              .attr("y", d.y)
+              .attr("height", self.rectGrid.nodeSize()[0])
+              .attr("width", self.rectGrid.nodeSize()[1])
+              .style("opacity", 1)
+              .on("mousedown", function(d) { incorrect.remove(); });
+            incorrect.transition().duration(1000).delay(1000).style("opacity", 1e-6);
+            }
+          } else {
+            // it's elimination time...no feedback; just gray out stuff (and un-gray out?)
+          }
+        });
+    rect.transition()
+      .delay(500)
+      .attr("width", self.rectGrid.nodeSize()[0])
+      .attr("height", self.rectGrid.nodeSize()[1])
+      .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
+      .style("opacity", 1);
+    rect.exit().transition()
+      .style("opacity", 1e-6)
+      .remove();
+  };
+
+  if(condition==="training") {
+    self.addImages(self.exemplars, img_dir_prefix+"/");
+    callout_txt = "Woof?";
+    side_img = "dog";
+  } else {
+    self.addImages(self.exemplars, img_dir_prefix+image_set+"/");
+    callout_txt = "Who am I?";
+    side_img = "rug";
+  }
+
+  self.sidebar = d3.select("#sideBar").append("svg")
+    .attr({
+      width: sidebar_width,
+      height: screen_height-(2.5*button_height)
+    }) 
+    .attr("id", "sidebar");
+
+  self.rug = self.sidebar.append("g")
+    .attr("id", "rug")
+    .attr("transform", "translate(20,50)")
+    .append("image")
+    .attr("xlink:href", function(d) { return "static/images/"+side_img+".png"; })
+    .attr({
+      width: 261,
+      height: 437
+    })
+    .style("opacity", 1)
+    .on("mousedown", function(d) {
+      d3.select(this).transition()
+        .attr("width",261+50)
+        .duration(1000) // this is 1s
+        .delay(500);
+      d3.select(this).transition()
+        .attr("width",261)
+        .duration(500)
+        .delay(100);
+    });
+
+  //function wiggle(d) {}
+
+  self.callout = self.sidebar.append("g")
+    .attr("id", "callout")
+    .attr("transform", "translate(0,490)");
+
+  self.callout.append("image")
+    .attr("xlink:href", function(d) { return "static/images/callout.svg"; })
+    .attr({
+      width: 300,
+      height: 250
+    })
+    .style("opacity", 1);
+    //.attr("transform", "translate(0,0)");
+
+  self.text = self.callout.append("text")
+    .attr("x", 32)
+    .attr("y", 140)
+    .text(callout_txt);
+
+  self.buttonbar = d3.select("#container").append("svg")
+    .attr({
+      width: screen_width-sidebar_width,
+      height: 2.5*button_height
+    })
+    .attr("id", "buttonArray")
+    .append("g")
+    .attr("transform", "translate(50,10)");
+
+  var phaseButton = self.sidebar.append("g")
+    .attr("id", "phaseButton")
+    .attr("transform", "translate(0,760)")
+    .on("mousedown", function(){
+      self.phaseChange()
+    });
+
+  self.phaseChange = function() {
+    // if they click button in eliminate phase, they're done eliminating: time for buttons/guessing
+    phaseButton.select("text").remove();
+    if(self.button_phase===false) {
+      self.button_phase = true;
+      self.buttonbar.selectAll(".button").style("opacity", 1);
+      // select and deactivate all the clicked exemplars (they already are--in rectGrid code)
+      self.text.remove();
+      self.text = self.callout.append("text")
+        .attr("x", 30)
+        .attr("y", 136)
+        .text(callout_txt);
+      var phaseText = phaseButton.append("text")
+        .attr("x", 35)
+        .attr("y", 85)
+        .text("Guess!");
+    } else {
+      self.button_phase = false;
+      var phaseText = phaseButton.append("text")
+        .attr("x", 35)
+        .attr("y", 85)
+        .text("Eliminate!");
+    }
+  }
+
+  phaseButton.append("rect")
+    .attr("x", 20)
+    .attr("y", 20)
+    .attr("rx",20) 
+    .attr("ry",20)
+    .attr("width", 250)
+    .attr("height", 100)
+    .attr("class", "pbutton")
+    .attr("fill", "green");
+    //.attr("transform", "translate(50,0)");
+  
+  var phaseText = phaseButton.append("text")
+    .attr("id", "phaseText")
+    .attr("x", 35)
+    .attr("y", 85)
+    .text("Guess!");
+
+  self.addButtons = function(buttons) { 
+    //shuffle(buttons);
+    var button = self.buttonbar.selectAll(".button")
+      .data(self.buttonGrid(buttons));
+    button.enter().append("image")
+      .attr("xlink:href", function(d) { return button_dir+d.id+".png"; })
+      .attr("class", "button")
+      .attr("id", function(d) { return d.id; })
+      .attr("width", self.buttonGrid.nodeSize()[0])
+      .attr("height", self.buttonGrid.nodeSize()[1])
+      .style("opacity", 1e-6)
+      .on("mousedown", function(d){
+        // press once and remain active (unless ready button..)
+        d3.select("#"+d.id).style("opacity", .2); //
+        button.active = true;
+        self.buttonPress(d);
+      });
+    button.transition()
+      .attr("width", self.buttonGrid.nodeSize()[0])
+      .attr("height", self.buttonGrid.nodeSize()[1])
+      .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
+      .style("opacity", 1);
+    // could add a toggle 'ready' button here if desired
+  };
+
+  self.addButtons(self.buttons);
+
+  self.buttonPress = function(b) {
+    console.log(b);
+    if(b.id=="ready") {
+      d3.selectAll(".button")
+        .transition()
+        .style("opacity", 1e-6);
+      // now treat the click on an exemplar as a guess... (modify the .on("click") function??)
+    } else {
+      // select the rects that do not have the answer's d[b.feature] 
+      if(self.condition==="automatic") {
+      d3.selectAll(".rect")
+       .filter(function(d) {
+         return d[b.feature] !== self.answer[b.feature];
+       })
+       .style("opacity", .2).attr("active", true);
+     } else if(condition==="manual" || condition==="training") {
+      // is it question asking (button pressing) time, or 
+         if(self.button_phase) { 
+            self.phaseChange()
+            d3.selectAll(".button")
+              .filter(function(d) {
+                return d[b.feature] !== self.answer[b.feature];
+              })
+              .style("opacity", .2).attr("active", true);
+
+            answer_text = self.answer[b.feature]===1 ? "Yes!" : "No!";
+
+            self.text.remove();
+            self.text = self.callout.append("text")
+              .attr("x", 30)
+              .attr("y", 136)
+              .text(b.id+": "+answer_text);
+         }
+       
+       }
+    }
+  };
+
+  //var div = d3.select("#container").append("div")   
+  //    .attr("class", "tooltip")               
+  //    .style("opacity", 0);
+    // OR show them a dialog with the correct feature in it
+    // tooltip with image in it:
+    // http://bl.ocks.org/jarobertson/1483052
+
+}; // end PlayRound
+
+
+
+// Generic function for saving data
+function output(arr) {
+    psiTurk.recordTrialData(arr);
+    if (LOGGING) console.log(arr.join(" "));
+};
+
+function clear_buttons() {
+  $('#buttons').html('');
+};
+
+//@ http://jsfromhell.com/array/shuffle [v1.0]
+function shuffle(o) { 
+  for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  return o;
+}
+
+</script>
+  
+   </div>
+ </body>
+</html>
