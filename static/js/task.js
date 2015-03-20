@@ -26,10 +26,15 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 var LOGGING = mode != "debug";
 var LOGGING = true;
 
+var N_TRIALS = 2;
+
 psiTurk.preloadPages(['instruct.html',
             'chooser.html',
             'stage.html']); // 'feedback.html'
 
+// psiTurk.preloadImages if necessary
+
+$('#loading').css('display', 'none');
 
 // disable vertical bounce
 $(document).bind(
@@ -50,37 +55,25 @@ var Experiment = function(condition) {
 
   self.play = function() {
     self.trial_num += 1;
-    if (self.trial_num == N_STUDY_BLOCKS) {
+    if (self.trial_num == N_TRIALS) {
       self.chooser();
     } else {
-      self.view = new PlayRound(self.condition, self.trial_num);
+      console.log("Experiment calling PlayRound");
+      self.view = new PlayRound(bug_exemplars, bug_buttons, "manual", self.trial_num);
     }
   };
 
   self.chooser = function() {
     psiTurk.showPage('chooser.html');
-
-
-    $('#choose-setup').on('click', function() {
-      self.setup();
+    console.log("in chooser.html");
+    $('#choose-train').on('click', function() {
+      //self.setup();
+      self.view = new PlayRound(train_exemplars, train_buttons, "training", -1); 
     })
 
-    $('#choose-fam').on('click', function() {
-      self.view = new FamiliarizationPhase();
-    })
-
-    $('#choose-study').on('click', function() {
+    $('#choose-main').on('click', function() {
       self.play();
     })
-
-    $('#choose-test').on('click', function() {
-      self.test();
-    })
-
-    $('#choose-finish').on('click', function() {
-      self.finish();
-    })
-
   };
 
   self.finish = function() {
@@ -98,7 +91,7 @@ var Exit = function() {
 // Load bug and return callback
 var loadBug = function(callback, canvas) {
 // append svg file from filename to canvas div
-    d3.xml('static/images/beetle1.svg', "image/svg+xml", function( xml ) {
+    d3.xml(img_dir_prefix+'beetle1.svg', "image/svg+xml", function( xml ) {
         var node = document.importNode(xml.documentElement, true);
         $(canvas).append(node); 
 
@@ -108,25 +101,32 @@ var loadBug = function(callback, canvas) {
     });
 };
 
-//var exp = new PlayRound(train_exemplars, train_buttons, "training"); 
-var exp = new PlayRound(bug_exemplars, bug_buttons, "manual");
 
-function PlayRound(exemplars, buttons, condition) {
+function PlayRound(exemplars, buttons, condition, trial_num) {
   var self = this;
   self.exemplars = exemplars;
   self.buttons = buttons;
   self.condition = condition; // "automatic" grays out eliminated bugs on button press; "manual" requires subjects to gray out
-  //self.trial_num = trial_num;
+  self.trial_num = trial_num;
+
+  outpfx =['play-round', block, self.study_cond];
+  output(['init']);
+  console.log("loading stage.html");
+  psiTurk.showPage('stage.html');
+
   // for the "manual" condition, this tracks phase: time to ask a question or eliminate some hypotheses
   self.button_phase = true; 
 
   self.answer_ind = Math.floor((Math.random() * exemplars.length));
   self.answer = exemplars[self.answer_ind];
 
-  //self.bug = loadBug(function () { console.log("hi"); }, "body");
-  self.bug = d3.xml('static/images/beetle1.svg', "image/svg+xml", function(xml) {
-    document.body.appendChild(xml.documentElement);
-  });
+  // Loading an external SVG file: approach 1:
+  //self.bug = loadBug(function () { console.log("hi"); }, "body"); 
+
+  // approach 2:
+  //self.bug = d3.xml('static/images/beetle1.svg', "image/svg+xml", function(xml) {
+  //  document.body.appendChild(xml.documentElement);
+  //});
 
   self.rectGrid = d3.layout.grid()
     .bands()

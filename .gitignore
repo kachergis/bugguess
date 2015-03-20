@@ -2,3 +2,5 @@
 .psiturk_history
 
 server.log
+
+participants.db
