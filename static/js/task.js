@@ -27,6 +27,8 @@ var LOGGING = mode != "debug";
 var LOGGING = true;
 
 var N_TRIALS = 2;
+var ids = uniqueId.split(':')
+var SEED = (ids[1] == "None");
 
 psiTurk.preloadPages(['instruct.html',
             'chooser.html',
@@ -52,6 +54,10 @@ var Experiment = function(condition) {
   var self = this;
   self.trial_num = -1;
   self.condition = condition;
+
+  output(['participantid', ids[0]]);
+  output(['partnerid', ids[1]]);
+  output(['seed', SEED]);
 
   self.play = function() {
     self.trial_num += 1;
@@ -79,6 +85,8 @@ var Experiment = function(condition) {
   self.finish = function() {
     Exit();
   };
+
+  self.chooser();
 }
 
 var Exit = function() {
@@ -109,7 +117,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
   self.condition = condition; // "automatic" grays out eliminated bugs on button press; "manual" requires subjects to gray out
   self.trial_num = trial_num;
 
-  outpfx =['play-round', block, self.study_cond];
+  outpfx =['play-round', trial_num, self.study_cond];
   output(['init']);
   console.log("loading stage.html");
   psiTurk.showPage('stage.html');
@@ -124,9 +132,9 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
   //self.bug = loadBug(function () { console.log("hi"); }, "body"); 
 
   // approach 2:
-  //self.bug = d3.xml('static/images/beetle1.svg', "image/svg+xml", function(xml) {
-  //  document.body.appendChild(xml.documentElement);
-  //});
+  self.bug = d3.xml('static/images/beetle1.svg', "image/svg+xml", function(xml) {
+    document.body.appendChild(xml.documentElement);
+  });
 
   self.rectGrid = d3.layout.grid()
     .bands()
