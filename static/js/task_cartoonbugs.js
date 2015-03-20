@@ -64,12 +64,14 @@ var Experiment = function(condition) {
     if (self.trial_num == N_TRIALS) {
       self.chooser();
     } else {
+      console.log("Experiment calling PlayRound");
       self.view = new PlayRound(bug_exemplars, bug_buttons, "manual", self.trial_num);
     }
   };
 
   self.chooser = function() {
     psiTurk.showPage('chooser.html');
+    console.log("in chooser.html");
     $('#choose-train').on('click', function() {
       //self.setup();
       self.view = new PlayRound(train_exemplars, train_buttons, "training", -1); 
@@ -94,14 +96,19 @@ var Exit = function() {
 };
 
 
+// Load bug and return callback
+var loadBug = function(callback, canvas) {
+// append svg file from filename to canvas div
+    d3.xml(img_dir_prefix+'beetle1.svg', "image/svg+xml", function( xml ) {
+        var node = document.importNode(xml.documentElement, true);
+        $(canvas).append(node); 
 
-
-var makeStimuli = function() {
-  //features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"markings", "f6":"dots", "f7":"fur", "f8":"water", "f9":"leaf"};
-  //bug_exemplars = {"id":"A" , "f1":1 , "f2":0 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 }, ...
-
-  // have option to use all the same "basebody" or all unique
+        // Initialize ciruit board selectors
+        board = d3.selectAll(canvas).select("svg");
+        callback();
+    });
 };
+
 
 function PlayRound(exemplars, buttons, condition, trial_num) {
   var self = this;
@@ -112,7 +119,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
 
   outpfx =['play-round', trial_num, self.study_cond];
   output(['init']);
-
+  console.log("loading stage.html");
   psiTurk.showPage('stage.html');
 
   // for the "manual" condition, this tracks phase: time to ask a question or eliminate some hypotheses
@@ -157,29 +164,14 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     .append("g")
     .attr("transform", "translate(50,40)");
 
-  // Load bug and return callback
-  self.loadBug = function(callback, canvas) {
-  // append svg file from filename to div
-    d3.xml(img_dir_prefix+'beetle1.svg', "image/svg+xml", function( xml ) {
-      var node = document.importNode(xml.documentElement, true);
-      $(canvas).append(node); 
-
-      // Initialize bug selectors
-      bug = d3.selectAll(canvas).select("svg");
-      callback();
-    });
-  };
 
   self.addImages = function(exemplars, img_dir) { 
     //shuffle(self.exemplars);
     rect = self.bugs.selectAll(".rect")
       .data(self.rectGrid(self.exemplars)); 
     console.log(rect)
-    // append("image").attr("xlink:href", function(d) {return img_dir+d.id+".png";})
-
-    //self.loadBug(function () { console.log("adding bug..."); }, "#rect"); 
-
-    rect.enter().append("g")
+    rect.enter().append("image")
+      .attr("xlink:href", function(d) { return img_dir+d.id+".png"; })
       .attr("class", "rect")
       .attr("id", function(d) { return d.id; })
       .attr("width", self.rectGrid.nodeSize()[0])
@@ -238,8 +230,6 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
       .style("opacity", 1e-6)
       .remove();
   };
-
-  self.loadBug(function () { console.log("adding bug..."); }, "#rect");
 
   if(condition==="training") {
     self.addImages(self.exemplars, img_dir_prefix+"/");
@@ -382,8 +372,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     // could add a toggle 'ready' button here if desired
   };
 
-  // ToDo: make css buttons with bug parts inside -- no more PNGs
-  //self.addButtons(self.buttons);
+  self.addButtons(self.buttons);
 
   self.buttonPress = function(b) {
     console.log(b);
