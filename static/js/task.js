@@ -16,7 +16,7 @@ var screen_width = 2048,
 
 
 var bug_width = 330,
-    bug_height = 280;
+    bug_height = 330; // 330, 280
 
 var button_width = 225,
     button_height = 118;
@@ -151,50 +151,66 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
   self.bugs = d3.select("#stimArray").append("svg")
     .attr({
       width: screen_width-sidebar_width,
-      height: screen_height-(2.5*button_height)
+      height: screen_height-(2*button_height)
     }) 
     .attr("id", "bugArray")
     .append("g")
-    .attr("transform", "translate(50,40)");
+    .attr("transform", "translate(20,20)");
 
   // Load bug and return callback
   self.loadBug = function(callback, canvas) {
   // append svg file from filename to div
     d3.xml(img_dir_prefix+'beetle1.svg', "image/svg+xml", function( xml ) {
-      var node = document.importNode(xml.documentElement, true);
-      $(canvas).append(node); 
+      var importedNode = document.importNode(xml.documentElement, true);
+      $(canvas).append(importedNode); 
 
       // Initialize bug selectors
-      bug = d3.selectAll(canvas).select("svg");
+      //bug = d3.selectAll(canvas).select("svg");
       callback();
     });
   };
 
   self.addImages = function(exemplars, img_dir) { 
     //shuffle(self.exemplars);
+
     rect = self.bugs.selectAll(".rect")
       .data(self.rectGrid(self.exemplars)); 
     console.log(rect)
     // append("image").attr("xlink:href", function(d) {return img_dir+d.id+".png";})
 
-    //self.loadBug(function () { console.log("adding bug..."); }, "#rect"); 
+    //self.loadBug(function () { console.log("adding bug..."); }, "#bugArray"); 
 
+    d3.xml(img_dir_prefix+'beetle1.svg', "image/svg+xml", function( xml ) {
+      var importedNode = document.importNode(xml.documentElement, true);
     rect.enter().append("g")
+      .each(function(d,i) {
+        var plane = this.appendChild(importedNode.cloneNode(true));
+        //for f, key in features  ... if(d[key]==0) d3.select(plane).select(f).remove();
+        for(var key in features) {
+          if(d[key]==0) {
+            d3.select(plane).select("#"+features[key]).remove();
+          }
+        }
+        //d3.select(plane).select("#legs").remove();
+      })
       .attr("class", "rect")
+      .attr("active", true)
       .attr("id", function(d) { return d.id; })
       .attr("width", self.rectGrid.nodeSize()[0])
       .attr("height", self.rectGrid.nodeSize()[1])
       .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
-      .style("opacity", 1e-6)
       .on("mousedown", function(d){
-        // Determine if current line is visible
-        var active   = rect.active ? false : true,
-          newOpacity = active ? .2 : 1;
+        console.log(d);
+        if(typeof(this.active)=="undefined" || this.active) {
+          newOpacity = .2;
+          this.active = false;
+        } else {
+          newOpacity = 1;
+          this.active = true;
+        }
+        console.log("active: "+rect.active+"  newOpacity: "+newOpacity);
         // Hide or show the elements
         d3.select("#"+d.id).style("opacity", newOpacity);
-        // Update whether or not the elements are active
-
-        rect.active = active;
 
         if(self.button_phase) {
           // do the 1-click test for now (otherwise use ready button state)
@@ -228,18 +244,17 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
             // it's elimination time...no feedback; just gray out stuff (and un-gray out?)
           }
         });
-    rect.transition()
-      .delay(500)
-      .attr("width", self.rectGrid.nodeSize()[0])
-      .attr("height", self.rectGrid.nodeSize()[1])
-      .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
-      .style("opacity", 1);
+  
     rect.exit().transition()
       .style("opacity", 1e-6)
       .remove();
-  };
 
-  self.loadBug(function () { console.log("adding bug..."); }, "#rect");
+    }); // d3.xml
+
+      };
+
+
+  //self.loadBug(function () { console.log("adding bug..."); }, "#rect");
 
   if(condition==="training") {
     self.addImages(self.exemplars, img_dir_prefix+"/");
@@ -254,7 +269,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
   self.sidebar = d3.select("#sideBar").append("svg")
     .attr({
       width: sidebar_width,
-      height: screen_height-(2.5*button_height)
+      height: screen_height-(2*button_height)
     }) 
     .attr("id", "sidebar");
 
@@ -299,10 +314,10 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     .attr("y", 140)
     .text(callout_txt);
 
-  self.buttonbar = d3.select("#container").append("svg")
+  self.buttonbar = d3.select("#footer").append("svg")
     .attr({
-      width: screen_width-sidebar_width,
-      height: 2.5*button_height
+      width: screen_width,
+      height: 2.2*button_height
     })
     .attr("id", "buttonArray")
     .append("g")

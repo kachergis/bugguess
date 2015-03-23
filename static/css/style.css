@@ -32,13 +32,32 @@ body {
   float: left;
   background: white;
   margin: 0px;
-  height: 100vh;
+  height: 85vh;
+  font-size: 50px ;
+ }
+
+ .sidebar {
+  float: right;
+  background: white;
+  margin: 0px;
+  height: 85vh;
+  width: 400px;
+  font-size: 50px ;
+ }
+
+ .footer {
+  float: bottom;
+  background: white;
+  margin: 0px;
+  height: 15vh;
+  width: 100hw;
   font-size: 50px ;
  }
 
 #chooser-buttons {
   margin: 100px;
 }
+
 
 #chooser-buttons .btn {
   width: 150px;
