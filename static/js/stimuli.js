@@ -13,7 +13,9 @@ var bug_buttons = [
   {id:"dots", "feature":"f6"},
   {id:"fur", "feature":"f7"},
   {id:"water", "feature":"f8"},
-  {id:"leaf", "feature":"f9"}
+  {id:"leaf", "feature":"f9"},
+  {id:"basebody4", "feature":"#basebody4"},
+  {id:"basebody10", "feature":"#basebody10"}
   ]
 
 var bug_exemplars = [

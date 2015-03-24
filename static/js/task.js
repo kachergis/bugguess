@@ -4,7 +4,7 @@
 // (but also keep a version that automatically grays out eliminated options)
 
 var img_dir_prefix = "static/images/";
-var button_dir = img_dir_prefix + "buttons/";
+var button_dir = img_dir_prefix + "features/";
 // need a function to assign/counterbalance image_set
 var image_set = "set1";
 // var image_set = function getSet() {}
@@ -15,8 +15,8 @@ var screen_width = 2048,
     screen_height = 1536;
 
 
-var bug_width = 330,
-    bug_height = 330; // 330, 280
+var bug_width = 300,
+    bug_height = 300; // 330, 280
 
 var button_width = 225,
     button_height = 118;
@@ -132,7 +132,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
   self.rectGrid = d3.layout.grid()
     .bands()
     .nodeSize([bug_width, bug_height]) 
-    .padding([30, 20]); // padding is absolute if nodeSize is used
+    .padding([10, 10]); // padding is absolute if nodeSize is used
     // .size([100,100])
 
   if(condition==="training") {
@@ -146,7 +146,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     .bands()
     .rows(nrows)
     .nodeSize([button_width, button_height]) 
-    .padding([50, 30]);
+    .padding([40, 15]);
 
   self.bugs = d3.select("#stimArray").append("svg")
     .attr({
@@ -160,7 +160,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
   // Load bug and return callback
   self.loadBug = function(callback, canvas) {
   // append svg file from filename to div
-    d3.xml(img_dir_prefix+'beetle1.svg', "image/svg+xml", function( xml ) {
+    d3.xml(img_dir_prefix+'beetles/beetle1.svg', "image/svg+xml", function( xml ) {
       var importedNode = document.importNode(xml.documentElement, true);
       $(canvas).append(importedNode); 
 
@@ -180,7 +180,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
 
     //self.loadBug(function () { console.log("adding bug..."); }, "#bugArray"); 
 
-    d3.xml(img_dir_prefix+'beetle1.svg', "image/svg+xml", function( xml ) {
+    d3.xml(img_dir_prefix+'beetles/beetle1.svg', "image/svg+xml", function( xml ) {
       var importedNode = document.importNode(xml.documentElement, true);
     rect.enter().append("g")
       .each(function(d,i) {
@@ -314,14 +314,14 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     .attr("y", 140)
     .text(callout_txt);
 
-  self.buttonbar = d3.select("#footer").append("svg")
+  self.buttonbar = d3.select("#controls").append("svg")
     .attr({
       width: screen_width,
       height: 2.2*button_height
     })
     .attr("id", "buttonArray")
     .append("g")
-    .attr("transform", "translate(50,10)");
+    .attr("transform", "translate(20,10)");
 
   var phaseButton = self.sidebar.append("g")
     .attr("id", "phaseButton")
@@ -398,7 +398,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
   };
 
   // ToDo: make css buttons with bug parts inside -- no more PNGs
-  //self.addButtons(self.buttons);
+  self.addButtons(self.buttons);
 
   self.buttonPress = function(b) {
     console.log(b);
