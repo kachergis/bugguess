@@ -76,6 +76,13 @@ body {
   opacity:0.7
 }
 
+.fbutton {
+  fill:none;
+  stroke:black;
+  stroke-width:5;
+  opacity:.7
+}
+
 /* ad.html  - the ad that people view first */
 #adlogo {
     width: 140px;

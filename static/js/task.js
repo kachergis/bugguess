@@ -18,8 +18,8 @@ var screen_width = 2048,
 var bug_width = 300,
     bug_height = 300; // 330, 280
 
-var button_width = 225,
-    button_height = 118;
+var button_width = 150,
+    button_height = 150;
 
 // Initalize psiturk object
 var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
@@ -176,12 +176,16 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     rect = self.bugs.selectAll(".rect")
       .data(self.rectGrid(self.exemplars)); 
     console.log(rect)
-    // append("image").attr("xlink:href", function(d) {return img_dir+d.id+".png";})
+
+    // PNGs were loaded like this:
+    // rect.enter().append("image").attr("xlink:href", function(d) {return img_dir+d.id+".png";}) ...
 
     //self.loadBug(function () { console.log("adding bug..."); }, "#bugArray"); 
 
     d3.xml(img_dir_prefix+'beetles/beetle1.svg', "image/svg+xml", function( xml ) {
       var importedNode = document.importNode(xml.documentElement, true);
+      importedNode.setAttribute("transform", "scale(" + .1 + " " + .1 +")");
+      //SVGDoc.documentElement.setAttribute("width", w); // or this way
     rect.enter().append("g")
       .each(function(d,i) {
         var plane = this.appendChild(importedNode.cloneNode(true));
@@ -376,25 +380,33 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     //shuffle(buttons);
     var button = self.buttonbar.selectAll(".button")
       .data(self.buttonGrid(buttons));
-    button.enter().append("image")
-      .attr("xlink:href", function(d) { return button_dir+d.id+".png"; })
-      .attr("class", "button")
-      .attr("id", function(d) { return d.id; })
-      .attr("width", self.buttonGrid.nodeSize()[0])
-      .attr("height", self.buttonGrid.nodeSize()[1])
-      .style("opacity", 1e-6)
+    button.enter().append("g")
+      .attr("class", "buttong")
+      .attr("transform", function(d) { return "translate(" + d.x+ "," + d.y + ")"; })
       .on("mousedown", function(d){
         // press once and remain active (unless ready button..)
         d3.select("#"+d.id).style("opacity", .2); //
         button.active = true;
         self.buttonPress(d);
-      });
-    button.transition()
+      })
+      .append("rect")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("rx",20) 
+      .attr("ry",20)
       .attr("width", self.buttonGrid.nodeSize()[0])
       .attr("height", self.buttonGrid.nodeSize()[1])
-      .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
+      .attr("class", "fbutton");
+
+    d3.selectAll(".buttong")
+      .append("image")
+      .attr("xlink:href", function(d) { return button_dir+d.id+".png"; })
+      .attr("class", "button")
+      .attr("id", function(d) { return d.id; })
+      .attr("width", self.buttonGrid.nodeSize()[0])
+      .attr("height", self.buttonGrid.nodeSize()[1])
       .style("opacity", 1);
-    // could add a toggle 'ready' button here if desired
+      
   };
 
   // ToDo: make css buttons with bug parts inside -- no more PNGs
