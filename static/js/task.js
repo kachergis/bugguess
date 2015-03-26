@@ -14,10 +14,6 @@ var image_set = "set1";
 var screen_width = 2048,
     screen_height = 1536;
 
-
-var bug_width = 280,
-    bug_height = 280; // 330, 280
-
 var button_width = 150,
     button_height = 150;
 
@@ -53,7 +49,8 @@ $(document).bind(
 var Experiment = function(condition) {
   var self = this;
   self.trial_num = -1;
-  self.condition = condition;
+  self.condition = "automatic"; //condition;
+
 
   output(['participantid', ids[0]]);
   output(['partnerid', ids[1]]);
@@ -64,7 +61,7 @@ var Experiment = function(condition) {
     if (self.trial_num == N_TRIALS) {
       self.chooser();
     } else {
-      self.view = new PlayRound(bug_exemplars, bug_buttons, "manual", self.trial_num);
+      self.view = new PlayRound(bug_exemplars, bug_buttons, bug_features, self.condition, "bugs", self.trial_num);
     }
   };
 
@@ -72,7 +69,7 @@ var Experiment = function(condition) {
     psiTurk.showPage('chooser.html');
     $('#choose-train').on('click', function() {
       //self.setup();
-      self.view = new PlayRound(train_exemplars, train_buttons, "training", -1); 
+      self.view = new PlayRound(house_exemplars, house_buttons, house_features, self.condition, "training", -1); 
     })
 
     $('#choose-main').on('click', function() {
@@ -103,15 +100,14 @@ var makeStimuli = function() {
   // have option to use all the same "basebody" or all unique
 };
 
-function PlayRound(exemplars, buttons, condition, trial_num) {
+function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   var self = this;
   self.exemplars = exemplars;
   self.buttons = buttons;
+  self.features = features;
   self.condition = condition; // "automatic" grays out eliminated bugs on button press; "manual" requires subjects to gray out
+  self.stage = stage; // "training" or "bugs"
   self.trial_num = trial_num;
-
-  outpfx =['play-round', trial_num, self.study_cond];
-  output(['init']);
 
   psiTurk.showPage('stage.html');
 
@@ -121,26 +117,25 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
   self.answer_ind = Math.floor((Math.random() * exemplars.length));
   self.answer = exemplars[self.answer_ind];
 
-  // Loading an external SVG file: approach 1:
-  //self.bug = loadBug(function () { console.log("hi"); }, "body"); 
+  outpfx =['play-round', trial_num, self.condition, self.stage, self.answer_ind, self.answer];
+  output(['init']);
 
-  // approach 2:
-  //self.bug = d3.xml('static/images/beetle1.svg', "image/svg+xml", function(xml) {
-  //  document.body.appendChild(xml.documentElement);
-  //});
+  if(stage==="training") {
+    var sidebar_width = 1000,
+        bug_width = 340,
+        bug_height = 340;
+  } else {
+    var sidebar_width = 400,
+        bug_width = 265,
+        bug_height = 265; // 330, 280
+  }
+  var nrows = buttons.length>4 ? 2 : 1
 
   self.rectGrid = d3.layout.grid()
     .bands()
     .nodeSize([bug_width, bug_height]) 
     .padding([10, 20]); // padding is absolute if nodeSize is used
     // .size([100,100])
-
-  if(condition==="training") {
-    var sidebar_width = 800;
-  } else {
-    var sidebar_width = 400;
-  }
-  var nrows = buttons.length>4 ? 2 : 1
 
   self.buttonGrid = d3.layout.grid()
     .bands()
@@ -151,24 +146,24 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
   self.bugs = d3.select("#stimArray").append("svg")
     .attr({
       width: screen_width-sidebar_width,
-      height: screen_height //-(2*button_height)
+      height: screen_height -(2.2*button_height)
     }) 
     .attr("id", "bugArray")
     .append("g")
     .attr("transform", "translate(20,10)");
 
-  // Load bug and return callback
-  self.loadBug = function(callback, canvas) {
-  // append svg file from filename to div
-    d3.xml(img_dir_prefix+'beetles/beetle1.svg', "image/svg+xml", function( xml ) {
-      var importedNode = document.importNode(xml.documentElement, true);
-      $(canvas).append(importedNode); 
+  // // Load bug and return callback
+  // self.loadBug = function(callback, canvas) {
+  // // append svg file from filename to div
+  //   d3.xml(img_dir_prefix+'beetles/beetle1.svg', "image/svg+xml", function( xml ) {
+  //     var importedNode = document.importNode(xml.documentElement, true);
+  //     $(canvas).append(importedNode); 
 
-      // Initialize bug selectors
-      //bug = d3.selectAll(canvas).select("svg");
-      callback();
-    });
-  };
+  //     // Initialize bug selectors
+  //     //bug = d3.selectAll(canvas).select("svg");
+  //     callback();
+  //   });
+  // };
 
   self.addImages = function(exemplars, img_dir) { 
     //shuffle(self.exemplars);
@@ -177,25 +172,29 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
       .data(self.rectGrid(self.exemplars)); 
     console.log(rect)
 
-    // PNGs were loaded like this:
-    // rect.enter().append("image").attr("xlink:href", function(d) {return img_dir+d.id+".png";}) ...
-
     //self.loadBug(function () { console.log("adding bug..."); }, "#bugArray"); 
 
-    d3.xml(img_dir_prefix+'beetles/beetle1.svg', "image/svg+xml", function( xml ) {
+    if(self.stage==="training") {
+      stim_svg = 'house.svg';
+    } else {
+      var base_stimulus = Math.floor(Math.random() * 16) + 1;
+      stim_svg = 'beetles/beetle'+base_stimulus+'.svg'
+    }
+
+    d3.xml(img_dir_prefix+stim_svg, "image/svg+xml", function( xml ) {
       var importedNode = document.importNode(xml.documentElement, true);
       //importedNode.setAttribute("transform", "scale(" + .1 + " " + .1 +")");
-      //importedNode.setAttribute("width", self.rectGrid.nodeSize()[1]); // or this way
+      importedNode.setAttribute("width", self.rectGrid.nodeSize()[0]); // or this way
+      importedNode.setAttribute("height", self.rectGrid.nodeSize()[1]); 
     rect.enter().append("g")
       .each(function(d,i) {
         var plane = this.appendChild(importedNode.cloneNode(true));
         //for f, key in features  ... if(d[key]==0) d3.select(plane).select(f).remove();
         for(var key in features) {
           if(d[key]==0) {
-            d3.select(plane).select("#"+features[key]).remove();
+            d3.select(plane).select("#"+self.features[key]).remove();
           }
         }
-        //d3.select(plane).select("#legs").remove();
       })
       .attr("class", "rect")
       .attr("active", true)
@@ -249,9 +248,9 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
           }
         });
   
-    rect.selectAll("svg")
-      .transition()
-      .attr("transform","scale(.3)");
+    // rect.selectAll("svg")
+    //   .transition()
+    //   .attr("transform","scale(.3)");
 
     rect.exit().transition()
       .style("opacity", 1e-6)
@@ -264,7 +263,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
 
   //self.loadBug(function () { console.log("adding bug..."); }, "#rect");
 
-  if(condition==="training") {
+  if(self.stage==="training") {
     self.addImages(self.exemplars, img_dir_prefix+"/");
     callout_txt = "Woof?";
     side_img = "dog";
@@ -329,13 +328,14 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     })
     .attr("id", "buttonArray")
     .append("g")
-    .attr("transform", "translate(100,10)");
+    .attr("transform", "translate(100,3)");
 
   var phaseButton = self.sidebar.append("g")
     .attr("id", "phaseButton")
     .attr("transform", "translate(0,760)")
     .on("mousedown", function(){
       self.phaseChange()
+      // if(condition==="automatic") then they must click click this to eliminate the irrelevant stimuli self.last_button
     });
 
   self.phaseChange = function() {
@@ -390,8 +390,8 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
       .attr("class", "buttong")
       .attr("transform", function(d) { return "translate(" + d.x+ "," + d.y + ")"; })
       .on("mousedown", function(d){
-        // press once and remain active (unless ready button..)
-        d3.select("#"+d.id).style("opacity", .2); //
+        // press once and remain active 
+        //d3.select(".buttong").select("#"+d.id).style("opacity", .2); //
         button.active = true;
         self.buttonPress(d);
       })
@@ -428,16 +428,18 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     } else {
       // select the rects that do not have the answer's d[b.feature] 
       if(self.condition==="automatic") {
+        // ToDo: make it so they have to click eliminate button (pbutton)...(not fully automatic)
+        self.phaseChange()
         d3.selectAll(".rect")
          .filter(function(d) {
            return d[b.feature] !== self.answer[b.feature];
          })
          .style("opacity", .2).attr("active", true);
-     } else if(condition==="manual" || condition==="training") {
+      } else if(condition==="manual") {
       // is it question asking (button pressing) time, or 
          if(self.button_phase) { 
             self.phaseChange()
-            d3.selectAll(".button")
+            d3.selectAll(".buttong")
               .filter(function(d) {
                 return d[b.feature] !== self.answer[b.feature];
               })
