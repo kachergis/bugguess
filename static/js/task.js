@@ -15,8 +15,8 @@ var screen_width = 2048,
     screen_height = 1536;
 
 
-var bug_width = 300,
-    bug_height = 300; // 330, 280
+var bug_width = 280,
+    bug_height = 280; // 330, 280
 
 var button_width = 150,
     button_height = 150;
@@ -132,13 +132,13 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
   self.rectGrid = d3.layout.grid()
     .bands()
     .nodeSize([bug_width, bug_height]) 
-    .padding([10, 10]); // padding is absolute if nodeSize is used
+    .padding([10, 20]); // padding is absolute if nodeSize is used
     // .size([100,100])
 
   if(condition==="training") {
     var sidebar_width = 800;
   } else {
-    var sidebar_width = 380;
+    var sidebar_width = 400;
   }
   var nrows = buttons.length>4 ? 2 : 1
 
@@ -146,16 +146,16 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     .bands()
     .rows(nrows)
     .nodeSize([button_width, button_height]) 
-    .padding([40, 15]);
+    .padding([40, 25]);
 
   self.bugs = d3.select("#stimArray").append("svg")
     .attr({
       width: screen_width-sidebar_width,
-      height: screen_height-(2*button_height)
+      height: screen_height //-(2*button_height)
     }) 
     .attr("id", "bugArray")
     .append("g")
-    .attr("transform", "translate(20,20)");
+    .attr("transform", "translate(20,10)");
 
   // Load bug and return callback
   self.loadBug = function(callback, canvas) {
@@ -184,8 +184,8 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
 
     d3.xml(img_dir_prefix+'beetles/beetle1.svg', "image/svg+xml", function( xml ) {
       var importedNode = document.importNode(xml.documentElement, true);
-      importedNode.setAttribute("transform", "scale(" + .1 + " " + .1 +")");
-      //SVGDoc.documentElement.setAttribute("width", w); // or this way
+      //importedNode.setAttribute("transform", "scale(" + .1 + " " + .1 +")");
+      //importedNode.setAttribute("width", self.rectGrid.nodeSize()[1]); // or this way
     rect.enter().append("g")
       .each(function(d,i) {
         var plane = this.appendChild(importedNode.cloneNode(true));
@@ -236,8 +236,8 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
             var incorrect = d3.select("g").append("image")
               .attr("xlink:href", function(d) { return img_dir_prefix+"red_x.svg"; })
               .attr("id", "incorrect")
-              .attr("x", d.x + 25)
-              .attr("y", d.y)
+              .attr("x", d.x + 10)
+              .attr("y", d.y + 40)
               .attr("height", self.rectGrid.nodeSize()[0])
               .attr("width", self.rectGrid.nodeSize()[1])
               .style("opacity", 1)
@@ -249,6 +249,10 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
           }
         });
   
+    rect.selectAll("svg")
+      .transition()
+      .attr("transform","scale(.3)");
+
     rect.exit().transition()
       .style("opacity", 1e-6)
       .remove();
@@ -273,7 +277,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
   self.sidebar = d3.select("#sideBar").append("svg")
     .attr({
       width: sidebar_width,
-      height: screen_height-(2*button_height)
+      height: screen_height 
     }) 
     .attr("id", "sidebar");
 
@@ -325,7 +329,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     })
     .attr("id", "buttonArray")
     .append("g")
-    .attr("transform", "translate(20,10)");
+    .attr("transform", "translate(100,10)");
 
   var phaseButton = self.sidebar.append("g")
     .attr("id", "phaseButton")
@@ -341,6 +345,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
       self.button_phase = true;
       self.buttonbar.selectAll(".button").style("opacity", 1);
       // select and deactivate all the clicked exemplars (they already are--in rectGrid code)
+      phaseButton.select("rect").style("fill", "green");
       self.text.remove();
       self.text = self.callout.append("text")
         .attr("x", 30)
@@ -352,6 +357,7 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
         .text("Guess!");
     } else {
       self.button_phase = false;
+      phaseButton.select("rect").style("fill", "red");
       var phaseText = phaseButton.append("text")
         .attr("x", 35)
         .attr("y", 85)
@@ -422,11 +428,11 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
     } else {
       // select the rects that do not have the answer's d[b.feature] 
       if(self.condition==="automatic") {
-      d3.selectAll(".rect")
-       .filter(function(d) {
-         return d[b.feature] !== self.answer[b.feature];
-       })
-       .style("opacity", .2).attr("active", true);
+        d3.selectAll(".rect")
+         .filter(function(d) {
+           return d[b.feature] !== self.answer[b.feature];
+         })
+         .style("opacity", .2).attr("active", true);
      } else if(condition==="manual" || condition==="training") {
       // is it question asking (button pressing) time, or 
          if(self.button_phase) { 
@@ -443,7 +449,8 @@ function PlayRound(exemplars, buttons, condition, trial_num) {
             self.text = self.callout.append("text")
               .attr("x", 30)
               .attr("y", 136)
-              .text(b.id+": "+answer_text);
+              .text(answer_text);
+            //  .text(b.id+": "+answer_text);
          }
        
        }

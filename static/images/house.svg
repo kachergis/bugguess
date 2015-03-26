@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg2" sodipodi:version="0.32" inkscape:output_extension="org.inkscape.output.svg.inkscape" sodipodi:docname="dynaHouse.svg" inkscape:version="0.46" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 463.9 438.9"
+	 enable-background="new 0 0 463.9 438.9" xml:space="preserve">
+<defs>
+	
+	
+		<inkscape:perspective  inkscape:persp3d-origin="372.04724 : 350.78739 : 1" inkscape:vp_z="744.09448 : 526.18109 : 1" id="perspective10" inkscape:vp_x="0 : 526.18109 : 1" sodipodi:type="inkscape:persp3d" inkscape:vp_y="0 : 1000 : 0">
+		</inkscape:perspective>
+</defs>
+<path id="house" sodipodi:nodetypes="cccccccccccccccccc" d="M394.8,223.1L394.8,223.1z M394.8,223.1L232,78.9L69.1,223.2v206.1
+	c0,5.3,4.3,9.6,9.6,9.6h101.8v-90.4c0-5.3,4.3-9.6,9.6-9.6h83.7c5.3,0,9.6,4.3,9.6,9.6v90.4h101.8c5.3,0,9.6-4.3,9.6-9.6V223.1z
+	 M69.1,223.2L69.1,223.2z"/>
+<path id="roof" d="M231,0L0,204.6L24.3,232L232,48.2L439.6,232l24.3-27.5L232.9,0L232,1L231,0z"/>
+<path id="chimney" sodipodi:nodetypes="ccccc" d="M69.1,29.4h58.6l-0.5,34.7l-58.1,52.5V29.4z"/>
+<sodipodi:namedview  inkscape:window-width="1006" inkscape:pageshadow="2" inkscape:window-x="660" inkscape:current-layer="layer1" inkscape:document-units="px" inkscape:window-y="43" inkscape:window-height="954" inkscape:pageopacity="0.0" inkscape:cx="231.94643" inkscape:cy="219.43852" showgrid="false" gridtolerance="10000" borderopacity="1.0" guidetolerance="10" bordercolor="#666666" id="base" pagecolor="#ffffff" inkscape:zoom="1.4098083" objecttolerance="10">
+	</sodipodi:namedview>
+</svg>
