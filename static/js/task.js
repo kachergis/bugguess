@@ -92,8 +92,8 @@ var Exit = function() {
 
 
 
-
-var makeStimuli = function() {
+var makeStimuli = function(features) {
+  // NEED TO RANDOMIZE ASSIGNMENT OF REAL FEATURES ("legs") TO ABSTRACT FEATURES ("f1") -- and then save the configuration (and use mapping for buttons...)
   //features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"markings", "f6":"dots", "f7":"fur", "f8":"water", "f9":"leaf"};
   //bug_exemplars = {"id":"A" , "f1":1 , "f2":0 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 }, ...
 
@@ -109,6 +109,8 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.stage = stage; // "training" or "bugs"
   self.trial_num = trial_num;
 
+  self.last_button = "none"
+
   psiTurk.showPage('stage.html');
 
   // for the "manual" condition, this tracks phase: time to ask a question or eliminate some hypotheses
@@ -117,7 +119,8 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.answer_ind = Math.floor((Math.random() * exemplars.length));
   self.answer = exemplars[self.answer_ind];
 
-  outpfx =['play-round', trial_num, self.condition, self.stage, self.answer_ind, self.answer];
+  // do we want the whole correct answer in the prefix?
+  outpfx =['play-round', trial_num, self.condition, self.stage, self.answer_ind, self.answer]; 
   output(['init']);
 
   if(stage==="training") {
@@ -146,7 +149,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.bugs = d3.select("#stimArray").append("svg")
     .attr({
       width: screen_width-sidebar_width,
-      height: screen_height -(2.2*button_height)
+      height: screen_height -(2.3*button_height)
     }) 
     .attr("id", "bugArray")
     .append("g")
@@ -235,10 +238,10 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
             var incorrect = d3.select("g").append("image")
               .attr("xlink:href", function(d) { return img_dir_prefix+"red_x.svg"; })
               .attr("id", "incorrect")
-              .attr("x", d.x + 10)
-              .attr("y", d.y + 40)
-              .attr("height", self.rectGrid.nodeSize()[0])
-              .attr("width", self.rectGrid.nodeSize()[1])
+              .attr("x", d.x + 15)
+              .attr("y", d.y + 45)
+              .attr("height", self.rectGrid.nodeSize()[0]-15)
+              .attr("width", self.rectGrid.nodeSize()[1]-15)
               .style("opacity", 1)
               .on("mousedown", function(d) { incorrect.remove(); });
             incorrect.transition().duration(1000).delay(1000).style("opacity", 1e-6);
@@ -324,11 +327,11 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.buttonbar = d3.select("#controls").append("svg")
     .attr({
       width: screen_width,
-      height: 2.2*button_height
+      height: 2.3*button_height
     })
     .attr("id", "buttonArray")
     .append("g")
-    .attr("transform", "translate(100,3)");
+    .attr("transform", "translate(100,10)");
 
   var phaseButton = self.sidebar.append("g")
     .attr("id", "phaseButton")
@@ -339,6 +342,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     });
 
   self.phaseChange = function() {
+    output(["button_press","phase",self.button_phase]);
     // if they click button in eliminate phase, they're done eliminating: time for buttons/guessing
     phaseButton.select("text").remove();
     if(self.button_phase===false) {
@@ -390,9 +394,6 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       .attr("class", "buttong")
       .attr("transform", function(d) { return "translate(" + d.x+ "," + d.y + ")"; })
       .on("mousedown", function(d){
-        // press once and remain active 
-        //d3.select(".buttong").select("#"+d.id).style("opacity", .2); //
-        button.active = true;
         self.buttonPress(d);
       })
       .append("rect")
@@ -419,44 +420,39 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.addButtons(self.buttons);
 
   self.buttonPress = function(b) {
-    console.log(b);
-    if(b.id=="ready") {
-      d3.selectAll(".button")
-        .transition()
-        .style("opacity", 1e-6);
-      // now treat the click on an exemplar as a guess... (modify the .on("click") function??)
-    } else {
-      // select the rects that do not have the answer's d[b.feature] 
-      if(self.condition==="automatic") {
-        // ToDo: make it so they have to click eliminate button (pbutton)...(not fully automatic)
-        self.phaseChange()
-        d3.selectAll(".rect")
-         .filter(function(d) {
-           return d[b.feature] !== self.answer[b.feature];
-         })
-         .style("opacity", .2).attr("active", true);
-      } else if(condition==="manual") {
-      // is it question asking (button pressing) time, or 
-         if(self.button_phase) { 
-            self.phaseChange()
-            d3.selectAll(".buttong")
-              .filter(function(d) {
-                return d[b.feature] !== self.answer[b.feature];
-              })
-              .style("opacity", .2).attr("active", true);
+    output(["button_press",b.id,b.feature]);
+    self.last_button = b.id;
+    
+    // select the rects that do not have the answer's d[b.feature] 
+    if(self.condition==="automatic") {
+      // ToDo: make it so they have to click eliminate button (pbutton)...(not fully automatic)
+      self.phaseChange()
+      d3.selectAll(".rect")
+       .filter(function(d) {
+         return d[b.feature] !== self.answer[b.feature];
+       })
+       .style("opacity", .2).attr("active", true);
+    } else if(condition==="manual") {
+    // is it question asking (button pressing) time, or 
+       if(self.button_phase) { 
+          self.phaseChange()
+          d3.selectAll(".buttong")
+            .filter(function(d) {
+              return d[b.feature] !== self.answer[b.feature];
+            })
+            .style("opacity", .2).attr("active", true);
 
-            answer_text = self.answer[b.feature]===1 ? "Yes!" : "No!";
+          answer_text = self.answer[b.feature]===1 ? "Yes!" : "No!";
 
-            self.text.remove();
-            self.text = self.callout.append("text")
-              .attr("x", 30)
-              .attr("y", 136)
-              .text(answer_text);
-            //  .text(b.id+": "+answer_text);
-         }
-       
+          self.text.remove();
+          self.text = self.callout.append("text")
+            .attr("x", 30)
+            .attr("y", 136)
+            .text(answer_text);
+          //  .text(b.id+": "+answer_text);
        }
-    }
+     
+     }
   };
 
   //var div = d3.select("#container").append("div")   
