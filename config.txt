@@ -9,14 +9,14 @@ contact_email_on_error = youremail@gmail.com
 ad_group = Default psiTurk Stroop Example
 psiturk_keywords = stroop
 organization_name = New Great University
-browser_exclude_rule = MSIE, mobile, tablet
+browser_exclude_rule = MSIE
 
 [Database Parameters]
 database_url = sqlite:///participants.db
 table_name = turkdemo
 
 [Server Parameters]
-host = localhost
+host = 0.0.0.0
 port = 22362
 cutoff_time = 30
 logfile = server.log
