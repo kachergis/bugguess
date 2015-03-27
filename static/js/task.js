@@ -49,7 +49,7 @@ $(document).bind(
 var Experiment = function(condition) {
   var self = this;
   self.trial_num = -1;
-  self.condition = "automatic"; //condition;
+  self.condition = "automatic"; //condition; "manual"
 
 
   output(['participantid', ids[0]]);
@@ -109,7 +109,8 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.stage = stage; // "training" or "bugs"
   self.trial_num = trial_num;
 
-  self.last_button = "none"
+  self.last_button = "none";
+  self.last_button_id = "none";
 
   psiTurk.showPage('stage.html');
 
@@ -346,8 +347,16 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     // if they click button in eliminate phase, they're done eliminating: time for buttons/guessing
     phaseButton.select("text").remove();
     if(self.button_phase===false) {
+      if(self.condition=="automatic") {
+        d3.selectAll(".rect")
+         .filter(function(d) {
+           return d[self.last_button] !== self.answer[self.last_button];
+         })
+         .style("opacity", .2).attr("active", true);
+      }
+
       self.button_phase = true;
-      self.buttonbar.selectAll(".button").style("opacity", 1);
+      self.buttonbar.selectAll(".buttong").style("opacity", 1);
       // select and deactivate all the clicked exemplars (they already are--in rectGrid code)
       phaseButton.select("rect").style("fill", "green");
       self.text.remove();
@@ -421,21 +430,20 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
 
   self.buttonPress = function(b) {
     output(["button_press",b.id,b.feature]);
-    self.last_button = b.id;
-    
+    self.last_button_id = b.id;
+    self.last_button = b.feature;
+
     // select the rects that do not have the answer's d[b.feature] 
-    if(self.condition==="automatic") {
-      // ToDo: make it so they have to click eliminate button (pbutton)...(not fully automatic)
-      self.phaseChange()
-      d3.selectAll(".rect")
-       .filter(function(d) {
-         return d[b.feature] !== self.answer[b.feature];
-       })
-       .style("opacity", .2).attr("active", true);
-    } else if(condition==="manual") {
+    //if(self.condition==="automatic") {
+      
+      // d3.selectAll(".rect")
+      //  .filter(function(d) {
+      //    return d[b.feature] !== self.answer[b.feature];
+      //  })
+      //  .style("opacity", .2).attr("active", true);
+    //} else if(condition==="manual") {
     // is it question asking (button pressing) time, or 
        if(self.button_phase) { 
-          self.phaseChange()
           d3.selectAll(".buttong")
             .filter(function(d) {
               return d[b.feature] !== self.answer[b.feature];
@@ -452,7 +460,8 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
           //  .text(b.id+": "+answer_text);
        }
      
-     }
+     self.phaseChange()
+     //}
   };
 
   //var div = d3.select("#container").append("div")   
