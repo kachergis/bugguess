@@ -6,7 +6,7 @@
 var img_dir_prefix = "static/images/";
 var button_dir = img_dir_prefix + "features/";
 // need a function to assign/counterbalance image_set
-var image_set = "set1";
+
 // var image_set = function getSet() {}
 
 
@@ -23,7 +23,7 @@ var LOGGING = mode != "debug";
 var LOGGING = true;
 
 var N_TRIALS = 2;
-var ids = uniqueId.split(':')
+var ids = uniqueId.split(':') // to get our condition num?
 var SEED = (ids[1] == "None");
 
 psiTurk.preloadPages(['instruct.html',
@@ -51,17 +51,32 @@ var Experiment = function(condition) {
   self.trial_num = -1;
   self.condition = "automatic"; //condition; "manual"
 
+  // assign once and keep for all repetitions; OR for testing: use bug_features
+  //self.features = assignFeatures(); // bug_features;
+  //self.buttons = assignButtons(); // or use bug_buttons (predefined in stimuli.js) for testing
 
   output(['participantid', ids[0]]);
-  output(['partnerid', ids[1]]);
+  //output(['partnerid', ids[1]]);
   output(['seed', SEED]);
+  console.log(beetle_features);
+  console.log(abstract_features);
+  shuffle(beetle_features);
+  shuffle(abstract_features);
+  self.bug_buttons = []
+  self.features = {}
+  for (i = 0; i < beetle_features.length; i++) { 
+    self.bug_buttons.push({"id":beetle_features[i], "feature":abstract_features[i]});
+    self.features[abstract_features[i]] = beetle_features[i];
+  }
+  console.log(beetle_features);
+  console.log(abstract_features);
 
   self.play = function() {
     self.trial_num += 1;
     if (self.trial_num == N_TRIALS) {
       self.chooser();
     } else {
-      self.view = new PlayRound(bug_exemplars, bug_buttons, bug_features, self.condition, "bugs", self.trial_num);
+      self.view = new PlayRound(bug_exemplars, self.bug_buttons, self.features, self.condition, "bugs", self.trial_num);
     }
   };
 
@@ -91,11 +106,24 @@ var Exit = function() {
 };
 
 
+var assignButtons = function() {
+  shuffle(beetle_features);
+  shuffle(abstract_features);
+  self.bug_buttons = []
+  for (i = 0; i < beetle_features.length; i++) { 
+    bug_buttons.append({id:beetle_features[i], feature:abstract_features[i]});
+  }
+}
 
-var makeStimuli = function(features) {
+
+var assignFeatures = function(features, exemplars) {
   // NEED TO RANDOMIZE ASSIGNMENT OF REAL FEATURES ("legs") TO ABSTRACT FEATURES ("f1") -- and then save the configuration (and use mapping for buttons...)
   //features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"markings", "f6":"dots", "f7":"fur", "f8":"water", "f9":"leaf"};
   //bug_exemplars = {"id":"A" , "f1":1 , "f2":0 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 }, ...
+
+  // really just make a dictionary: features["f1":"legs" or whatever]
+  // really just need to randomly create the button mapping (we never use bug_features)
+  
 
   // have option to use all the same "basebody" or all unique
 };
@@ -207,7 +235,8 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       .attr("height", self.rectGrid.nodeSize()[1])
       .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
       .on("mousedown", function(d){
-        console.log(d);
+        output(['exemplar_click',d.id,this.active]);
+        //console.log(d);
         if(typeof(this.active)=="undefined" || this.active) {
           newOpacity = .2;
           this.active = false;
@@ -272,7 +301,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     callout_txt = "Woof?";
     side_img = "dog";
   } else {
-    self.addImages(self.exemplars, img_dir_prefix+image_set+"/");
+    self.addImages(self.exemplars, img_dir_prefix+"/");
     callout_txt = "Who am I?";
     side_img = "rug";
   }

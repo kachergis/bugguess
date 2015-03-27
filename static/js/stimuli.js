@@ -4,19 +4,23 @@
 var bug_features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"markings", "f6":"dots", "f7":"fur", "f8":"water", "f9":"leaf"};
 // "basebody"
 
-var bug_buttons = [
-  {id:"legs", "feature":"f1"},
-  {id:"antennae", "feature":"f2"},
-  {id:"bodycolor", "feature":"f3"},
-  {id:"eyes", "feature":"f4"},
-  {id:"markings", "feature":"f5"},
-  {id:"dots", "feature":"f6"},
-  {id:"fur", "feature":"f7"},
-  {id:"water", "feature":"f8"},
-  {id:"leaf", "feature":"f9"},
-  {id:"basebody4", "feature":"#basebody4"},
-  {id:"basebody10", "feature":"#basebody10"}
-  ];
+var abstract_features = ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9"];
+
+var beetle_features = ["legs", "antennae", "bodycolor", "eyes", "markings", "dots", "fur", "water", "leaf"];
+
+// var bug_buttons = [
+//   {id:"legs", "feature":"f1"},
+//   {id:"antennae", "feature":"f2"},
+//   {id:"bodycolor", "feature":"f3"},
+//   {id:"eyes", "feature":"f4"},
+//   {id:"markings", "feature":"f5"},
+//   {id:"dots", "feature":"f6"},
+//   {id:"fur", "feature":"f7"},
+//   {id:"water", "feature":"f8"},
+//   {id:"leaf", "feature":"f9"},
+//   {id:"basebody4", "feature":"#basebody4"},
+//   {id:"basebody10", "feature":"#basebody10"}
+//   ];
 
 var bug_exemplars = [
   {"id":"A" , "f1":1 , "f2":0 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 },
