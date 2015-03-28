@@ -190,7 +190,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     .bands()
     .rows(nrows)
     .nodeSize([button_width, button_height]) 
-    .padding([40, 25]);
+    .padding([40, 15]);
 
   self.bugs = d3.select("#stimArray").append("svg")
     .attr({
@@ -251,7 +251,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       .attr("width", self.rectGrid.nodeSize()[0])
       .attr("height", self.rectGrid.nodeSize()[1])
       .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
-      .on("mousedown", function(d){
+      .on("click", function(d){
         output(['exemplar_click',d.id,this.active]);
         //console.log(d);
         if(typeof(this.active)=="undefined" || this.active) {
@@ -277,7 +277,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
               .attr("height", 400)
               .attr("width", 400)
               .style("opacity", 1)
-              .on("mousedown", function(d) { correct.remove() });
+              .on("click", function(d) { correct.remove() });
             correct.transition().duration(1000).delay(1000).style("opacity", 1e-6);
             setTimeout(function() { exp.chooser(); }, 5000);
           } else {
@@ -291,7 +291,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
               .attr("height", self.rectGrid.nodeSize()[0]-15)
               .attr("width", self.rectGrid.nodeSize()[1]-15)
               .style("opacity", 1)
-              .on("mousedown", function(d) { incorrect.remove(); });
+              .on("click", function(d) { incorrect.remove(); });
             incorrect.transition().duration(1000).delay(1000).style("opacity", 1e-6);
             }
           } else {
@@ -341,7 +341,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       height: 437
     })
     .style("opacity", 1)
-    .on("mousedown", function(d) {
+    .on("click", function(d) {
       d3.select(this).transition()
         .attr("width",261+50)
         .duration(1000) // this is 1s
@@ -379,12 +379,12 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     })
     .attr("id", "buttonArray")
     .append("g")
-    .attr("transform", "translate(100,10)");
+    .attr("transform", "translate(100,5)");
 
   var phaseButton = self.sidebar.append("g")
     .attr("id", "phaseButton")
     .attr("transform", "translate(0,760)")
-    .on("mousedown", function(){
+    .on("click", function(){
       self.phaseChange()
       // if(condition==="automatic") then they must click click this to eliminate the irrelevant stimuli self.last_button
     });
@@ -455,7 +455,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     button.enter().append("g")
       .attr("class", "buttong")
       .attr("transform", function(d) { return "translate(" + d.x+ "," + d.y + ")"; })
-      .on("mousedown", function(d){
+      .on("click", function(d){
         self.buttonPress(d);
       })
       .append("rect")

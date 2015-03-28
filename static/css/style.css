@@ -48,8 +48,8 @@ body {
  .footer {
   float: bottom;
   background: white;
-  margin: 0px;
-  height: 15vh;
+  margin: 15px;
+  height: 20vh;
   width: 100hw;
   font-size: 50px ;
  }
