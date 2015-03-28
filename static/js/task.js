@@ -22,9 +22,14 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 var LOGGING = mode != "debug";
 var LOGGING = true;
 
-var N_TRIALS = 2;
+var N_TRIALS = 10;
 var ids = uniqueId.split(':') // to get our condition num?
 var SEED = (ids[1] == "None");
+
+var exp,
+  outpfx = [];
+
+var mycond = condition; // from psiturk (1 or 2?)
 
 psiTurk.preloadPages(['instruct.html',
             'chooser.html',
@@ -46,10 +51,14 @@ $(document).bind(
 //var features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"antennae", "f6":"markings", "f7":"dots", "f8":"fur", "f9":"water", "f10":"leaf"};
 // "basebody"
 
-var Experiment = function(condition) {
+var Experiment = function() {
   var self = this;
   self.trial_num = -1;
-  self.condition = "automatic"; //condition; "manual"
+  if(mycond==1) {
+    self.condition = "automatic"; //condition; "manual" / "automatic"
+  } else {
+    self.condition = "manual";
+  }
 
   // assign once and keep for all repetitions; OR for testing: use bug_features
   //self.features = assignFeatures(); // bug_features;
@@ -71,6 +80,9 @@ var Experiment = function(condition) {
   console.log(beetle_features);
   console.log(abstract_features);
 
+  // also shuffle exemplars just once:
+  shuffle(bug_exemplars);
+
   self.play = function() {
     self.trial_num += 1;
     if (self.trial_num == N_TRIALS) {
@@ -89,6 +101,10 @@ var Experiment = function(condition) {
 
     $('#choose-main').on('click', function() {
       self.play();
+    })
+
+    $('#choose-done').on('click', function() {
+      self.finish();
     })
   };
 
@@ -149,17 +165,18 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.answer = exemplars[self.answer_ind];
 
   // do we want the whole correct answer in the prefix?
-  outpfx =['play-round', trial_num, self.condition, self.stage, self.answer_ind, self.answer]; 
+  output([self.answer]);
+  outpfx =['play-round', trial_num, self.condition, self.stage, self.answer_ind]; 
   output(['init']);
 
   if(stage==="training") {
-    var sidebar_width = 1000,
+    var sidebar_width = 700,
         bug_width = 340,
         bug_height = 340;
   } else {
     var sidebar_width = 400,
-        bug_width = 265,
-        bug_height = 265; // 330, 280
+        bug_width = 255,
+        bug_height = 245; // 330, 280
   }
   var nrows = buttons.length>4 ? 2 : 1
 
@@ -178,11 +195,11 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.bugs = d3.select("#stimArray").append("svg")
     .attr({
       width: screen_width-sidebar_width,
-      height: screen_height -(2.3*button_height)
+      height: screen_height -(2.5*button_height)
     }) 
     .attr("id", "bugArray")
     .append("g")
-    .attr("transform", "translate(20,10)");
+    .attr("transform", "translate(20,0)");
 
   // // Load bug and return callback
   // self.loadBug = function(callback, canvas) {
@@ -262,6 +279,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
               .style("opacity", 1)
               .on("mousedown", function(d) { correct.remove() });
             correct.transition().duration(1000).delay(1000).style("opacity", 1e-6);
+            setTimeout(function() { exp.chooser(); }, 5000);
           } else {
             //incorrect.style("opacity", 1);
             //incorrect.transition().delay(2000).style("opacity", 1e-6);
@@ -370,6 +388,12 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       self.phaseChange()
       // if(condition==="automatic") then they must click click this to eliminate the irrelevant stimuli self.last_button
     });
+
+  self.sidebar.append("text")
+    .attr("x", 20)
+    .attr("y", 930)
+    .attr("font-size", 20)
+    .text(self.condition);
 
   self.phaseChange = function() {
     output(["button_press","phase",self.button_phase]);
@@ -506,6 +530,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
 
 // Generic function for saving data
 function output(arr) {
+    arr = outpfx.concat(arr);
     psiTurk.recordTrialData(arr);
     if (LOGGING) console.log(arr.join(" "));
 };
