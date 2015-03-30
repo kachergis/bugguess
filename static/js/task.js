@@ -15,7 +15,7 @@ var screen_width = 2048,
     screen_height = 1536;
 
 var button_width = 160,
-    button_height = 115; // was 150...
+    button_height = 160; // was 150...
 
 // Initalize psiturk object
 var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
@@ -46,6 +46,13 @@ $(document).bind(
             e.preventDefault();
           }
 );
+
+// fastclick
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
 
 
 //var features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"antennae", "f6":"markings", "f7":"dots", "f8":"fur", "f9":"water", "f10":"leaf"};
@@ -175,10 +182,10 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
         bug_height = 360;
   } else {
     var sidebar_width = 400,
-        bug_width = 255,
-        bug_height = 255; // 330, 280
+        bug_width = 265,
+        bug_height = 265; // 330, 280
   }
-  var nrows = buttons.length>4 ? 2 : 1
+  var nrows = 1; //buttons.length>4 ? 2 : 1
 
   self.rectGrid = d3.layout.grid()
     .bands()
@@ -190,12 +197,12 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     .bands()
     .rows(nrows)
     .nodeSize([button_width, button_height]) 
-    .padding([40, 15]);
+    .padding([30, 20]);
 
   self.bugs = d3.select("#stimArray").append("svg")
     .attr({
       width: screen_width-sidebar_width,
-      height: (screen_height -3.8*button_height)
+      height: (screen_height -1.3*button_height)
     }) 
     .attr("id", "bugArray")
     .append("g")
@@ -327,7 +334,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.sidebar = d3.select("#sideBar").append("svg")
     .attr({
       width: sidebar_width,
-      height: (screen_height-4.5*button_height)
+      height: (screen_height-1.3*button_height)
     }) 
     .attr("id", "sidebar");
 
@@ -375,7 +382,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.buttonbar = d3.select("#controls").append("svg")
     .attr({
       width: screen_width,
-      height: 2.3*button_height
+      height: 1.2*button_height
     })
     .attr("id", "buttonArray")
     .append("g")
