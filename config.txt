@@ -1,6 +1,6 @@
 [HIT Configuration]
-title = Stroop task
-description = Judge the color of a series of words.
+title = BugGuess
+description = Figure out which bug is hiding under a rug.
 amt_keywords = Perception, Psychology
 lifetime = 24
 us_only = true
@@ -16,7 +16,7 @@ database_url = sqlite:///participants.db
 table_name = bugguess
 
 [Server Parameters]
-host = 0.0.0.0
+host = localhost
 port = 22362
 cutoff_time = 30
 logfile = server.log
@@ -28,7 +28,7 @@ threads = auto
 
 [Task Parameters]
 experiment_code_version = 1.0
-num_conds = 2
+num_conds = 1
 num_counters = 1
 
 [Shell Parameters]

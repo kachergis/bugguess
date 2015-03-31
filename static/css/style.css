@@ -29,41 +29,35 @@ body {
   pointer-events: none;
  }
 
- .container {
+ .stimuli {
   float: left;
+  width: 55%;
   background: white;
   margin: 0px;
-  height: 85vh;
-  font-size: 50px ;
+  height: 100vh;
+  font-size: 40px ;
  }
 
+ .controls {
+  display: inline-block; 
+  width: 25%;
+  height: 100vh;
+ }
+ 
  .sidebar {
   float: right;
   background: white;
   margin: 0px;
-  height: 85vh;
-  width: 400px;
-  font-size: 50px ;
+  height: 100vh;
+  width: 20%;
+  font-size: 40px ;
  }
-
- .footer {
-  float: bottom;
-  background: white;
-  margin: 15px;
-  height: 20vh;
-  width: 100hw;
-  font-size: 50px ;
- }
-
-#chooser-buttons {
-  margin: 100px;
-}
-
 
 #chooser-buttons .btn {
-  width: 150px;
-  height: 150px;
-  font-size: 1.6em;
+  margin: 80px;
+  width: 160px;
+  height: 160px;
+  font-size: 2.0em;
 }
 
 #loading {

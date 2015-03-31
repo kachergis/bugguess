@@ -11,11 +11,13 @@ var button_dir = img_dir_prefix + "features/";
 
 
 // iPad Retina
-var screen_width = 2048,
-    screen_height = 1536;
+//var screen_width = 2048,
+//    screen_height = 1536;
+var screen_width = 1024,
+    screen_height = 768;
 
-var button_width = 160,
-    button_height = 160; // was 150...
+var button_width = .11*screen_width,
+    button_height = .11*screen_width; // was 150...
 
 // Initalize psiturk object
 var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
@@ -47,12 +49,9 @@ $(document).bind(
           }
 );
 
-// fastclick
-if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
-    }, false);
-}
+$(function() {
+    FastClick.attach(document.body);
+});
 
 
 //var features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"antennae", "f6":"markings", "f7":"dots", "f8":"fur", "f9":"water", "f10":"leaf"};
@@ -101,6 +100,12 @@ var Experiment = function() {
 
   self.chooser = function() {
     psiTurk.showPage('chooser.html');
+    $('#choose-pretrain').on('click', function() {
+      //self.setup();
+      console.log("dot game");
+      //self.view = new dotGame
+    })
+
     $('#choose-train').on('click', function() {
       //self.setup();
       self.view = new PlayRound(house_exemplars, house_buttons, house_features, self.condition, "training", -1); 
@@ -177,15 +182,17 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   output(['init']);
 
   if(stage==="training") {
-    var sidebar_width = 600,
-        bug_width = 360,
-        bug_height = 360;
+    var sidebar_width = screen_width*.2,
+        bug_width = screen_width*.23,
+        bug_height = screen_height*.23;
   } else {
-    var sidebar_width = 400,
-        bug_width = 265,
-        bug_height = 265; // 330, 280
+    var sidebar_width = screen_width*.2,
+        bug_width = screen_width*.12+2,
+        bug_height = screen_height*.23; // 330, 280
   }
-  var nrows = 1; //buttons.length>4 ? 2 : 1
+
+  //var nrows = 1; //buttons.length>4 ? 2 : 1
+  var ncols = buttons.length>4 ? 2 : 1
 
   self.rectGrid = d3.layout.grid()
     .bands()
@@ -195,18 +202,18 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
 
   self.buttonGrid = d3.layout.grid()
     .bands()
-    .rows(nrows)
+    .cols(ncols)
     .nodeSize([button_width, button_height]) 
-    .padding([30, 20]);
+    .padding([10, 20]);
 
   self.bugs = d3.select("#stimArray").append("svg")
     .attr({
-      width: screen_width-sidebar_width,
-      height: (screen_height -1.3*button_height)
+      width: screen_width*.55,
+      height: screen_height 
     }) 
     .attr("id", "bugArray")
     .append("g")
-    .attr("transform", "translate(20,0)");
+    .attr("transform", "translate(-5,0)");
 
   // // Load bug and return callback
   // self.loadBug = function(callback, canvas) {
@@ -334,18 +341,18 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.sidebar = d3.select("#sideBar").append("svg")
     .attr({
       width: sidebar_width,
-      height: (screen_height-1.3*button_height)
+      height: screen_height
     }) 
     .attr("id", "sidebar");
 
   self.rug = self.sidebar.append("g")
     .attr("id", "rug")
-    .attr("transform", "translate(20,50)")
+    .attr("transform", "translate(10,10)")
     .append("image")
     .attr("xlink:href", function(d) { return "static/images/"+side_img+".png"; })
     .attr({
-      width: 261,
-      height: 437
+      width: .18*screen_width,
+      height: .3*screen_height
     })
     .style("opacity", 1)
     .on("click", function(d) {
@@ -363,34 +370,35 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
 
   self.callout = self.sidebar.append("g")
     .attr("id", "callout")
-    .attr("transform", "translate(0,490)");
+    .attr("transform", function(d) { return "translate(0,"+ .31*screen_height +")"; })
 
   self.callout.append("image")
     .attr("xlink:href", function(d) { return "static/images/callout.svg"; })
     .attr({
-      width: 300,
-      height: 250
+      width: .19*screen_width,
+      height: 225
     })
     .style("opacity", 1);
     //.attr("transform", "translate(0,0)");
 
   self.text = self.callout.append("text")
-    .attr("x", 32)
+    .attr("x", 20)
     .attr("y", 140)
+    .attr("font-size", 35)
     .text(callout_txt);
 
   self.buttonbar = d3.select("#controls").append("svg")
     .attr({
-      width: screen_width,
-      height: 1.2*button_height
+      width: screen_width*.25,
+      height: screen_height
     })
     .attr("id", "buttonArray")
     .append("g")
-    .attr("transform", "translate(100,5)");
+    .attr("transform", "translate(5,10)");
 
   var phaseButton = self.sidebar.append("g")
     .attr("id", "phaseButton")
-    .attr("transform", "translate(0,760)")
+    .attr("transform", function(d) { return "translate(0,"+ .64*screen_height +")"; })
     .on("click", function(){
       self.phaseChange()
       // if(condition==="automatic") then they must click click this to eliminate the irrelevant stimuli self.last_button
@@ -398,7 +406,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
 
   self.sidebar.append("text")
     .attr("x", 20)
-    .attr("y", 930)
+    .attr("y", 740)
     .attr("font-size", 20)
     .text(self.condition);
 
@@ -421,38 +429,39 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       phaseButton.select("rect").style("fill", "green");
       self.text.remove();
       self.text = self.callout.append("text")
-        .attr("x", 30)
+        .attr("x", 20)
         .attr("y", 136)
+        .attr("font-size", 35)
         .text(callout_txt);
       var phaseText = phaseButton.append("text")
-        .attr("x", 35)
-        .attr("y", 85)
+        .attr("x", 20)
+        .attr("y", 68)
         .text("Guess!");
     } else {
       self.button_phase = false;
       phaseButton.select("rect").style("fill", "red");
       var phaseText = phaseButton.append("text")
-        .attr("x", 35)
-        .attr("y", 85)
-        .text("Eliminate!");
+        .attr("x", 20)
+        .attr("y", 68)
+        .text("Eliminate");
     }
   }
 
   phaseButton.append("rect")
-    .attr("x", 20)
-    .attr("y", 20)
+    .attr("x", 10)
+    .attr("y", 10)
     .attr("rx",20) 
     .attr("ry",20)
-    .attr("width", 250)
-    .attr("height", 100)
+    .attr("width", .18*screen_width)
+    .attr("height", 90)
     .attr("class", "pbutton")
     .attr("fill", "green");
     //.attr("transform", "translate(50,0)");
   
   var phaseText = phaseButton.append("text")
     .attr("id", "phaseText")
-    .attr("x", 35)
-    .attr("y", 85)
+    .attr("x", 25)
+    .attr("y", 68)
     .text("Guess!");
 
   self.addButtons = function(buttons) { 
@@ -514,7 +523,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
 
           self.text.remove();
           self.text = self.callout.append("text")
-            .attr("x", 30)
+            .attr("x", 25)
             .attr("y", 136)
             .text(answer_text);
           //  .text(b.id+": "+answer_text);
