@@ -29,6 +29,10 @@ body {
   pointer-events: none;
  }
 
+.g {
+  pointer-events: all;
+}
+
  .stimuli {
   float: left;
   width: 55%;

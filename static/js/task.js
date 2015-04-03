@@ -13,8 +13,8 @@ var button_dir = img_dir_prefix + "features/";
 // iPad Retina
 //var screen_width = 2048,
 //    screen_height = 1536;
-var screen_width = 1024*.95,
-    screen_height = 768*.95;
+var screen_width = 1024*.97,
+    screen_height = 768*.93;
 
 var button_width = .11*screen_width,
     button_height = .11*screen_width; // was 150...
@@ -43,7 +43,7 @@ function getURLParameter(name) {
 
 
 var subject_num = getURLParameter('workerId');
-var mycond = getURLParameter('condition');
+var mycond = getURLParameter('condit');
 var myage =  getURLParameter('age');
 
 
@@ -64,10 +64,30 @@ $(document).bind(
 );
 
 
+// simple solution to 'click' delay in iOS:
+var p = navigator.platform;
+
+// if(p==='iPad' || p==='iPhone' || p==='iPod') {
+//   var click_type = 'touchstart'; 
+// } else {
+//   var click_type = 'click';
+// }
+var click_type = 'touchstart'; 
+
 // get rid of 300ms touchscreen click delay (maybe also try binding touchstart to click..)
 $(function() {
-    FastClick.attach(document.body);
+   FastClick.attach(document.body);
 });
+
+// http://stackoverflow.com/questions/13655919/how-to-bind-both-mousedown-and-touchstart-but-not-respond-to-both-android-jqu
+//touch click helper
+// (function ($) {
+//     $.fn.tclick = function (onclick) {
+//         this.bind("touchstart", function (e) { onclick.call(this, e); e.stopPropagation(); e.preventDefault(); });
+//         this.bind("click", function (e) { onclick.call(this, e); });   //substitute mousedown event for exact same result as touchstart         
+//         return this;
+//     };
+// })(jQuery);
 
 
 // For every element on your page that has an OnClick, add a class - say TouchTarget. Then use this in your startup function.
@@ -78,9 +98,6 @@ $(function() {
 //   });
 // }
 
-function touchStart(pEvent, pElement) {
-//Do something with the touch.
-}
 
 //var features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"antennae", "f6":"markings", "f7":"dots", "f8":"fur", "f9":"water", "f10":"leaf"};
 // "basebody"
@@ -102,8 +119,6 @@ var Experiment = function() {
   output(['participantid', ids[0]]);
   output(['seed', SEED]);
   output(['subject='+subject_num,'age='+myage,'condition='+mycond]);
-  console.log(beetle_features);
-  console.log(abstract_features);
   shuffle(beetle_features);
   shuffle(abstract_features);
   self.bug_buttons = []
@@ -112,9 +127,12 @@ var Experiment = function() {
     self.bug_buttons.push({"id":beetle_features[i], "feature":abstract_features[i]});
     self.features[abstract_features[i]] = beetle_features[i];
   }
+
+  self.bug_buttons.push({"id":"basebody", "feature":"f10"});
+  self.features["f10"] = "basebody";
+
   console.log(beetle_features);
   console.log(abstract_features);
-
   // also shuffle exemplars just once:
   shuffle(bug_exemplars);
 
@@ -129,22 +147,22 @@ var Experiment = function() {
 
   self.chooser = function() {
     psiTurk.showPage('chooser.html');
-    $('#choose-pretrain').on('click', function() {
-      //self.setup();
-      console.log("dot game");
-      //self.view = new dotGame
-    })
+    // $('#choose-pretrain').on(click_type, function() {
+    //   //self.setup();
+    //   console.log("dot game");
+    //   //self.view = new dotGame
+    // })
 
-    $('#choose-train').on('click', function() {
+    $('#choose-train').on(click_type, function() {
       //self.setup();
       self.view = new PlayRound(house_exemplars, house_buttons, house_features, self.condition, "training", -1); 
     })
 
-    $('#choose-main').on('click', function() {
+    $('#choose-main').on(click_type, function() {
       self.play();
     })
 
-    $('#choose-done').on('click', function() {
+    $('#choose-done').on(click_type, function() {
       self.finish();
     })
   };
@@ -173,7 +191,6 @@ var assignButtons = function() {
 }
 
 
-var assignFeatures = function(features, exemplars) {
   // NEED TO RANDOMIZE ASSIGNMENT OF REAL FEATURES ("legs") TO ABSTRACT FEATURES ("f1") -- and then save the configuration (and use mapping for buttons...)
   //features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"markings", "f6":"dots", "f7":"fur", "f8":"water", "f9":"leaf"};
   //bug_exemplars = {"id":"A" , "f1":1 , "f2":0 , "f3":0 , "f4":1 , "f5":0 , "f6":0 , "f7":0 , "f8":0 , "f9":0, "f10":0 }, ...
@@ -183,7 +200,126 @@ var assignFeatures = function(features, exemplars) {
   
 
   // have option to use all the same "basebody" or all unique
-};
+
+// show slide function
+function showSlide(id) {
+  $(".slide").hide(); //jquery - all elements with class of slide - hide
+  $("#"+id).show(); //jquery - element with given id - show
+}
+
+var images = new Array();
+//for dot game
+var dots = ["dot_1", "dot_2", "dot_3", "dot_4", "dot_5", "x", "dot_smiley"];
+for (i = 0; i<dots.length; i++) {
+  images[i] = new Image();
+  images[i].src = img_dir_prefix+"dots/" + dots[i] + ".jpg";
+}
+
+createDot = function(dotx, doty, i, tag) {
+  var dots;
+  if (tag === "smiley") {
+    dots = ["smiley1", "smiley2", "smiley3", "smiley4", "smiley5"];
+  } else {
+    dots = [1, 2, 3, 4, 5];
+  }
+
+  var dot = document.createElement("img");
+  dot.setAttribute("class", "dot");
+  dot.id = "dot_" + dots[i];
+  if (tag === "smiley") {
+    dot.src = img_dir_prefix+"dots/dot_" + "smiley" + ".jpg";
+  } else {
+    dot.src = img_dir_prefix+"dots/dot_" + dots[i] + ".jpg";
+  }
+
+    var x = Math.floor(Math.random()*950);
+    var y = Math.floor(Math.random()*540);
+
+    var invalid = "true";
+
+    //make sure dots do not overlap
+    while (true) {
+      invalid = "true";
+      for (j = 0; j < dotx.length ; j++) {
+        if (Math.abs(dotx[j] - x) + Math.abs(doty[j] - y) < 250) {
+          var invalid = "false";
+          break; 
+        }
+    }
+    if (invalid === "true") {
+      dotx.push(x);
+          doty.push(y);
+          break;  
+      }
+      x = Math.floor(Math.random()*400);
+      y = Math.floor(Math.random()*400);
+  }
+
+    dot.setAttribute("style","position:absolute;left:"+x+"px;top:"+y+"px;");
+    training.appendChild(dot);
+}
+
+var dotGame = {
+  training: function(dotgame) {
+    var allDots = ["dot_1", "dot_2", "dot_3", "dot_4", "dot_5", 
+            "dot_smiley1", "dot_smiley2", "dot_smiley3", 
+            "dot_smiley4", "dot_smiley5"];
+    var xcounter = 0;
+    var dotCount = 5;
+
+    //preload sound
+    if (dotgame === 0) {
+      audioSprite.play();
+      audioSprite.pause();
+    }
+
+    var dotx = [];
+    var doty = [];
+
+    if (dotgame === 0) {
+      for (i = 0; i < dotCount; i++) {
+        createDot(dotx, doty, i, "");
+      }
+    } else {
+      for (i = 0; i < dotCount; i++) {
+        createDot(dotx, doty, i, "smiley");
+      }
+    }
+    showSlide("training");
+    $('.dot').bind('click touchstart', function(event) {
+        var dotID = $(event.currentTarget).attr('id');
+
+        //only count towards completion clicks on dots that have not yet been clicked
+        if (allDots.indexOf(dotID) === -1) {
+          return;
+        }
+        allDots.splice(allDots.indexOf(dotID), 1);
+        document.getElementById(dotID).src = img_dir_prefix+"dots/x.jpg";
+        xcounter++
+        if (xcounter === dotCount) {
+          setTimeout(function () {
+            $("#training").hide();
+            if (dotgame === 0) {    
+              //hide old x marks before game begins again
+              var dotID;
+              for (i = 1; i <= dotCount; i++) {
+                dotID = "dot_" + i;
+                training.removeChild(document.getElementById(dotID));
+              }
+            experiment.training();
+            dotgame++; 
+          } else {
+            //document.body.style.background = "black";
+            setTimeout(function() {
+              showSlide("prestudy");
+              //experiment.next();
+            }, normalpause*2);
+          }
+        }, normalpause*2);
+      }
+      });    
+  }
+}
 
 function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   var self = this;
@@ -213,7 +349,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   if(stage==="training") {
     var sidebar_width = screen_width*.2,
         bug_width = screen_width*.23,
-        bug_height = screen_height*.23;
+        bug_height = screen_height*.22;
   } else {
     var sidebar_width = screen_width*.2,
         bug_width = screen_width*.12+2,
@@ -237,12 +373,12 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
 
   self.bugs = d3.select("#stimArray").append("svg")
     .attr({
-      width: screen_width*.55,
-      height: screen_height 
+      width: 1024*.55,
+      height: 768 
     }) 
     .attr("id", "bugArray")
     .append("g")
-    .attr("transform", "translate(-5,0)");
+    .attr("transform", "translate(-2,0)");
 
   // // Load bug and return callback
   // self.loadBug = function(callback, canvas) {
@@ -296,7 +432,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       .attr("height", self.rectGrid.nodeSize()[1])
       .attr("transform", function(d) { return "translate(" + (d.x)+ "," + d.y + ")"; });
 
-    rect.on("click", function(d, i){
+    rect.on(click_type, function(d, i){
         thisOne =  d3.select(this); // d3.select("#"+d.id); 
         output(['exemplar_click',"button_phase="+self.button_phase,"id="+d.id,"highlighted="+thisOne.attr("highlighted"),"active="+thisOne.attr("active")]);
         if(self.button_phase) { // can make guesses (and eliminate one by one)
@@ -348,7 +484,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
               .attr("height", screen_height/3)
               .attr("width", screen_height/3)
               .style("opacity", 1)
-              .on("click", function(d) { correct.remove() });
+              .on(click_type, function(d) { correct.remove() });
             correct.transition().duration(1000).delay(1000).style("opacity", 1e-6);
             setTimeout(function() { exp.chooser(); }, 5000);
           } else {
@@ -362,7 +498,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
               .attr("height", self.rectGrid.nodeSize()[0]*.8)
               .attr("width", self.rectGrid.nodeSize()[1]*.8)
               .style("opacity", 1)
-              .on("click", function(d) { incorrect.remove(); });
+              .on(click_type, function(d) { incorrect.remove(); });
             incorrect.transition().duration(1000).delay(1000).style("opacity", 1e-6);
             }
           } else {
@@ -415,7 +551,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       height: .3*screen_height
     })
     .style("opacity", 1)
-    .on("click", function(d) {
+    .on(click_type, function(d) {
       d3.select(this).transition()
         .attr("width",261+50)
         .duration(1000) // this is 1s
@@ -442,7 +578,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     //.attr("transform", "translate(0,0)");
 
   self.text = self.callout.append("text")
-    .attr("x", 20)
+    .attr("x", 15)
     .attr("y", 140)
     .attr("font-size", 35)
     .text(callout_txt);
@@ -459,7 +595,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   var phaseButton = self.sidebar.append("g")
     .attr("id", "phaseButton")
     .attr("transform", function(d) { return "translate(0,"+ .64*screen_height +")"; })
-    .on("click", function(){
+    .on(click_type, function(){
       self.phaseChange()
       // if(condition==="automatic") then they must click click this to eliminate the irrelevant stimuli self.last_button
     });
@@ -501,7 +637,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       phaseButton.select("rect").style("fill", "green");
       self.text.remove();
       self.text = self.callout.append("text")
-        .attr("x", 20)
+        .attr("x", 15)
         .attr("y", 136)
         .attr("font-size", 35)
         .text(callout_txt);
@@ -543,7 +679,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     button.enter().append("g")
       .attr("class", "buttong")
       .attr("transform", function(d) { return "translate(" + d.x+ "," + d.y + ")"; })
-      .on("click", function(d){
+      .on(click_type, function(d){
         self.buttonPress(d);
       })
       .append("rect")
@@ -560,8 +696,10 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       .attr("xlink:href", function(d) { return button_dir+d.id+".png"; })
       .attr("class", "button")
       .attr("id", function(d) { return d.id; })
-      .attr("width", self.buttonGrid.nodeSize()[0])
-      .attr("height", self.buttonGrid.nodeSize()[1])
+      .attr("x", 7)
+      .attr("y", 7)
+      .attr("width", self.buttonGrid.nodeSize()[0]-14)
+      .attr("height", self.buttonGrid.nodeSize()[1]-14)
       .style("opacity", 1);
       
   };
