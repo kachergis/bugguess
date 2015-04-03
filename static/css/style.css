@@ -44,6 +44,11 @@ body {
   height: 100vh;
  }
  
+.container {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
  .sidebar {
   float: right;
   background: white;
@@ -54,7 +59,7 @@ body {
  }
 
 #chooser-buttons .btn {
-  margin: 80px;
+  margin: 50px;
   width: 160px;
   height: 160px;
   font-size: 2.0em;

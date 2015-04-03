@@ -13,8 +13,8 @@ var button_dir = img_dir_prefix + "features/";
 // iPad Retina
 //var screen_width = 2048,
 //    screen_height = 1536;
-var screen_width = 1024,
-    screen_height = 768;
+var screen_width = 1024*.95,
+    screen_height = 768*.95;
 
 var button_width = .11*screen_width,
     button_height = .11*screen_width; // was 150...
@@ -24,6 +24,10 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 var LOGGING = mode != "debug";
 var LOGGING = true;
 
+//console.log(location.search);
+
+
+
 var N_TRIALS = 10;
 var ids = uniqueId.split(':') // to get our condition num?
 var SEED = (ids[1] == "None");
@@ -31,7 +35,17 @@ var SEED = (ids[1] == "None");
 var exp,
   outpfx = [];
 
-var mycond = condition; // from psiturk (1 or 2?)
+//var mycond = condition; // from psiturk (0 or 1, i think)
+
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+}
+
+
+var subject_num = getURLParameter('workerId');
+var mycond = getURLParameter('condition');
+var myage =  getURLParameter('age');
+
 
 psiTurk.preloadPages(['instruct.html',
             'chooser.html',
@@ -49,10 +63,24 @@ $(document).bind(
           }
 );
 
+
+// get rid of 300ms touchscreen click delay (maybe also try binding touchstart to click..)
 $(function() {
     FastClick.attach(document.body);
 });
 
+
+// For every element on your page that has an OnClick, add a class - say TouchTarget. Then use this in your startup function.
+// if (Modernizr.touch) { // if touch is available
+//   $('.TouchTarget').bind('touchstart', function (e) {
+//       e.preventDefault();
+//       touchStart(e, this);
+//   });
+// }
+
+function touchStart(pEvent, pElement) {
+//Do something with the touch.
+}
 
 //var features = {"f1":"legs", "f2":"antennae", "f3":"bodycolor", "f4":"eyes", "f5":"antennae", "f6":"markings", "f7":"dots", "f8":"fur", "f9":"water", "f10":"leaf"};
 // "basebody"
@@ -60,19 +88,20 @@ $(function() {
 var Experiment = function() {
   var self = this;
   self.trial_num = -1;
-  if(mycond==1) {
-    self.condition = "automatic"; //condition; "manual" / "automatic"
-  } else {
-    self.condition = "manual";
-  }
-
+  // if(mycond==1) {
+  //   self.condition = "automatic"; //condition; "manual" / "automatic"
+  // } else {
+  //   self.condition = "manual";
+  // }
+  self.condition = mycond;
+  console.log(self.condition);
   // assign once and keep for all repetitions; OR for testing: use bug_features
   //self.features = assignFeatures(); // bug_features;
   //self.buttons = assignButtons(); // or use bug_buttons (predefined in stimuli.js) for testing
 
   output(['participantid', ids[0]]);
-  //output(['partnerid', ids[1]]);
   output(['seed', SEED]);
+  output(['subject='+subject_num,'age='+myage,'condition='+mycond]);
   console.log(beetle_features);
   console.log(abstract_features);
   shuffle(beetle_features);
@@ -177,7 +206,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.answer = exemplars[self.answer_ind];
 
   // do we want the whole correct answer in the prefix?
-  output([self.answer]);
+  output(['answer',self.answer]);
   outpfx =['play-round', trial_num, self.condition, self.stage, self.answer_ind]; 
   output(['init']);
 
@@ -261,35 +290,63 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       })
       .attr("class", "rect")
       .attr("active", true)
+      .attr("highlighted", false)
       .attr("id", function(d) { return d.id; })
       .attr("width", self.rectGrid.nodeSize()[0])
       .attr("height", self.rectGrid.nodeSize()[1])
-      .attr("transform", function(d) { return "translate(" + (d.x + 20)+ "," + d.y + ")"; })
-      .on("click", function(d){
-        output(['exemplar_click',d.id,this.active]);
-        //console.log(d);
-        if(typeof(this.active)=="undefined" || this.active) {
-          newOpacity = .2;
-          this.active = false;
+      .attr("transform", function(d) { return "translate(" + (d.x)+ "," + d.y + ")"; });
+
+    rect.on("click", function(d, i){
+        thisOne =  d3.select(this); // d3.select("#"+d.id); 
+        output(['exemplar_click',"button_phase="+self.button_phase,"id="+d.id,"highlighted="+thisOne.attr("highlighted"),"active="+thisOne.attr("active")]);
+        if(self.button_phase) { // can make guesses (and eliminate one by one)
+          //thisOne.selectAll("[highlighted='false']").attr()
+          if(thisOne.attr("active")=='true') {
+            newOpacity = .2;
+            thisOne.attr("active", false);
+          } else {
+            newOpacity = 1; // can't reactivate (e.g., why hypothesis test twice?)
+          }
+          // Hide or show the elements
+          d3.select("#"+d.id).style("opacity", newOpacity);
         } else {
-          newOpacity = 1;
-          this.active = true;
+          if(thisOne.attr("highlighted")==='true') {
+            thisOne.selectAll(".highlight").remove();
+            thisOne.attr("highlighted", false);
+          } else {
+            if(thisOne.attr("active")=='true') {
+              // highlight (draw a rectangle?) the selected bugs -- have kids select which *are* possible
+              thisOne
+                .attr("highlighted", true)
+                .append("rect")
+                .attr("x",20)
+                .attr("y",0)
+                .attr("rx",15) 
+                .attr("ry",15)
+                .attr("class", "highlight")    
+                .attr("width", self.rectGrid.nodeSize()[0]-30)
+                .attr("height", self.rectGrid.nodeSize()[1]) 
+                .style("stroke-width", 5)
+                .style("stroke", "green")
+                .style("opacity", .7)
+                .style("fill", "none"); 
+              //this.highlighted = true;
+            } 
+          }
         }
-        console.log("active: "+rect.active+"  newOpacity: "+newOpacity);
-        // Hide or show the elements
-        d3.select("#"+d.id).style("opacity", newOpacity);
+        //console.log("active: "+rect.active+"  newOpacity: "+newOpacity);
 
         if(self.button_phase) {
           // do the 1-click test for now (otherwise use ready button state)
           if(d.id===self.answer.id) {
               //.attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
-            var correct = d3.select("g").append("image")
+            var correct = self.bugs.append("image")
               .attr("xlink:href", function(d) { return img_dir_prefix+"smiley.svg"; })
               .attr("id", "correct")
-              .attr("x", 490)
-              .attr("y", 430)
-              .attr("height", 400)
-              .attr("width", 400)
+              .attr("x", screen_width/4 - 100)
+              .attr("y", screen_height/2 - 100)
+              .attr("height", screen_height/3)
+              .attr("width", screen_height/3)
               .style("opacity", 1)
               .on("click", function(d) { correct.remove() });
             correct.transition().duration(1000).delay(1000).style("opacity", 1e-6);
@@ -297,13 +354,13 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
           } else {
             //incorrect.style("opacity", 1);
             //incorrect.transition().delay(2000).style("opacity", 1e-6);
-            var incorrect = d3.select("g").append("image")
+            var incorrect = self.bugs.append("image")
               .attr("xlink:href", function(d) { return img_dir_prefix+"red_x.svg"; })
               .attr("id", "incorrect")
-              .attr("x", d.x + 15)
-              .attr("y", d.y + 45)
-              .attr("height", self.rectGrid.nodeSize()[0]-15)
-              .attr("width", self.rectGrid.nodeSize()[1]-15)
+              .attr("x", d.x )
+              .attr("y", d.y + 20)
+              .attr("height", self.rectGrid.nodeSize()[0]*.8)
+              .attr("width", self.rectGrid.nodeSize()[1]*.8)
               .style("opacity", 1)
               .on("click", function(d) { incorrect.remove(); });
             incorrect.transition().duration(1000).delay(1000).style("opacity", 1e-6);
@@ -320,6 +377,9 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     rect.exit().transition()
       .style("opacity", 1e-6)
       .remove();
+
+    // turn the eyes blue so they're a bit more visible
+    rect.selectAll("eyes").style("fill", "blue");
 
     }); // d3.xml
 
@@ -406,22 +466,34 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
 
   self.sidebar.append("text")
     .attr("x", 20)
-    .attr("y", 740)
+    .attr("y", .85*screen_height)
     .attr("font-size", 20)
     .text(self.condition);
 
   self.phaseChange = function() {
-    output(["button_press","phase",self.button_phase]);
+    output(["button_press","button_phase="+self.button_phase]);
     // if they click button in eliminate phase, they're done eliminating: time for buttons/guessing
     phaseButton.select("text").remove();
-    if(self.button_phase===false) {
-      if(self.condition=="automatic") {
+    if(self.button_phase===false) { // eliminate phase
+      if(self.condition==="automatic") { // automatically make translucent the ones not matching the answer feature
         d3.selectAll(".rect")
          .filter(function(d) {
            return d[self.last_button] !== self.answer[self.last_button];
          })
-         .style("opacity", .2).attr("active", true);
+         .style("opacity", .2).attr("active", false);
+      } else if(self.condition==="manual") {
+        console.log("making unhighlighted options translucent")
+        d3.selectAll("[highlighted='false']")
+          .style("opacity", .2)
+          .attr("active", false);
       }
+
+      // remove the green circles (should only be necessary in manual condition)
+        d3.selectAll(".highlight")
+          .remove();
+      // reset all to not highlighted
+        d3.selectAll("[highlighted='true']")
+            .attr("highlighted", false)
 
       self.button_phase = true;
       self.buttonbar.selectAll(".buttong").style("opacity", 1);
@@ -498,7 +570,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.addButtons(self.buttons);
 
   self.buttonPress = function(b) {
-    output(["button_press",b.id,b.feature]);
+    output(["button_press","id="+b.id,"feature="+b.feature]);
     self.last_button_id = b.id;
     self.last_button = b.feature;
 

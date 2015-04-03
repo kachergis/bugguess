@@ -5,9 +5,21 @@
 		<title>Psychology Experiment</title>
 		<link rel=stylesheet href="/static/css/bootstrap.min.css" type="text/css">
 		<link rel=stylesheet href="/static/css/style.css" type="text/css">
+
+		<script type="text/javascript">
+
+			function processSetup(form) {
+			  subject_num = form.subject.value;
+			  mycond = form.condition.value;
+			  myage = form.age.value;
+			  //output(['subject='+subject_num, 'age='+myage, 'condition='+mycond]);
+			  //console.log(subject_num+" "+myage+" "+mycond);
+			  window.location = '/exp?hitId='+subject_num+'&assignmentId='+subject_num+'&workerId='+subject_num+'&age='+myage+'&condition='+mycond+'&mode=debug';
+			}
+		</script>
 	</head>
-	<body>
-		<div id="container-ad">
+	<body onload="window.resizeTo(1024,768)">
+		<div class="container">
 
 			<div id="ad">
 				<div class="row">
@@ -16,17 +28,26 @@
 						<img id="adlogo" src="/static/images/university.png" alt="Lab Logo" />
 					</div>
 					<div class="col-xs-10">
-						<h1>Welcome to psiTurk!</h1>
+						<h1>Welcome to Bug Guess!</h1>
 						<hr>
 					    <div class="alert alert-warning">
-					    	<a href="/exp?hitId=s1&assignmentId=s1&workerId=s1&mode=debug">Subject 1 - </a><br />
-					    	<a href="/exp?hitId=s2&assignmentId=s2&workerId=s2&mode=debug">Subject 2 - </a><br />
-					    	<a href="/exp?hitId=s3&assignmentId=s3&workerId=s3&mode=debug">Subject 3 - </a><br />
-					    	<a href="/exp?hitId=s4&assignmentId=s4&workerId=s4&mode=debug">Subject 4 - </a><br />
-					    	<a href="/exp?hitId=s5&assignmentId=s5&workerId=s5&mode=debug">Subject 5 - </a><br />
-					    	<a href="/exp?hitId=s6&assignmentId=s6&workerId=s6&mode=debug">Subject 6 - </a><br />
-					    	<a href="/exp?hitId=s7&assignmentId=s7&workerId=s7&mode=debug">Subject 7 - </a><br />
-					    	<a href="/exp?hitId=s8&assignmentId=s8&workerId=s8&mode=debug">Subject 8 - </a><br />
+					    	<!-- <input> onClick=assignSubject -->
+			            	<form id="subjectInfo" action="#">
+								Subject: 
+								<input type="text" name="subject" maxlength="4" size="4">
+								<br /><br />
+								Age: 
+								<input type="text" name="age" maxlength="2" size="2">
+								<br /><br />
+								Condition:<br />
+								<input type="radio" name="condition" value="automatic" checked> Automatic
+								<br />
+								<input type="radio" name="condition" value="manual"> Manual
+								<br /><br />
+								<input type="button" name="submit" value="Okay" onclick="processSetup(this.form);">
+								<br />
+							</form>
+
 					    </div>
 					</div>
 			</div>
