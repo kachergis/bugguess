@@ -45,6 +45,7 @@ function getURLParameter(name) {
 var subject_num = getURLParameter('workerId');
 var mycond = getURLParameter('condit');
 var myage =  getURLParameter('age');
+var myipad = getURLParameter('ipad');
 
 
 psiTurk.preloadPages(['instruct.html',
@@ -118,7 +119,7 @@ var Experiment = function() {
 
   output(['participantid', ids[0]]);
   output(['seed', SEED]);
-  output(['subject='+subject_num,'age='+myage,'condition='+mycond]);
+  output(['subject='+subject_num,'age='+myage,'condition='+mycond,'ipad_familiar='+myipad]);
   shuffle(beetle_features);
   shuffle(abstract_features);
   self.bug_buttons = []
@@ -176,10 +177,18 @@ var Experiment = function() {
 
 var Exit = function() {
   output('COMPLETE');
-  psiTurk.saveData();
-  psiTurk.completeHIT();
-};
+  psiTurk.saveData({
+    success: function() {
+      psiTurk.completeHIT();
+    },
+    error: resubmit
+    });
+}
 
+var resubmit = function() {
+  document.body.innerHTML = error_message;
+  setTimeout(Exit,10000);
+}
 
 var assignButtons = function() {
   shuffle(beetle_features);
@@ -550,19 +559,13 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       width: .18*screen_width,
       height: .3*screen_height
     })
-    .style("opacity", 1)
-    .on(click_type, function(d) {
-      d3.select(this).transition()
-        .attr("width",261+50)
-        .duration(1000) // this is 1s
-        .delay(500);
-      d3.select(this).transition()
-        .attr("width",261)
-        .duration(500)
-        .delay(100);
-    });
+    .style("opacity", 1);
 
-  //function wiggle(d) {}
+
+  // self.wiggle = function wiggle(d) {
+  // move the carpet around periodically (or something entertaining)
+  //   setInterval(self.wiggle(), 5000);
+  // };
 
   self.callout = self.sidebar.append("g")
     .attr("id", "callout")
@@ -618,7 +621,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
          })
          .style("opacity", .2).attr("active", false);
       } else if(self.condition==="manual") {
-        console.log("making unhighlighted options translucent")
+        // making unhighlighted options translucent
         d3.selectAll("[highlighted='false']")
           .style("opacity", .2)
           .attr("active", false);
@@ -708,7 +711,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.addButtons(self.buttons);
 
   self.buttonPress = function(b) {
-    output(["button_press","id="+b.id,"feature="+b.feature]);
+    output(["feature_button_press","id="+b.id,"feature="+b.feature]);
     self.last_button_id = b.id;
     self.last_button = b.feature;
 

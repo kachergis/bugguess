@@ -23,9 +23,10 @@
 			  var subject_num = form.subject.value;
 			  var mycond =  $('input[name="condit"]:checked').val(); //form.condit.value; // works in Chrome...but not in Safari :/
 			  var myage = form.age.value;
+			  var myipad = $('input[name="condit"]:checked').val(); 
 			  //output(['subject='+subject_num, 'age='+myage, 'condition='+mycond]);
-			  console.log(subject_num+" "+myage+" "+mycond);
-			  window.location = '/exp?hitId='+subject_num+'&assignmentId='+subject_num+'&workerId='+subject_num+'&age='+myage+'&condit='+mycond+'&mode=debug';
+			  console.log(subject_num+" "+myage+" "+mycond+" "+myipad);
+			  window.location = '/exp?hitId='+subject_num+'&assignmentId='+subject_num+'&workerId='+subject_num+'&age='+myage+'&condit='+mycond+'&ipad='+myipad+'&mode=debug';
 			}
 		</script>
 	</head>
@@ -54,6 +55,11 @@
 								<input type="radio" name="condit" value="automatic" checked> Automatic
 								<br />
 								<input type="radio" name="condit" value="manual"> Manual
+								<br /><br />
+								Used an iPad before?<br />
+								<input type="radio" name="ipad" value="true" checked> Yes
+								<br />
+								<input type="radio" name="ipad" value="false"> No
 								<br /><br />
 								<input type="button" name="submit" value="Okay" onclick="processSetup(this.form);">
 								<br />
