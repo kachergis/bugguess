@@ -3,57 +3,41 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-<pattern  y="100" width="2.2" height="2.2" patternUnits="userSpaceOnUse" id="SVGID_1_" viewBox="0 -2.2 2.2 2.2" overflow="visible">
+<pattern  y="100" width="2.2" height="2.2" patternUnits="userSpaceOnUse" id="SVGID_2" viewBox="0 -2.2 2.2 2.2" overflow="visible">
+	<g>
+		<polygon fill="none" points="0,-2.2 2.2,-2.2 2.2,0 0,0 		"/>
+		<path fill="#010101" d="M1.6-1.1c0-0.2-0.2-0.5-0.5-0.5C0.9-1.3,0.6-1.3,0.6-1.1s0.2,0.5,0.5,0.5S1.6-0.9,1.6-1.1z"/>
+	</g>
+</pattern>
+<pattern  y="100" width="2.2" height="2.2" patternUnits="userSpaceOnUse" id="Unnamed_Pattern" viewBox="0 -2.2 2.2 2.2" overflow="visible">
 	<g>
 		<polygon fill="none" points="0,0 2.2,0 2.2,-2.2 0,-2.2 		"/>
 		<g>
 			<polygon fill="none" points="0,-2.2 2.2,-2.2 2.2,0 0,0 			"/>
 			<g>
-				<polygon fill="none" points="2.2,0 0,0 0,-2.2 2.2,-2.2 				"/>
+				<polygon fill="none" points="0,0 2.2,0 2.2,-2.2 0,-2.2 				"/>
 				<g>
-					<path fill="#010101" d="M1.3-1.1c0,0.1-0.1,0.2-0.2,0.2C1-1,0.9-1,0.9-1.1S1-1.3,1.1-1.3S1.3-1.2,1.3-1.1z"/>
+					<polygon fill="none" points="2.2,-2.2 0,-2.2 0,0 2.2,0 					"/>
+					<g>
+						<path fill="#010101" d="M1.3-1.1c0-0.1-0.1-0.2-0.2-0.2C1-1.2,0.9-1.2,0.9-1.1S1-0.9,1.1-0.9S1.3-1,1.3-1.1z"/>
+					</g>
 				</g>
 			</g>
 		</g>
 	</g>
 </pattern>
-<pattern  y="100" width="2.2" height="2.2" patternUnits="userSpaceOnUse" id="SVGID_2_" viewBox="0 -2.2 2.2 2.2" overflow="visible">
+<pattern  y="100" width="2.2" height="2.2" patternUnits="userSpaceOnUse" id="Unnamed_Pattern_2" viewBox="0 -2.2 2.2 2.2" overflow="visible">
 	<g>
 		<polygon fill="none" points="0,0 2.2,0 2.2,-2.2 0,-2.2 		"/>
 		<g>
 			<polygon fill="none" points="0,-2.2 2.2,-2.2 2.2,0 0,0 			"/>
 			<g>
-				<polygon fill="none" points="2.2,0 0,0 0,-2.2 2.2,-2.2 				"/>
+				<polygon fill="none" points="0,0 2.2,0 2.2,-2.2 0,-2.2 				"/>
 				<g>
-					<path fill="#010101" d="M1.3-1.1c0,0.1-0.1,0.2-0.2,0.2C1-1,0.9-1,0.9-1.1S1-1.3,1.1-1.3S1.3-1.2,1.3-1.1z"/>
-				</g>
-			</g>
-		</g>
-	</g>
-</pattern>
-<pattern  y="100" width="2.2" height="2.2" patternUnits="userSpaceOnUse" id="SVGID_3_" viewBox="0 -2.2 2.2 2.2" overflow="visible">
-	<g>
-		<polygon fill="none" points="0,0 2.2,0 2.2,-2.2 0,-2.2 		"/>
-		<g>
-			<polygon fill="none" points="0,-2.2 2.2,-2.2 2.2,0 0,0 			"/>
-			<g>
-				<polygon fill="none" points="2.2,0 0,0 0,-2.2 2.2,-2.2 				"/>
-				<g>
-					<path fill="#010101" d="M1.3-1.1c0,0.1-0.1,0.2-0.2,0.2C1-1,0.9-1,0.9-1.1S1-1.3,1.1-1.3S1.3-1.2,1.3-1.1z"/>
-				</g>
-			</g>
-		</g>
-	</g>
-</pattern>
-<pattern  y="100" width="2.2" height="2.2" patternUnits="userSpaceOnUse" id="SVGID_4_" viewBox="0 -2.2 2.2 2.2" overflow="visible">
-	<g>
-		<polygon fill="none" points="0,0 2.2,0 2.2,-2.2 0,-2.2 		"/>
-		<g>
-			<polygon fill="none" points="0,-2.2 2.2,-2.2 2.2,0 0,0 			"/>
-			<g>
-				<polygon fill="none" points="2.2,0 0,0 0,-2.2 2.2,-2.2 				"/>
-				<g>
-					<path fill="#010101" d="M1.3-1.1c0,0.1-0.1,0.2-0.2,0.2C1-1,0.9-1,0.9-1.1S1-1.3,1.1-1.3S1.3-1.2,1.3-1.1z"/>
+					<polygon fill="none" points="2.2,-2.2 0,-2.2 0,0 2.2,0 					"/>
+					<g>
+						<path fill="#010101" d="M1.3-1.1c0-0.1-0.1-0.2-0.2-0.2C1-1.2,0.9-1.2,0.9-1.1S1-0.9,1.1-0.9S1.3-1,1.3-1.1z"/>
+					</g>
 				</g>
 			</g>
 		</g>
@@ -93,9 +77,9 @@
 	<path fill="#FFFFFF" stroke="#010101" stroke-miterlimit="10" d="M54,46.8c0,0,3.7-5.7,4-8.1s-2.4-9.6-5.6-10h-3.5
 		c-3.2,0.4-5.9,7.5-5.6,10c0.3,2.4,4,8.1,4,8.1l3.6,2.2L54,46.8z"/>
 	<g>
-		<pattern  id="SVGID_5_" xlink:href="#SVGID_1_" patternTransform="matrix(0.2528 0 0 0.2528 -12195.3105 4023.5)">
+		<pattern  id="SVGID_1_" xlink:href="#Unnamed_Pattern" patternTransform="matrix(0.2528 0 0 -0.2528 -18279.0137 -14354.0342)">
 		</pattern>
-		<path fill="url(#SVGID_5_)" d="M50.7,49.4"/>
+		<path fill="url(#SVGID_1_)" d="M50.7,49.4"/>
 		<g>
 			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M50.7,49.4"/>
 		</g>
@@ -111,24 +95,24 @@
 	<path fill="#D0DD28" stroke="#010101" stroke-miterlimit="10" d="M54.1,46.8c0,0,3.7-5.7,4-8.1s-2.4-9.6-5.6-10H49
 		c-3.2,0.4-5.9,7.5-5.6,10c0.3,2.4,4,8.1,4,8.1L51,49L54.1,46.8z"/>
 	<g>
-		<pattern  id="SVGID_6_" xlink:href="#SVGID_2_" patternTransform="matrix(0.2528 0 0 0.2528 -12195.3105 4023.5)">
+		<pattern  id="SVGID_2_" xlink:href="#Unnamed_Pattern_2" patternTransform="matrix(0.2528 0 0 -0.2528 -18279.0137 -14354.0342)">
 		</pattern>
-		<path fill="url(#SVGID_6_)" d="M50.8,49.4"/>
+		<path fill="url(#SVGID_2_)" d="M50.8,49.4"/>
 		<g>
 			<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M50.8,49.4"/>
 		</g>
 	</g>
 </g>
 <g id="eyes">
-	<path fill="#FF9900" stroke="#010101" stroke-width="0.75" stroke-miterlimit="10" d="M43.4,33l4.4-6C47.8,27,40.3,26.1,43.4,33z"
-		/>
-	<path fill="#FF9900" stroke="#010101" stroke-width="0.75" stroke-miterlimit="10" d="M57.9,33l-4.4-6C53.5,27,60.9,26.1,57.9,33z"
-		/>
+	<path fill="#FF9900" stroke="#010101" stroke-width="0.75" stroke-miterlimit="10" d="M43.9,33.2l4.3-6.4
+		C48.2,26.8,39.8,26.6,43.9,33.2z"/>
+	<path fill="#FF9900" stroke="#010101" stroke-width="0.75" stroke-miterlimit="10" d="M57.4,33.1l-4.4-6.3
+		C52.9,26.8,61.1,26.5,57.4,33.1z"/>
 	<path fill="#FF9900" stroke="#010101" stroke-width="0.75" stroke-miterlimit="10" d="M32,39.7"/>
 </g>
 <g id="antennae">
-	<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M53.1,27.3c0,0,0.6-2.3,3.3-2.2c2.7,0.1,8.4-0.6,8.6-6.7"/>
-	<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M48.3,27.3c0,0-0.6-2.3-3.3-2.2c-2.7,0.1-8.4-0.6-8.6-6.7"/>
+	<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M53.1,27.3c0,0,0.6-2.8,3.3-2.7c2.7,0.1,8.4-0.7,8.6-8.1"/>
+	<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M48.3,27.3c0,0-0.6-2.8-3.3-2.7c-2.7,0.1-8.4-0.7-8.6-8.1"/>
 </g>
 <g id="markings">
 	<path fill="#010101" d="M56.2,59c-3.5,0-2.7,10.9-2.5,13.4c0.2,1.7,0.5,4.6,2.2,5.5c1.7,1.1,2.5,0,2.3-2c-0.8,0.5-1.4,0.2-2.3,0.3
@@ -137,13 +121,9 @@
 		c0.5-2.3,0.2-5,0.3-7.3c0.2-2.5,0.3-5,0.1-7.6c-0.6,0.2-1.4-0.2-2,0c-0.2-0.6-0.2-1.6-0.1-2.2"/>
 </g>
 <g id="dots">
-	<pattern  id="SVGID_7_" xlink:href="#SVGID_3_" patternTransform="matrix(0.2528 0 0 0.2528 -12195.3105 4023.5)">
-	</pattern>
-	<path fill="url(#SVGID_7_)" stroke="#010101" stroke-miterlimit="10" d="M53.2,47.1c4.6-2,4.8,1.9,4.8,1.9s-0.7-0.5,2.6,17.3
+	<path fill="url(#SVGID_2)" stroke="#010101" stroke-miterlimit="10" d="M53.2,47.1c4.6-2,4.8,1.9,4.8,1.9s-0.7-0.5,2.6,17.3
 		c3.2,17.9-8.2,19.4-8.2,19.4C50.1,80.9,50.5,49,50.5,49L53.2,47.1z"/>
-	<pattern  id="SVGID_8_" xlink:href="#SVGID_4_" patternTransform="matrix(0.2528 0 0 0.2528 -12195.3105 4023.5)">
-	</pattern>
-	<path fill="url(#SVGID_8_)" stroke="#010101" stroke-miterlimit="10" d="M47.9,47.1c-4.6-2-4.8,1.9-4.8,1.9s0.7-0.5-2.6,17.3
+	<path fill="url(#SVGID_2)" stroke="#010101" stroke-miterlimit="10" d="M47.9,47.1c-4.6-2-4.8,1.9-4.8,1.9s0.7-0.5-2.6,17.3
 		c-3.3,17.9,8.2,19.4,8.2,19.4C51,80.9,50.6,49,50.6,49L47.9,47.1z"/>
 </g>
 <g id="fur">
@@ -649,7 +629,7 @@
 			c0,0,6.6-0.2,3.7-7.8C34.3,22,31.8,19,31.7,16.8z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M31.1,28.9c1.3,0.6,3.4-2.6,3.3-3.8"/>
 		
-			<ellipse transform="matrix(-0.7903 0.6127 -0.6127 -0.7903 70.1322 30.6466)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="29.8" cy="27.3" rx="1.2" ry="1.5"/>
+			<ellipse transform="matrix(0.6127 0.7903 -0.7903 0.6127 33.1615 -13.0097)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="29.9" cy="27.3" rx="1.5" ry="1.2"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M29,21.5c0,0,1.2-2.9,2.6-3.7"/>
 	</g>
 	<g>
@@ -657,7 +637,7 @@
 			c0,0,6.6-0.2,3.7-7.8C72,53.1,69.5,50.1,69.4,47.9z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M68.8,60.1c1.3,0.6,3.4-2.6,3.3-3.8"/>
 		
-			<ellipse transform="matrix(-0.7903 0.6127 -0.6127 -0.7903 156.6366 63.2181)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="67.5" cy="58.4" rx="1.2" ry="1.5"/>
+			<ellipse transform="matrix(0.6127 0.7903 -0.7903 0.6127 72.3173 -30.7272)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="67.5" cy="58.4" rx="1.5" ry="1.2"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M66.7,52.6c0,0,1.2-2.9,2.6-3.7"/>
 	</g>
 	<g>
@@ -665,7 +645,7 @@
 			c0,0,4-0.1,2.2-4.7C71.2,84.7,69.7,83,69.6,81.6z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M69.3,88.9c0.8,0.4,2-1.6,1.9-2.3"/>
 		
-			<ellipse transform="matrix(-0.7901 0.613 -0.613 -0.7901 176.5805 116.7357)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="68.3" cy="88.6" rx="0.4" ry="0.5"/>
+			<ellipse transform="matrix(0.613 0.7901 -0.7901 0.613 96.4371 -19.6777)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="68.3" cy="88.6" rx="0.5" ry="0.4"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M68,84.4c0,0,0.7-1.8,1.6-2.2"/>
 	</g>
 	<g>
@@ -673,7 +653,7 @@
 			c0,0,2.5-0.1,1.4-2.9C35.1,55.8,34.2,54.7,34.1,53.9z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M33.9,58.4c0.5,0.2,1.3-1,1.2-1.4"/>
 		
-			<ellipse transform="matrix(-0.7906 0.6123 -0.6123 -0.7906 95.0295 83.0158)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="33.3" cy="57.8" rx="0.2" ry="0.3"/>
+			<ellipse transform="matrix(0.6123 0.7906 -0.7906 0.6123 58.5399 -3.9637)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="33.3" cy="57.7" rx="0.3" ry="0.2"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M33.1,55.6c0,0,0.5-1.1,1-1.4"/>
 	</g>
 	<g>
@@ -681,7 +661,7 @@
 			c0,0,2.5-0.1,1.4-2.9C44.9,89.5,43.9,88.4,43.9,87.6z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M43.7,92.1c0.5,0.2,1.3-1,1.2-1.4"/>
 		
-			<ellipse transform="matrix(-0.7906 0.6123 -0.6123 -0.7906 133.0613 137.636)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="43" cy="91.6" rx="0.2" ry="0.3"/>
+			<ellipse transform="matrix(0.6123 0.7906 -0.7906 0.6123 89.04 1.5115)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="43" cy="91.5" rx="0.3" ry="0.2"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M42.9,89.3c0,0,0.5-1.1,1-1.4"/>
 	</g>
 	<g>
@@ -689,7 +669,7 @@
 			c0,0,2.5-0.1,1.4-2.9C65.5,30.7,64.6,29.6,64.5,28.7z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M64.3,33.3c0.5,0.2,1.3-1,1.2-1.4"/>
 		
-			<ellipse transform="matrix(-0.7904 0.6126 -0.6126 -0.7904 134.0727 19.3817)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="63.7" cy="32.6" rx="0.2" ry="0.3"/>
+			<ellipse transform="matrix(0.6126 0.7904 -0.7904 0.6126 50.4947 -37.7467)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="63.8" cy="32.6" rx="0.3" ry="0.2"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M63.5,30.5c0,0,0.5-1.1,1-1.4"/>
 	</g>
 </g>

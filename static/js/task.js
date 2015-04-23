@@ -597,9 +597,9 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     .attr("transform", function(d) { return "translate(0,"+ .64*screen_height +")"; })
     .on(click_type, function(){
       output(["button_press","button_type=phase","button_phase="+self.button_phase]);
-      //if(!self.button_phase) { // don't change phase if phase change button is clicked in the button phase..
+      if(!self.button_phase) { // don't change phase if phase change button is clicked in the button phase..
         self.phaseChange(); 
-      //}
+      }
       // if(condition==="automatic") then they must click click this to eliminate the irrelevant stimuli self.last_button
     });
 
@@ -710,7 +710,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.addButtons(self.buttons);
 
   self.buttonPress = function(b) {
-    output(["button_press","button_type=feature"+,"button_phase="+self.button_phase,"id="+b.id,"feature="+b.feature]);
+    output(["button_press","button_type=feature","button_phase="+self.button_phase,"id="+b.id,"feature="+b.feature]);
     self.last_button_id = b.id;
     self.last_button = b.feature;
 

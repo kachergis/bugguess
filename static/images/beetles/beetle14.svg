@@ -3,31 +3,97 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-<pattern  y="100" width="2.4" height="2.4" patternUnits="userSpaceOnUse" id="SVGID_1_" viewBox="0 -2.4 2.4 2.4" overflow="visible">
+<pattern  y="100" width="2.4" height="2.4" patternUnits="userSpaceOnUse" id="SVGID_3" viewBox="4.3 -6.7 2.4 2.4" overflow="visible">
 	<g>
-		<polygon fill="none" points="0,0 2.4,0 2.4,-2.4 0,-2.4 		"/>
+		<polygon fill="none" points="4.3,-6.7 6.7,-6.7 6.7,-4.3 4.3,-4.3 		"/>
 		<g>
-			<polygon fill="none" points="0,-2.4 2.4,-2.4 2.4,0 0,0 			"/>
+			<polygon fill="none" points="4.8,0 10.9,0 10.9,-6.1 4.8,-6.1 			"/>
 			<g>
-				<polygon fill="none" points="2.4,0 0,0 0,-2.4 2.4,-2.4 				"/>
-				<g>
-					<path fill="#010101" d="M1.4-1.2C1.4-1.1,1.3-1,1.2-1C1.1-1,1-1.1,1-1.2c0-0.2,0.1-0.2,0.2-0.2C1.3-1.4,1.4-1.4,1.4-1.2z"/>
-				</g>
+				<polygon fill="none" points="10.9,-6.1 4.8,-6.1 4.8,0 10.9,0 				"/>
+			</g>
+		</g>
+		<g>
+			<polygon fill="none" points="2.4,0 8.5,0 8.5,-6.1 2.4,-6.1 			"/>
+			<g>
+				<polygon fill="none" points="8.5,-6.1 2.4,-6.1 2.4,0 8.5,0 				"/>
+			</g>
+		</g>
+		<g>
+			<polygon fill="none" points="0,0 6.1,0 6.1,-6.1 0,-6.1 			"/>
+			<g>
+				<polygon fill="none" points="6.1,-6.1 0,-6.1 0,0 6.1,0 				"/>
+			</g>
+		</g>
+		<g>
+			<polygon fill="none" points="4.8,-2.4 10.9,-2.4 10.9,-8.5 4.8,-8.5 			"/>
+			<g>
+				<polygon fill="none" points="10.9,-8.5 4.8,-8.5 4.8,-2.4 10.9,-2.4 				"/>
+			</g>
+		</g>
+		<g>
+			<polygon fill="none" points="2.4,-2.4 8.5,-2.4 8.5,-8.5 2.4,-8.5 			"/>
+			<g>
+				<polygon fill="none" points="8.5,-8.5 2.4,-8.5 2.4,-2.4 8.5,-2.4 				"/>
+				<path fill="#010101" d="M6-5.5C6-5.7,5.7-6,5.5-6C5.2-6,5-5.7,5-5.5c0,0.5,0.3,0.5,0.5,0.5C5.7-4.9,6-4.9,6-5.5z"/>
+			</g>
+		</g>
+		<g>
+			<polygon fill="none" points="0,-2.4 6.1,-2.4 6.1,-8.5 0,-8.5 			"/>
+			<g>
+				<polygon fill="none" points="6.1,-8.5 0,-8.5 0,-2.4 6.1,-2.4 				"/>
+			</g>
+		</g>
+		<g>
+			<polygon fill="none" points="4.8,-4.8 10.9,-4.8 10.9,-10.9 4.8,-10.9 			"/>
+			<g>
+				<polygon fill="none" points="10.9,-10.9 4.8,-10.9 4.8,-4.8 10.9,-4.8 				"/>
+			</g>
+		</g>
+		<g>
+			<polygon fill="none" points="2.4,-4.8 8.5,-4.8 8.5,-10.9 2.4,-10.9 			"/>
+			<g>
+				<polygon fill="none" points="8.5,-10.9 2.4,-10.9 2.4,-4.8 8.5,-4.8 				"/>
+			</g>
+		</g>
+		<g>
+			<polygon fill="none" points="0,-4.8 6.1,-4.8 6.1,-10.9 0,-10.9 			"/>
+			<g>
+				<polygon fill="none" points="6.1,-10.9 0,-10.9 0,-4.8 6.1,-4.8 				"/>
 			</g>
 		</g>
 	</g>
 </pattern>
-<pattern  y="100" width="2.4" height="2.4" patternUnits="userSpaceOnUse" id="SVGID_2_" viewBox="0 -2.4 2.4 2.4" overflow="visible">
+<pattern  y="100" width="3" height="3" patternUnits="userSpaceOnUse" id="SVGID_4" viewBox="4.6 -7.6 3 3" overflow="visible">
 	<g>
-		<polygon fill="none" points="0,0 2.4,0 2.4,-2.4 0,-2.4 		"/>
+		<polygon fill="none" points="4.6,-7.6 7.6,-7.6 7.6,-4.6 4.6,-4.6 		"/>
 		<g>
-			<polygon fill="none" points="0,-2.4 2.4,-2.4 2.4,0 0,0 			"/>
-			<g>
-				<polygon fill="none" points="2.4,0 0,0 0,-2.4 2.4,-2.4 				"/>
-				<g>
-					<path fill="#010101" d="M1.4-1.2C1.4-1.1,1.3-1,1.2-1C1.1-1,1-1.1,1-1.2c0-0.2,0.1-0.2,0.2-0.2C1.3-1.4,1.4-1.4,1.4-1.2z"/>
-				</g>
-			</g>
+			<polygon fill="none" points="12.1,-6.1 6,-6.1 6,0 12.1,0 			"/>
+		</g>
+		<g>
+			<polygon fill="none" points="9.1,-6.1 3,-6.1 3,0 9.1,0 			"/>
+		</g>
+		<g>
+			<polygon fill="none" points="6.1,-6.1 0,-6.1 0,0 6.1,0 			"/>
+		</g>
+		<g>
+			<polygon fill="none" points="12.1,-9.1 6,-9.1 6,-3 12.1,-3 			"/>
+		</g>
+		<g>
+			<polygon fill="none" points="9.1,-9.1 3,-9.1 3,-3 9.1,-3 			"/>
+			<path fill="#010101" d="M6.6-6.1c0-0.3-0.3-0.5-0.5-0.5c-0.3,0-0.5,0.3-0.5,0.5c0,0.5,0.3,0.5,0.5,0.5C6.3-5.5,6.6-5.5,6.6-6.1z"
+				/>
+		</g>
+		<g>
+			<polygon fill="none" points="6.1,-9.1 0,-9.1 0,-3 6.1,-3 			"/>
+		</g>
+		<g>
+			<polygon fill="none" points="12.1,-12.1 6,-12.1 6,-6 12.1,-6 			"/>
+		</g>
+		<g>
+			<polygon fill="none" points="9.1,-12.1 3,-12.1 3,-6 9.1,-6 			"/>
+		</g>
+		<g>
+			<polygon fill="none" points="6.1,-12.1 0,-12.1 0,-6 6.1,-6 			"/>
 		</g>
 	</g>
 </pattern>
@@ -48,8 +114,7 @@
 	<path fill="#FFFFFF" stroke="#010101" stroke-miterlimit="10" d="M33.5,70.8v4.1c0,0-3.3-0.8-3.4-3.1C30.2,71.8,32,70.5,33.5,70.8z
 		"/>
 	<path fill="#FFFFFF" stroke="#010101" stroke-miterlimit="10" d="M30.2,72.5c0,0-1.9,2.3-1.9,4.2c-0.1,1.9,0,8.1,0,8.1
-		S23,92.5,24,94.2c1,1.7,0.2,0,0.2,0s-0.4-1,0.8-2.3c0,0-0.3,1.1,0,1.4c0,0,2.2-6.6,4.4-8.1l-0.1-8.6c0,0,0.5-2.5,1.5-3.2L30.2,72.5
-		z"/>
+		S23,92.5,24,94.2s0.2,0,0.2,0s-0.4-1,0.8-2.3c0,0-0.3,1.1,0,1.4c0,0,2.2-6.6,4.4-8.1l-0.1-8.6c0,0,0.5-2.5,1.5-3.2L30.2,72.5z"/>
 	<path fill="#FFFFFF" stroke="#010101" stroke-miterlimit="10" d="M60,38.4c0,0,1.2-1.4,2.3-1.1c1,0.3,1,1.1,1,1.1s-0.3,2.3-0.9,3.1
 		L60,38.4z"/>
 	<path fill="#FFFFFF" stroke="#010101" stroke-miterlimit="10" d="M62.9,37.6c0,0,3.6-8.5,2.5-14.7c0,0,0.8,1.7,0.8,2.3
@@ -85,15 +150,9 @@
 		c0,0,1.1-1.6,1.3-2.8c0-0.2,0.3-2.1,4.7-2.2h0.8c1,0,1.9-0.1,2.6-0.1c1.7,0,2.8,0.1,3.7,0.7c0.1,0.1,0.2,0.1,0.3,0.2
 		c1.2,0.7,2.9,1.7,2.7,4.4c0,0.4,0,1.8,0.1,3.7c0.4,9.1,1.5,30.3-4,34.3C61.1,93.3,55.5,98.1,50.7,98.1z"/>
 </g>
-<g id="eyes">
-	<path fill="#FF9900" stroke="#010101" stroke-width="0.5" stroke-miterlimit="10" d="M42.2,34.1c0,0-1.2-5.6,3.3-5.8
-		C45.5,28.3,47,32,42.2,34.1z"/>
-	<path fill="#FF9900" stroke="#010101" stroke-width="0.5" stroke-miterlimit="10" d="M57.1,34.1c0,0,1.3-5.5-3.5-5.6
-		C53.6,28.5,52.1,32,57.1,34.1z"/>
-</g>
 <g id="antennae">
-	<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M53.7,28.5c0,0,0.9-13.8,4.4-9"/>
-	<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M45.3,28.5c0,0-0.9-13.8-4.4-9"/>
+	<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M52.5,27.8c0,0,5.3-16.5,7.1-9.8"/>
+	<path fill="none" stroke="#010101" stroke-miterlimit="10" d="M46.4,27.8c0,0-5.1-17.1-7-10.3"/>
 </g>
 <g id="markings">
 	<path fill="#010101" d="M33.3,75.1c1-1,2.8-2.9,4.4-2.9c1.9,0,1.9,2.1,3.4,2.8c1.6,0.8,2.7-0.8,3.4-2c1.1-1.7,2.3-2.4,4.4-2.2
@@ -108,13 +167,13 @@
 		s-0.3-8.4,0.4-8.8"/>
 </g>
 <g id="dots">
-	<pattern  id="SVGID_3_" xlink:href="#SVGID_1_" patternTransform="matrix(0.2762 0 0 0.2762 -11823.9395 4404.6426)">
+	<pattern  id="SVGID_1_" xlink:href="#SVGID_3" patternTransform="matrix(0.2762 0 0 -0.2762 -17714.0352 -14933.9814)">
 	</pattern>
-	<path fill="url(#SVGID_3_)" d="M49.5,54.8c0,0,1.2-1.7,1.4-3c0,0,0.2-1.8,4.3-1.9s5.7-0.2,6.9,0.6c1.2,0.7,3,1.6,2.8,4.3
+	<path fill="url(#SVGID_1_)" d="M49.5,54.8c0,0,1.2-1.7,1.4-3c0,0,0.2-1.8,4.3-1.9s5.7-0.2,6.9,0.6c1.2,0.7,3,1.6,2.8,4.3
 		c-0.2,2.7,2.8,33.4-3.8,38.1c0,0-6.7,6-11.7,5L49.5,54.8L49.5,54.8z"/>
-	<pattern  id="SVGID_4_" xlink:href="#SVGID_2_" patternTransform="matrix(0.2762 0 0 0.2762 -11823.9395 4404.6426)">
+	<pattern  id="SVGID_2_" xlink:href="#SVGID_4" patternTransform="matrix(0.2762 0 0 -0.2762 -17713.8184 -14935.1309)">
 	</pattern>
-	<path fill="url(#SVGID_4_)" d="M49.5,54.8c0,0-1.2-1.7-1.4-3c0,0-0.2-1.8-4.3-1.9s-5.7-0.2-6.9,0.6c-1.2,0.7-3,1.6-2.8,4.3
+	<path fill="url(#SVGID_2_)" d="M49.5,54.8c0,0-1.2-1.7-1.4-3c0,0-0.2-1.8-4.3-1.9s-5.7-0.2-6.9,0.6c-1.2,0.7-3,1.6-2.8,4.3
 		s-2.8,33.4,3.8,38.1c0,0,6.7,6,11.7,5L49.5,54.8L49.5,54.8z"/>
 </g>
 <g id="fur">
@@ -649,7 +708,7 @@
 			c0,0,7.2-0.2,4-8.5C30.4,32.7,27.6,29.5,27.5,27.1z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M26.9,40.3c1.4,0.7,3.7-2.8,3.6-4.1"/>
 		
-			<ellipse transform="matrix(-0.7903 0.6127 -0.6127 -0.7903 69.191 53.2784)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="25.5" cy="38.5" rx="1.3" ry="1.6"/>
+			<ellipse transform="matrix(0.6127 0.7903 -0.7903 0.6127 40.2641 -5.2116)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="25.4" cy="38.5" rx="1.6" ry="1.3"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M24.6,32.1c0,0,1.3-3.2,2.8-4"/>
 	</g>
 	<g>
@@ -657,7 +716,7 @@
 			c0,0,7.2-0.2,4-8.5C76.4,40.1,73.7,36.8,73.6,34.5z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M73,47.7c1.4,0.7,3.7-2.8,3.6-4.1"/>
 		
-			<ellipse transform="matrix(-0.7903 0.6127 -0.6127 -0.7903 156.2471 38.3836)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="71.6" cy="45.9" rx="1.3" ry="1.6"/>
+			<ellipse transform="matrix(0.6127 0.7903 -0.7903 0.6127 64.0434 -38.7307)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="71.5" cy="46" rx="1.6" ry="1.3"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M70.6,39.5c0,0,1.3-3.2,2.8-4"/>
 	</g>
 	<g>
@@ -665,7 +724,7 @@
 			c0,0,4.3-0.1,2.4-5.1C32.2,94.9,30.6,92.9,30.5,91.5z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M30.1,99.4c0.9,0.4,2.2-1.7,2.1-2.5"/>
 		
-			<ellipse transform="matrix(-0.7901 0.613 -0.613 -0.7901 112.9797 159.6376)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="29.2" cy="99.2" rx="0.5" ry="0.6"/>
+			<ellipse transform="matrix(0.613 0.7901 -0.7901 0.613 89.6063 15.3845)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="29.1" cy="99.2" rx="0.6" ry="0.5"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M28.7,94.5c0,0,0.8-1.9,1.7-2.4"/>
 	</g>
 	<g>
@@ -673,7 +732,7 @@
 			c0,0,2.7-0.1,1.5-3.2C25.8,73.3,24.8,72.2,24.8,71.3z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M24.6,76.2c0.5,0.2,1.4-1.1,1.3-1.5"/>
 		
-			<ellipse transform="matrix(-0.7906 0.6123 -0.6123 -0.7906 88.8501 120.6648)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="23.8" cy="75.5" rx="0.2" ry="0.3"/>
+			<ellipse transform="matrix(0.6123 0.7906 -0.7906 0.6123 68.9578 10.468)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="23.8" cy="75.5" rx="0.3" ry="0.2"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M23.7,73.2c0,0,0.5-1.2,1.1-1.5"/>
 	</g>
 	<g>
@@ -681,7 +740,7 @@
 			c0,0,2.7-0.1,1.5-3.2C76,76,75,74.8,75,73.9z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M74.7,78.9c0.5,0.2,1.4-1.1,1.3-1.5"/>
 		
-			<ellipse transform="matrix(-0.7906 0.6123 -0.6123 -0.7906 180.4922 94.6653)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="74.1" cy="78.2" rx="0.2" ry="0.3"/>
+			<ellipse transform="matrix(0.6123 0.7906 -0.7906 0.6123 90.5348 -28.2051)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="74" cy="78.2" rx="0.3" ry="0.2"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M73.8,75.8c0,0,0.5-1.2,1.1-1.5"/>
 	</g>
 	<g>
@@ -689,8 +748,14 @@
 			c0,0,2.7-0.1,1.5-3.2C69.2,92.5,68.2,91.3,68.1,90.4z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M67.9,95.4c0.5,0.2,1.4-1.1,1.3-1.5"/>
 		
-			<ellipse transform="matrix(-0.7904 0.6126 -0.6126 -0.7904 178.3669 128.4515)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="67.2" cy="94.7" rx="0.2" ry="0.3"/>
+			<ellipse transform="matrix(0.6126 0.7904 -0.7904 0.6126 100.9522 -16.4321)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="67.2" cy="94.8" rx="0.3" ry="0.2"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M67,92.3c0,0,0.5-1.2,1.1-1.5"/>
 	</g>
+</g>
+<g id="eyes">
+	<path fill="#FF9900" stroke="#010101" stroke-width="0.5" stroke-miterlimit="10" d="M42.3,34.1c0,0-1.7-6.6,4.8-6.8
+		C47.1,27.3,49.2,31.6,42.3,34.1z"/>
+	<path fill="#FF9900" stroke="#010101" stroke-width="0.5" stroke-miterlimit="10" d="M57,34.1c0,0,1.9-6.5-5-6.6
+		C52,27.5,49.9,31.6,57,34.1z"/>
 </g>
 </svg>
