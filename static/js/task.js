@@ -443,7 +443,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
 
     rect.on(click_type, function(d, i){
         thisOne =  d3.select(this); // d3.select("#"+d.id); 
-        output(['exemplar_click',"button_phase="+self.button_phase,"id="+d.id,"highlighted="+thisOne.attr("highlighted"),"active="+thisOne.attr("active")]);
+        output(['exemplar_click',"button_phase="+self.button_phase,"id="+d.id,"highlighted="+thisOne.attr("highlighted"),"active="+thisOne.attr("active"),"correct="+(d.id===self.answer.id)]);
         if(self.button_phase) { // can make guesses (and eliminate one by one)
           //thisOne.selectAll("[highlighted='false']").attr()
           if(thisOne.attr("active")=='true') {
@@ -523,9 +523,6 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
       .style("opacity", 1e-6)
       .remove();
 
-    // turn the eyes blue so they're a bit more visible
-    rect.selectAll("eyes").style("fill", "blue");
-
     }); // d3.xml
 
       };
@@ -569,7 +566,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
 
   self.callout = self.sidebar.append("g")
     .attr("id", "callout")
-    .attr("transform", function(d) { return "translate(0,"+ .31*screen_height +")"; })
+    .attr("transform", function(d) { return "translate(0,"+ .31*screen_height +")"; });
 
   self.callout.append("image")
     .attr("xlink:href", function(d) { return "static/images/callout.svg"; })
@@ -599,7 +596,10 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     .attr("id", "phaseButton")
     .attr("transform", function(d) { return "translate(0,"+ .64*screen_height +")"; })
     .on(click_type, function(){
-      self.phaseChange()
+      output(["button_press","button_type=phase","button_phase="+self.button_phase]);
+      //if(!self.button_phase) { // don't change phase if phase change button is clicked in the button phase..
+        self.phaseChange(); 
+      //}
       // if(condition==="automatic") then they must click click this to eliminate the irrelevant stimuli self.last_button
     });
 
@@ -610,7 +610,6 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
     .text(self.condition);
 
   self.phaseChange = function() {
-    output(["button_press","button_phase="+self.button_phase]);
     // if they click button in eliminate phase, they're done eliminating: time for buttons/guessing
     phaseButton.select("text").remove();
     if(self.button_phase===false) { // eliminate phase
@@ -711,7 +710,7 @@ function PlayRound(exemplars, buttons, features, condition, stage, trial_num) {
   self.addButtons(self.buttons);
 
   self.buttonPress = function(b) {
-    output(["feature_button_press","id="+b.id,"feature="+b.feature]);
+    output(["button_press","button_type=feature"+,"button_phase="+self.button_phase,"id="+b.id,"feature="+b.feature]);
     self.last_button_id = b.id;
     self.last_button = b.feature;
 
