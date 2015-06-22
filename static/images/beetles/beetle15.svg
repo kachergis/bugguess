@@ -3,36 +3,53 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-<pattern  y="100" width="2.4" height="2.4" patternUnits="userSpaceOnUse" id="SVGID_3" viewBox="4.3 -6.7 2.4 2.4" overflow="visible">
+<pattern  y="100" width="2.4" height="2.4" patternUnits="userSpaceOnUse" id="SVGID_1" viewBox="4.3 -6.7 2.4 2.4" overflow="visible">
 	<g>
 		<polygon fill="none" points="4.3,-6.7 6.7,-6.7 6.7,-4.3 4.3,-4.3 		"/>
 		<g>
-			<polygon fill="none" points="11,-6.2 4.8,-6.2 4.8,0 11,0 			"/>
+			<defs>
+				<rect id="SVGID_1_" x="4.3" y="-6.7" width="2.4" height="2.4"/>
+			</defs>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#SVGID_1_"  overflow="visible"/>
+			</clipPath>
+			<polygon clip-path="url(#SVGID_2_)" fill="none" points="11,-4.8 4.8,-4.8 4.8,-11 11,-11 			"/>
+			<polygon clip-path="url(#SVGID_2_)" fill="none" points="8.6,-4.8 2.4,-4.8 2.4,-11 8.6,-11 			"/>
+			<polygon clip-path="url(#SVGID_2_)" fill="none" points="6.2,-4.8 0,-4.8 0,-11 6.2,-11 			"/>
+			<polygon clip-path="url(#SVGID_2_)" fill="none" points="11,-2.4 4.8,-2.4 4.8,-8.6 11,-8.6 			"/>
+			<g clip-path="url(#SVGID_2_)">
+				<polygon fill="none" points="8.6,-2.4 2.4,-2.4 2.4,-8.6 8.6,-8.6 				"/>
+				<path fill="#010101" d="M6-5.7c0,0.3-0.3,0.5-0.5,0.5S5-5.5,5-5.7C5-6,5.3-6.3,5.5-6.3C5.8-6.3,6-6,6-5.7z"/>
+			</g>
+			<polygon clip-path="url(#SVGID_2_)" fill="none" points="6.2,-2.4 0,-2.4 0,-8.6 6.2,-8.6 			"/>
+			<polygon clip-path="url(#SVGID_2_)" fill="none" points="11,0 4.8,0 4.8,-6.2 11,-6.2 			"/>
+			<polygon clip-path="url(#SVGID_2_)" fill="none" points="8.6,0 2.4,0 2.4,-6.2 8.6,-6.2 			"/>
+			<polygon clip-path="url(#SVGID_2_)" fill="none" points="6.2,0 0,0 0,-6.2 6.2,-6.2 			"/>
 		</g>
+	</g>
+</pattern>
+<pattern  y="100" width="2.4" height="2.4" patternUnits="userSpaceOnUse" id="SVGID_2" viewBox="4.3 -6.7 2.4 2.4" overflow="visible">
+	<g>
+		<polygon fill="none" points="4.3,-6.7 6.7,-6.7 6.7,-4.3 4.3,-4.3 		"/>
 		<g>
-			<polygon fill="none" points="8.6,-6.2 2.4,-6.2 2.4,0 8.6,0 			"/>
-		</g>
-		<g>
-			<polygon fill="none" points="6.2,-6.2 0,-6.2 0,0 6.2,0 			"/>
-		</g>
-		<g>
-			<polygon fill="none" points="11,-8.6 4.8,-8.6 4.8,-2.4 11,-2.4 			"/>
-		</g>
-		<g>
-			<polygon fill="none" points="8.6,-8.6 2.4,-8.6 2.4,-2.4 8.6,-2.4 			"/>
-			<path fill="#010101" d="M6-5.3c0-0.3-0.3-0.5-0.5-0.5C5.3-5.8,5-5.5,5-5.3C5-5,5.3-4.7,5.5-4.7C5.8-4.7,6-5,6-5.3z"/>
-		</g>
-		<g>
-			<polygon fill="none" points="6.2,-8.6 0,-8.6 0,-2.4 6.2,-2.4 			"/>
-		</g>
-		<g>
-			<polygon fill="none" points="11,-11 4.8,-11 4.8,-4.8 11,-4.8 			"/>
-		</g>
-		<g>
-			<polygon fill="none" points="8.6,-11 2.4,-11 2.4,-4.8 8.6,-4.8 			"/>
-		</g>
-		<g>
-			<polygon fill="none" points="6.2,-11 0,-11 0,-4.8 6.2,-4.8 			"/>
+			<defs>
+				<rect id="SVGID_3_" x="4.3" y="-6.7" width="2.4" height="2.4"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  overflow="visible"/>
+			</clipPath>
+			<polygon clip-path="url(#SVGID_4_)" fill="none" points="11,-4.8 4.8,-4.8 4.8,-11 11,-11 			"/>
+			<polygon clip-path="url(#SVGID_4_)" fill="none" points="8.6,-4.8 2.4,-4.8 2.4,-11 8.6,-11 			"/>
+			<polygon clip-path="url(#SVGID_4_)" fill="none" points="6.2,-4.8 0,-4.8 0,-11 6.2,-11 			"/>
+			<polygon clip-path="url(#SVGID_4_)" fill="none" points="11,-2.4 4.8,-2.4 4.8,-8.6 11,-8.6 			"/>
+			<g clip-path="url(#SVGID_4_)">
+				<polygon fill="none" points="8.6,-2.4 2.4,-2.4 2.4,-8.6 8.6,-8.6 				"/>
+				<path fill="#010101" d="M6-5.7c0,0.3-0.3,0.5-0.5,0.5S5-5.5,5-5.7C5-6,5.3-6.3,5.5-6.3C5.8-6.3,6-6,6-5.7z"/>
+			</g>
+			<polygon clip-path="url(#SVGID_4_)" fill="none" points="6.2,-2.4 0,-2.4 0,-8.6 6.2,-8.6 			"/>
+			<polygon clip-path="url(#SVGID_4_)" fill="none" points="11,0 4.8,0 4.8,-6.2 11,-6.2 			"/>
+			<polygon clip-path="url(#SVGID_4_)" fill="none" points="8.6,0 2.4,0 2.4,-6.2 8.6,-6.2 			"/>
+			<polygon clip-path="url(#SVGID_4_)" fill="none" points="6.2,0 0,0 0,-6.2 6.2,-6.2 			"/>
 		</g>
 	</g>
 </pattern>
@@ -105,13 +122,9 @@
 		C42.9,53,48.5,54.2,48.4,58.5z"/>
 </g>
 <g id="dots">
-	<pattern  id="SVGID_1_" xlink:href="#SVGID_3" patternTransform="matrix(0.2714 0 0 -0.2714 -17829.1738 -14816.1016)">
-	</pattern>
-	<path fill="url(#SVGID_1_)" stroke="#070707" stroke-miterlimit="10" d="M42.6,51.5c0,0-3.8,1.8-3.8,12.7s0,16.4,0,16.4
+	<path fill="url(#SVGID_1)" stroke="#070707" stroke-miterlimit="10" d="M42.6,51.5c0,0-3.8,1.8-3.8,12.7s0,16.4,0,16.4
 		s7.5,3.2,12.3-1V60.4C51,60.4,48,51.2,42.6,51.5z"/>
-	<pattern  id="SVGID_2_" xlink:href="#SVGID_3" patternTransform="matrix(0.2714 0 0 -0.2714 -17829.1738 -14816.1016)">
-	</pattern>
-	<path fill="url(#SVGID_2_)" stroke="#070707" stroke-miterlimit="10" d="M59.7,51.5c0,0,3.8,1.8,3.8,12.7s0,16.4,0,16.4
+	<path fill="url(#SVGID_2)" stroke="#070707" stroke-miterlimit="10" d="M59.7,51.5c0,0,3.8,1.8,3.8,12.7s0,16.4,0,16.4
 		s-7.5,3.2-12.3-1V60.4C51.3,60.4,54.3,51.2,59.7,51.5z"/>
 </g>
 <g id="fur">
@@ -670,7 +683,7 @@
 			c0,0,7.1-0.2,4-8.4C28.7,31.2,26,28,25.9,25.7z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M25.3,38.6c1.4,0.7,3.7-2.8,3.5-4"/>
 		
-			<ellipse transform="matrix(0.6127 0.7903 -0.7903 0.6127 38.4364 -4.595)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="23.9" cy="36.9" rx="1.6" ry="1.3"/>
+			<ellipse transform="matrix(0.7903 -0.6127 0.6127 0.7903 -17.5947 22.3926)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="23.9" cy="36.9" rx="1.3" ry="1.6"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M23,30.6c0,0,1.3-3.1,2.8-4"/>
 	</g>
 	<g>
@@ -678,7 +691,7 @@
 			c0,0,7.1-0.2,4-8.4C76.5,39.4,73.8,36.2,73.6,33.9z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M73.1,46.8c1.4,0.7,3.7-2.8,3.5-4"/>
 		
-			<ellipse transform="matrix(0.6127 0.7903 -0.7903 0.6127 63.3259 -39.1907)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="71.6" cy="45" rx="1.6" ry="1.3"/>
+			<ellipse transform="matrix(0.7903 -0.6127 0.6127 0.7903 -12.5307 53.3183)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="71.6" cy="45" rx="1.3" ry="1.6"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M70.8,38.8c0,0,1.3-3.1,2.8-4"/>
 	</g>
 	<g>
@@ -686,7 +699,7 @@
 			c0,0,4.3-0.1,2.4-5C34.6,48,33,46.1,32.9,44.7z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M32.5,52.5c0.8,0.4,2.2-1.7,2.1-2.4"/>
 		
-			<ellipse transform="matrix(0.613 0.7901 -0.7901 0.613 53.4243 -4.7663)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="31.6" cy="52.2" rx="0.6" ry="0.5"/>
+			<ellipse transform="matrix(0.7901 -0.613 0.613 0.7901 -25.3748 30.2983)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="31.6" cy="52.2" rx="0.5" ry="0.6"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M31.1,47.7c0,0,0.8-1.9,1.7-2.4"/>
 	</g>
 	<g>
@@ -694,7 +707,7 @@
 			c0,0,2.7-0.1,1.5-3.1C32.6,76.2,31.5,75,31.5,74.1z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M31.3,79c0.5,0.2,1.4-1.1,1.3-1.5"/>
 		
-			<ellipse transform="matrix(0.6123 0.7906 -0.7906 0.6123 73.7959 6.1482)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="30.6" cy="78.3" rx="0.3" ry="0.2"/>
+			<ellipse transform="matrix(0.7906 -0.6123 0.6123 0.7906 -41.521 35.1454)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="30.6" cy="78.3" rx="0.2" ry="0.3"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M30.4,76c0,0,0.5-1.2,1.1-1.5"/>
 	</g>
 	<g>
@@ -702,7 +715,7 @@
 			c0,0,2.7-0.1,1.5-3.1C76.1,74.7,75,73.5,75,72.6z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M74.8,77.5c0.5,0.2,1.4-1.1,1.3-1.5"/>
 		
-			<ellipse transform="matrix(0.6123 0.7906 -0.7906 0.6123 89.5194 -28.7287)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="74.1" cy="76.9" rx="0.3" ry="0.2"/>
+			<ellipse transform="matrix(0.7906 -0.6123 0.6123 0.7906 -31.5977 61.4786)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="74.1" cy="76.9" rx="0.2" ry="0.3"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M73.9,74.5c0,0,0.5-1.2,1.1-1.5"/>
 	</g>
 	<g>
@@ -710,7 +723,7 @@
 			c0,0,2.7-0.1,1.5-3.1C78.5,56.3,77.5,55.1,77.5,54.2z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M77.2,59.1c0.5,0.2,1.4-1.1,1.3-1.5"/>
 		
-			<ellipse transform="matrix(0.6126 0.7904 -0.7904 0.6126 75.8943 -37.8289)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="76.5" cy="58.5" rx="0.3" ry="0.2"/>
+			<ellipse transform="matrix(0.7904 -0.6126 0.6126 0.7904 -19.782 59.1321)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="76.5" cy="58.5" rx="0.2" ry="0.3"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M76.4,56.1c0,0,0.5-1.2,1.1-1.5"/>
 	</g>
 </g>

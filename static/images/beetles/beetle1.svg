@@ -3,782 +3,559 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-<pattern  y="100" width="2.5" height="2.5" patternUnits="userSpaceOnUse" id="SVGID_1" viewBox="7.8 -10.2 2.5 2.5" overflow="visible">
+<pattern  y="100" width="2.5" height="2.5" patternUnits="userSpaceOnUse" id="SVGID_2_" viewBox="7.8 -10.3 2.5 2.5" overflow="visible">
 	<g>
-		<polygon fill="none" points="7.8,-10.2 10.2,-10.2 10.2,-7.8 7.8,-7.8 		"/>
+		<polygon fill="none" points="7.8,-7.8 10.3,-7.8 10.3,-10.3 7.8,-10.3 		"/>
 		<g>
-			<polygon fill="none" points="10,0 18,0 18,-8 10,-8 			"/>
-			<g>
-				<polygon fill="none" points="10,-8 18,-8 18,0 10,0 				"/>
-				<g>
-					<polygon fill="none" points="18,0 10,0 10,-8 18,-8 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,0 15.5,0 15.5,-8 7.5,-8 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-8 15.5,-8 15.5,0 7.5,0 				"/>
-				<g>
-					<polygon fill="none" points="15.5,0 7.5,0 7.5,-8 15.5,-8 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,0 13,0 13,-8 5,-8 			"/>
-			<g>
-				<polygon fill="none" points="5,-8 13,-8 13,0 5,0 				"/>
-				<g>
-					<polygon fill="none" points="13,0 5,0 5,-8 13,-8 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,0 10.5,0 10.5,-8 2.5,-8 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-8 10.5,-8 10.5,0 2.5,0 				"/>
-				<g>
-					<polygon fill="none" points="10.5,0 2.5,0 2.5,-8 10.5,-8 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,0 8,0 8,-8 0,-8 			"/>
-			<g>
-				<polygon fill="none" points="0,-8 8,-8 8,0 0,0 				"/>
-				<g>
-					<polygon fill="none" points="8,0 0,0 0,-8 8,-8 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-2.5 18,-2.5 18,-10.5 10,-10.5 			"/>
-			<g>
-				<polygon fill="none" points="10,-10.5 18,-10.5 18,-2.5 10,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="18,-2.5 10,-2.5 10,-10.5 18,-10.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-2.5 15.5,-2.5 15.5,-10.5 7.5,-10.5 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-10.5 15.5,-10.5 15.5,-2.5 7.5,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="15.5,-2.5 7.5,-2.5 7.5,-10.5 15.5,-10.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-2.5 13,-2.5 13,-10.5 5,-10.5 			"/>
-			<g>
-				<polygon fill="none" points="5,-10.5 13,-10.5 13,-2.5 5,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="13,-2.5 5,-2.5 5,-10.5 13,-10.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-2.5 10.5,-2.5 10.5,-10.5 2.5,-10.5 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-10.5 10.5,-10.5 10.5,-2.5 2.5,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="10.5,-2.5 2.5,-2.5 2.5,-10.5 10.5,-10.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-2.5 8,-2.5 8,-10.5 0,-10.5 			"/>
-			<g>
-				<polygon fill="none" points="0,-10.5 8,-10.5 8,-2.5 0,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="8,-2.5 0,-2.5 0,-10.5 8,-10.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-5 18,-5 18,-13 10,-13 			"/>
-			<g>
-				<polygon fill="none" points="10,-13 18,-13 18,-5 10,-5 				"/>
-				<g>
-					<polygon fill="none" points="18,-5 10,-5 10,-13 18,-13 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-5 15.5,-5 15.5,-13 7.5,-13 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-13 15.5,-13 15.5,-5 7.5,-5 				"/>
-				<g>
-					<polygon fill="none" points="15.5,-5 7.5,-5 7.5,-13 15.5,-13 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-5 13,-5 13,-13 5,-13 			"/>
-			<g>
-				<polygon fill="none" points="5,-13 13,-13 13,-5 5,-5 				"/>
-				<g>
-					<polygon fill="none" points="13,-5 5,-5 5,-13 13,-13 					"/>
-					<path fill="#010101" d="M9.5-9.2c0,0.3-0.3,0.6-0.6,0.6c-0.3,0-0.6-0.3-0.6-0.6s0.6-0.6,0.6-0.6C9.5-9.8,9.5-9.5,9.5-9.2z"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-5 10.5,-5 10.5,-13 2.5,-13 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-13 10.5,-13 10.5,-5 2.5,-5 				"/>
-				<g>
-					<polygon fill="none" points="10.5,-5 2.5,-5 2.5,-13 10.5,-13 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-5 8,-5 8,-13 0,-13 			"/>
-			<g>
-				<polygon fill="none" points="0,-13 8,-13 8,-5 0,-5 				"/>
-				<g>
-					<polygon fill="none" points="8,-5 0,-5 0,-13 8,-13 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-7.5 18,-7.5 18,-15.5 10,-15.5 			"/>
-			<g>
-				<polygon fill="none" points="10,-15.5 18,-15.5 18,-7.5 10,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="18,-7.5 10,-7.5 10,-15.5 18,-15.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-7.5 15.5,-7.5 15.5,-15.5 7.5,-15.5 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-15.5 15.5,-15.5 15.5,-7.5 7.5,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="15.5,-7.5 7.5,-7.5 7.5,-15.5 15.5,-15.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-7.5 13,-7.5 13,-15.5 5,-15.5 			"/>
-			<g>
-				<polygon fill="none" points="5,-15.5 13,-15.5 13,-7.5 5,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="13,-7.5 5,-7.5 5,-15.5 13,-15.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-7.5 10.5,-7.5 10.5,-15.5 2.5,-15.5 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-15.5 10.5,-15.5 10.5,-7.5 2.5,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="10.5,-7.5 2.5,-7.5 2.5,-15.5 10.5,-15.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-7.5 8,-7.5 8,-15.5 0,-15.5 			"/>
-			<g>
-				<polygon fill="none" points="0,-15.5 8,-15.5 8,-7.5 0,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="8,-7.5 0,-7.5 0,-15.5 8,-15.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-10 18,-10 18,-18 10,-18 			"/>
+			<polygon fill="none" points="7.8,-7.8 10.2,-7.8 10.2,-10.2 7.8,-10.2 			"/>
 			<g>
 				<polygon fill="none" points="10,-18 18,-18 18,-10 10,-10 				"/>
 				<g>
-					<polygon fill="none" points="18,-10 10,-10 10,-18 18,-18 					"/>
+					<polygon fill="none" points="10,-10 18,-10 18,-18 10,-18 					"/>
+					<g>
+						<polygon fill="none" points="18,-18 10,-18 10,-10 18,-10 						"/>
+					</g>
 				</g>
 			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-10 15.5,-10 15.5,-18 7.5,-18 			"/>
 			<g>
 				<polygon fill="none" points="7.5,-18 15.5,-18 15.5,-10 7.5,-10 				"/>
 				<g>
-					<polygon fill="none" points="15.5,-10 7.5,-10 7.5,-18 15.5,-18 					"/>
+					<polygon fill="none" points="7.5,-10 15.5,-10 15.5,-18 7.5,-18 					"/>
+					<g>
+						<polygon fill="none" points="15.5,-18 7.5,-18 7.5,-10 15.5,-10 						"/>
+					</g>
 				</g>
 			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-10 13,-10 13,-18 5,-18 			"/>
 			<g>
 				<polygon fill="none" points="5,-18 13,-18 13,-10 5,-10 				"/>
 				<g>
-					<polygon fill="none" points="13,-10 5,-10 5,-18 13,-18 					"/>
+					<polygon fill="none" points="5,-10 13,-10 13,-18 5,-18 					"/>
+					<g>
+						<polygon fill="none" points="13,-18 5,-18 5,-10 13,-10 						"/>
+					</g>
 				</g>
 			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-10 10.5,-10 10.5,-18 2.5,-18 			"/>
 			<g>
 				<polygon fill="none" points="2.5,-18 10.5,-18 10.5,-10 2.5,-10 				"/>
 				<g>
-					<polygon fill="none" points="10.5,-10 2.5,-10 2.5,-18 10.5,-18 					"/>
+					<polygon fill="none" points="2.5,-10 10.5,-10 10.5,-18 2.5,-18 					"/>
+					<g>
+						<polygon fill="none" points="10.5,-18 2.5,-18 2.5,-10 10.5,-10 						"/>
+					</g>
 				</g>
 			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-10 8,-10 8,-18 0,-18 			"/>
 			<g>
 				<polygon fill="none" points="0,-18 8,-18 8,-10 0,-10 				"/>
 				<g>
-					<polygon fill="none" points="8,-10 0,-10 0,-18 8,-18 					"/>
+					<polygon fill="none" points="0,-10 8,-10 8,-18 0,-18 					"/>
+					<g>
+						<polygon fill="none" points="8,-18 0,-18 0,-10 8,-10 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="10,-15.5 18,-15.5 18,-7.5 10,-7.5 				"/>
+				<g>
+					<polygon fill="none" points="10,-7.5 18,-7.5 18,-15.5 10,-15.5 					"/>
+					<g>
+						<polygon fill="none" points="18,-15.5 10,-15.5 10,-7.5 18,-7.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="7.5,-15.5 15.5,-15.5 15.5,-7.5 7.5,-7.5 				"/>
+				<g>
+					<polygon fill="none" points="7.5,-7.5 15.5,-7.5 15.5,-15.5 7.5,-15.5 					"/>
+					<g>
+						<polygon fill="none" points="15.5,-15.5 7.5,-15.5 7.5,-7.5 15.5,-7.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="5,-15.5 13,-15.5 13,-7.5 5,-7.5 				"/>
+				<g>
+					<polygon fill="none" points="5,-7.5 13,-7.5 13,-15.5 5,-15.5 					"/>
+					<g>
+						<polygon fill="none" points="13,-15.5 5,-15.5 5,-7.5 13,-7.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="2.5,-15.5 10.5,-15.5 10.5,-7.5 2.5,-7.5 				"/>
+				<g>
+					<polygon fill="none" points="2.5,-7.5 10.5,-7.5 10.5,-15.5 2.5,-15.5 					"/>
+					<g>
+						<polygon fill="none" points="10.5,-15.5 2.5,-15.5 2.5,-7.5 10.5,-7.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="0,-15.5 8,-15.5 8,-7.5 0,-7.5 				"/>
+				<g>
+					<polygon fill="none" points="0,-7.5 8,-7.5 8,-15.5 0,-15.5 					"/>
+					<g>
+						<polygon fill="none" points="8,-15.5 0,-15.5 0,-7.5 8,-7.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="10,-13 18,-13 18,-5 10,-5 				"/>
+				<g>
+					<polygon fill="none" points="10,-5 18,-5 18,-13 10,-13 					"/>
+					<g>
+						<polygon fill="none" points="18,-13 10,-13 10,-5 18,-5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="7.5,-13 15.5,-13 15.5,-5 7.5,-5 				"/>
+				<g>
+					<polygon fill="none" points="7.5,-5 15.5,-5 15.5,-13 7.5,-13 					"/>
+					<g>
+						<polygon fill="none" points="15.5,-13 7.5,-13 7.5,-5 15.5,-5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="5,-13 13,-13 13,-5 5,-5 				"/>
+				<g>
+					<polygon fill="none" points="5,-5 13,-5 13,-13 5,-13 					"/>
+					<g>
+						<polygon fill="none" points="13,-13 5,-13 5,-5 13,-5 						"/>
+						<path fill="#010101" d="M9.5-8.8c0-0.3-0.3-0.6-0.6-0.6S8.3-9.1,8.3-8.8s0.6,0.6,0.6,0.6C9.5-8.2,9.5-8.5,9.5-8.8z"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="2.5,-13 10.5,-13 10.5,-5 2.5,-5 				"/>
+				<g>
+					<polygon fill="none" points="2.5,-5 10.5,-5 10.5,-13 2.5,-13 					"/>
+					<g>
+						<polygon fill="none" points="10.5,-13 2.5,-13 2.5,-5 10.5,-5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="0,-13 8,-13 8,-5 0,-5 				"/>
+				<g>
+					<polygon fill="none" points="0,-5 8,-5 8,-13 0,-13 					"/>
+					<g>
+						<polygon fill="none" points="8,-13 0,-13 0,-5 8,-5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="10,-10.5 18,-10.5 18,-2.5 10,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="10,-2.5 18,-2.5 18,-10.5 10,-10.5 					"/>
+					<g>
+						<polygon fill="none" points="18,-10.5 10,-10.5 10,-2.5 18,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="7.5,-10.5 15.5,-10.5 15.5,-2.5 7.5,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="7.5,-2.5 15.5,-2.5 15.5,-10.5 7.5,-10.5 					"/>
+					<g>
+						<polygon fill="none" points="15.5,-10.5 7.5,-10.5 7.5,-2.5 15.5,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="5,-10.5 13,-10.5 13,-2.5 5,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="5,-2.5 13,-2.5 13,-10.5 5,-10.5 					"/>
+					<g>
+						<polygon fill="none" points="13,-10.5 5,-10.5 5,-2.5 13,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="2.5,-10.5 10.5,-10.5 10.5,-2.5 2.5,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="2.5,-2.5 10.5,-2.5 10.5,-10.5 2.5,-10.5 					"/>
+					<g>
+						<polygon fill="none" points="10.5,-10.5 2.5,-10.5 2.5,-2.5 10.5,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="0,-10.5 8,-10.5 8,-2.5 0,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="0,-2.5 8,-2.5 8,-10.5 0,-10.5 					"/>
+					<g>
+						<polygon fill="none" points="8,-10.5 0,-10.5 0,-2.5 8,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="10,-8 18,-8 18,0 10,0 				"/>
+				<g>
+					<polygon fill="none" points="10,0 18,0 18,-8 10,-8 					"/>
+					<g>
+						<polygon fill="none" points="18,-8 10,-8 10,0 18,0 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="7.5,-8 15.5,-8 15.5,0 7.5,0 				"/>
+				<g>
+					<polygon fill="none" points="7.5,0 15.5,0 15.5,-8 7.5,-8 					"/>
+					<g>
+						<polygon fill="none" points="15.5,-8 7.5,-8 7.5,0 15.5,0 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="5,-8 13,-8 13,0 5,0 				"/>
+				<g>
+					<polygon fill="none" points="5,0 13,0 13,-8 5,-8 					"/>
+					<g>
+						<polygon fill="none" points="13,-8 5,-8 5,0 13,0 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="2.5,-8 10.5,-8 10.5,0 2.5,0 				"/>
+				<g>
+					<polygon fill="none" points="2.5,0 10.5,0 10.5,-8 2.5,-8 					"/>
+					<g>
+						<polygon fill="none" points="10.5,-8 2.5,-8 2.5,0 10.5,0 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="0,-8 8,-8 8,0 0,0 				"/>
+				<g>
+					<polygon fill="none" points="0,0 8,0 8,-8 0,-8 					"/>
+					<g>
+						<polygon fill="none" points="8,-8 0,-8 0,0 8,0 						"/>
+					</g>
 				</g>
 			</g>
 		</g>
 	</g>
 </pattern>
-<pattern  y="100" width="2.5" height="2.5" patternUnits="userSpaceOnUse" id="SVGID_2" viewBox="7.8 -10.2 2.5 2.5" overflow="visible">
+<pattern  y="100" width="2.5" height="2.5" patternUnits="userSpaceOnUse" id="SVGID_3_" viewBox="7.7 -10.2 2.5 2.5" overflow="visible">
 	<g>
-		<polygon fill="none" points="7.8,-10.2 10.2,-10.2 10.2,-7.8 7.8,-7.8 		"/>
+		<polygon fill="none" points="7.7,-7.7 10.2,-7.7 10.2,-10.2 7.7,-10.2 		"/>
 		<g>
-			<polygon fill="none" points="10,0 18,0 18,-8 10,-8 			"/>
-			<g>
-				<polygon fill="none" points="10,-8 18,-8 18,0 10,0 				"/>
-				<g>
-					<polygon fill="none" points="18,0 10,0 10,-8 18,-8 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,0 15.5,0 15.5,-8 7.5,-8 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-8 15.5,-8 15.5,0 7.5,0 				"/>
-				<g>
-					<polygon fill="none" points="15.5,0 7.5,0 7.5,-8 15.5,-8 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,0 13,0 13,-8 5,-8 			"/>
-			<g>
-				<polygon fill="none" points="5,-8 13,-8 13,0 5,0 				"/>
-				<g>
-					<polygon fill="none" points="13,0 5,0 5,-8 13,-8 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,0 10.5,0 10.5,-8 2.5,-8 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-8 10.5,-8 10.5,0 2.5,0 				"/>
-				<g>
-					<polygon fill="none" points="10.5,0 2.5,0 2.5,-8 10.5,-8 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,0 8,0 8,-8 0,-8 			"/>
-			<g>
-				<polygon fill="none" points="0,-8 8,-8 8,0 0,0 				"/>
-				<g>
-					<polygon fill="none" points="8,0 0,0 0,-8 8,-8 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-2.5 18,-2.5 18,-10.5 10,-10.5 			"/>
-			<g>
-				<polygon fill="none" points="10,-10.5 18,-10.5 18,-2.5 10,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="18,-2.5 10,-2.5 10,-10.5 18,-10.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-2.5 15.5,-2.5 15.5,-10.5 7.5,-10.5 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-10.5 15.5,-10.5 15.5,-2.5 7.5,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="15.5,-2.5 7.5,-2.5 7.5,-10.5 15.5,-10.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-2.5 13,-2.5 13,-10.5 5,-10.5 			"/>
-			<g>
-				<polygon fill="none" points="5,-10.5 13,-10.5 13,-2.5 5,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="13,-2.5 5,-2.5 5,-10.5 13,-10.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-2.5 10.5,-2.5 10.5,-10.5 2.5,-10.5 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-10.5 10.5,-10.5 10.5,-2.5 2.5,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="10.5,-2.5 2.5,-2.5 2.5,-10.5 10.5,-10.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-2.5 8,-2.5 8,-10.5 0,-10.5 			"/>
-			<g>
-				<polygon fill="none" points="0,-10.5 8,-10.5 8,-2.5 0,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="8,-2.5 0,-2.5 0,-10.5 8,-10.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-5 18,-5 18,-13 10,-13 			"/>
-			<g>
-				<polygon fill="none" points="10,-13 18,-13 18,-5 10,-5 				"/>
-				<g>
-					<polygon fill="none" points="18,-5 10,-5 10,-13 18,-13 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-5 15.5,-5 15.5,-13 7.5,-13 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-13 15.5,-13 15.5,-5 7.5,-5 				"/>
-				<g>
-					<polygon fill="none" points="15.5,-5 7.5,-5 7.5,-13 15.5,-13 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-5 13,-5 13,-13 5,-13 			"/>
-			<g>
-				<polygon fill="none" points="5,-13 13,-13 13,-5 5,-5 				"/>
-				<g>
-					<polygon fill="none" points="13,-5 5,-5 5,-13 13,-13 					"/>
-					<path fill="#010101" d="M9.5-9.2c0,0.3-0.3,0.6-0.6,0.6c-0.3,0-0.6-0.3-0.6-0.6s0.6-0.6,0.6-0.6C9.5-9.8,9.5-9.5,9.5-9.2z"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-5 10.5,-5 10.5,-13 2.5,-13 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-13 10.5,-13 10.5,-5 2.5,-5 				"/>
-				<g>
-					<polygon fill="none" points="10.5,-5 2.5,-5 2.5,-13 10.5,-13 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-5 8,-5 8,-13 0,-13 			"/>
-			<g>
-				<polygon fill="none" points="0,-13 8,-13 8,-5 0,-5 				"/>
-				<g>
-					<polygon fill="none" points="8,-5 0,-5 0,-13 8,-13 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-7.5 18,-7.5 18,-15.5 10,-15.5 			"/>
-			<g>
-				<polygon fill="none" points="10,-15.5 18,-15.5 18,-7.5 10,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="18,-7.5 10,-7.5 10,-15.5 18,-15.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-7.5 15.5,-7.5 15.5,-15.5 7.5,-15.5 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-15.5 15.5,-15.5 15.5,-7.5 7.5,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="15.5,-7.5 7.5,-7.5 7.5,-15.5 15.5,-15.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-7.5 13,-7.5 13,-15.5 5,-15.5 			"/>
-			<g>
-				<polygon fill="none" points="5,-15.5 13,-15.5 13,-7.5 5,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="13,-7.5 5,-7.5 5,-15.5 13,-15.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-7.5 10.5,-7.5 10.5,-15.5 2.5,-15.5 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-15.5 10.5,-15.5 10.5,-7.5 2.5,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="10.5,-7.5 2.5,-7.5 2.5,-15.5 10.5,-15.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-7.5 8,-7.5 8,-15.5 0,-15.5 			"/>
-			<g>
-				<polygon fill="none" points="0,-15.5 8,-15.5 8,-7.5 0,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="8,-7.5 0,-7.5 0,-15.5 8,-15.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-10 18,-10 18,-18 10,-18 			"/>
-			<g>
-				<polygon fill="none" points="10,-18 18,-18 18,-10 10,-10 				"/>
-				<g>
-					<polygon fill="none" points="18,-10 10,-10 10,-18 18,-18 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-10 15.5,-10 15.5,-18 7.5,-18 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-18 15.5,-18 15.5,-10 7.5,-10 				"/>
-				<g>
-					<polygon fill="none" points="15.5,-10 7.5,-10 7.5,-18 15.5,-18 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-10 13,-10 13,-18 5,-18 			"/>
-			<g>
-				<polygon fill="none" points="5,-18 13,-18 13,-10 5,-10 				"/>
-				<g>
-					<polygon fill="none" points="13,-10 5,-10 5,-18 13,-18 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-10 10.5,-10 10.5,-18 2.5,-18 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-18 10.5,-18 10.5,-10 2.5,-10 				"/>
-				<g>
-					<polygon fill="none" points="10.5,-10 2.5,-10 2.5,-18 10.5,-18 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-10 8,-10 8,-18 0,-18 			"/>
-			<g>
-				<polygon fill="none" points="0,-18 8,-18 8,-10 0,-10 				"/>
-				<g>
-					<polygon fill="none" points="8,-10 0,-10 0,-18 8,-18 					"/>
-				</g>
-			</g>
-		</g>
-	</g>
-</pattern>
-<pattern  y="100" width="2.5" height="2.5" patternUnits="userSpaceOnUse" id="SVGID_3" viewBox="7.7 -10.2 2.5 2.5" overflow="visible">
-	<g>
-		<polygon fill="none" points="7.7,-10.2 10.2,-10.2 10.2,-7.7 7.7,-7.7 		"/>
-		<g>
-			<polygon fill="none" points="10,0 17.9,0 17.9,-7.9 10,-7.9 			"/>
-			<g>
-				<polygon fill="none" points="10,-7.9 17.9,-7.9 17.9,0 10,0 				"/>
-				<g>
-					<polygon fill="none" points="17.9,0 10,0 10,-7.9 17.9,-7.9 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,0 15.4,0 15.4,-7.9 7.5,-7.9 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-7.9 15.4,-7.9 15.4,0 7.5,0 				"/>
-				<g>
-					<polygon fill="none" points="15.4,0 7.5,0 7.5,-7.9 15.4,-7.9 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,0 12.9,0 12.9,-7.9 5,-7.9 			"/>
-			<g>
-				<polygon fill="none" points="5,-7.9 12.9,-7.9 12.9,0 5,0 				"/>
-				<g>
-					<polygon fill="none" points="12.9,0 5,0 5,-7.9 12.9,-7.9 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,0 10.4,0 10.4,-7.9 2.5,-7.9 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-7.9 10.4,-7.9 10.4,0 2.5,0 				"/>
-				<g>
-					<polygon fill="none" points="10.4,0 2.5,0 2.5,-7.9 10.4,-7.9 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,0 7.9,0 7.9,-7.9 0,-7.9 			"/>
-			<g>
-				<polygon fill="none" points="0,-7.9 7.9,-7.9 7.9,0 0,0 				"/>
-				<g>
-					<polygon fill="none" points="7.9,0 0,0 0,-7.9 7.9,-7.9 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-2.5 17.9,-2.5 17.9,-10.4 10,-10.4 			"/>
-			<g>
-				<polygon fill="none" points="10,-10.4 17.9,-10.4 17.9,-2.5 10,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="17.9,-2.5 10,-2.5 10,-10.4 17.9,-10.4 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-2.5 15.4,-2.5 15.4,-10.4 7.5,-10.4 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-10.4 15.4,-10.4 15.4,-2.5 7.5,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="15.4,-2.5 7.5,-2.5 7.5,-10.4 15.4,-10.4 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-2.5 12.9,-2.5 12.9,-10.4 5,-10.4 			"/>
-			<g>
-				<polygon fill="none" points="5,-10.4 12.9,-10.4 12.9,-2.5 5,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="12.9,-2.5 5,-2.5 5,-10.4 12.9,-10.4 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-2.5 10.4,-2.5 10.4,-10.4 2.5,-10.4 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-10.4 10.4,-10.4 10.4,-2.5 2.5,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="10.4,-2.5 2.5,-2.5 2.5,-10.4 10.4,-10.4 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-2.5 7.9,-2.5 7.9,-10.4 0,-10.4 			"/>
-			<g>
-				<polygon fill="none" points="0,-10.4 7.9,-10.4 7.9,-2.5 0,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="7.9,-2.5 0,-2.5 0,-10.4 7.9,-10.4 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-5 17.9,-5 17.9,-12.9 10,-12.9 			"/>
-			<g>
-				<polygon fill="none" points="10,-12.9 17.9,-12.9 17.9,-5 10,-5 				"/>
-				<g>
-					<polygon fill="none" points="17.9,-5 10,-5 10,-12.9 17.9,-12.9 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-5 15.4,-5 15.4,-12.9 7.5,-12.9 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-12.9 15.4,-12.9 15.4,-5 7.5,-5 				"/>
-				<g>
-					<polygon fill="none" points="15.4,-5 7.5,-5 7.5,-12.9 15.4,-12.9 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-5 12.9,-5 12.9,-12.9 5,-12.9 			"/>
-			<g>
-				<polygon fill="none" points="5,-12.9 12.9,-12.9 12.9,-5 5,-5 				"/>
-				<g>
-					<polygon fill="none" points="12.9,-5 5,-5 5,-12.9 12.9,-12.9 					"/>
-					<path fill="#010101" d="M9.4-9.1c0,0.3-0.3,0.6-0.6,0.6c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.6-0.6,0.6-0.6C9.4-9.7,9.4-9.4,9.4-9.1
-						z"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-5 10.4,-5 10.4,-12.9 2.5,-12.9 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-12.9 10.4,-12.9 10.4,-5 2.5,-5 				"/>
-				<g>
-					<polygon fill="none" points="10.4,-5 2.5,-5 2.5,-12.9 10.4,-12.9 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-5 7.9,-5 7.9,-12.9 0,-12.9 			"/>
-			<g>
-				<polygon fill="none" points="0,-12.9 7.9,-12.9 7.9,-5 0,-5 				"/>
-				<g>
-					<polygon fill="none" points="7.9,-5 0,-5 0,-12.9 7.9,-12.9 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-7.5 17.9,-7.5 17.9,-15.4 10,-15.4 			"/>
-			<g>
-				<polygon fill="none" points="10,-15.4 17.9,-15.4 17.9,-7.5 10,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="17.9,-7.5 10,-7.5 10,-15.4 17.9,-15.4 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-7.5 15.4,-7.5 15.4,-15.4 7.5,-15.4 			"/>
-			<g>
-				<polygon fill="none" points="7.5,-15.4 15.4,-15.4 15.4,-7.5 7.5,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="15.4,-7.5 7.5,-7.5 7.5,-15.4 15.4,-15.4 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-7.5 12.9,-7.5 12.9,-15.4 5,-15.4 			"/>
-			<g>
-				<polygon fill="none" points="5,-15.4 12.9,-15.4 12.9,-7.5 5,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="12.9,-7.5 5,-7.5 5,-15.4 12.9,-15.4 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-7.5 10.4,-7.5 10.4,-15.4 2.5,-15.4 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-15.4 10.4,-15.4 10.4,-7.5 2.5,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="10.4,-7.5 2.5,-7.5 2.5,-15.4 10.4,-15.4 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-7.5 7.9,-7.5 7.9,-15.4 0,-15.4 			"/>
-			<g>
-				<polygon fill="none" points="0,-15.4 7.9,-15.4 7.9,-7.5 0,-7.5 				"/>
-				<g>
-					<polygon fill="none" points="7.9,-7.5 0,-7.5 0,-15.4 7.9,-15.4 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="10,-10 17.9,-10 17.9,-17.9 10,-17.9 			"/>
+			<polygon fill="none" points="7.7,-7.7 10.2,-7.7 10.2,-10.2 7.7,-10.2 			"/>
 			<g>
 				<polygon fill="none" points="10,-17.9 17.9,-17.9 17.9,-10 10,-10 				"/>
 				<g>
-					<polygon fill="none" points="17.9,-10 10,-10 10,-17.9 17.9,-17.9 					"/>
+					<polygon fill="none" points="10,-10 17.9,-10 17.9,-17.9 10,-17.9 					"/>
+					<g>
+						<polygon fill="none" points="17.9,-17.9 10,-17.9 10,-10 17.9,-10 						"/>
+					</g>
 				</g>
 			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="7.5,-10 15.4,-10 15.4,-17.9 7.5,-17.9 			"/>
 			<g>
 				<polygon fill="none" points="7.5,-17.9 15.4,-17.9 15.4,-10 7.5,-10 				"/>
 				<g>
-					<polygon fill="none" points="15.4,-10 7.5,-10 7.5,-17.9 15.4,-17.9 					"/>
+					<polygon fill="none" points="7.5,-10 15.4,-10 15.4,-17.9 7.5,-17.9 					"/>
+					<g>
+						<polygon fill="none" points="15.4,-17.9 7.5,-17.9 7.5,-10 15.4,-10 						"/>
+					</g>
 				</g>
 			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-10 12.9,-10 12.9,-17.9 5,-17.9 			"/>
 			<g>
 				<polygon fill="none" points="5,-17.9 12.9,-17.9 12.9,-10 5,-10 				"/>
 				<g>
-					<polygon fill="none" points="12.9,-10 5,-10 5,-17.9 12.9,-17.9 					"/>
+					<polygon fill="none" points="5,-10 12.9,-10 12.9,-17.9 5,-17.9 					"/>
+					<g>
+						<polygon fill="none" points="12.9,-17.9 5,-17.9 5,-10 12.9,-10 						"/>
+					</g>
 				</g>
 			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-10 10.4,-10 10.4,-17.9 2.5,-17.9 			"/>
 			<g>
 				<polygon fill="none" points="2.5,-17.9 10.4,-17.9 10.4,-10 2.5,-10 				"/>
 				<g>
-					<polygon fill="none" points="10.4,-10 2.5,-10 2.5,-17.9 10.4,-17.9 					"/>
+					<polygon fill="none" points="2.5,-10 10.4,-10 10.4,-17.9 2.5,-17.9 					"/>
+					<g>
+						<polygon fill="none" points="10.4,-17.9 2.5,-17.9 2.5,-10 10.4,-10 						"/>
+					</g>
 				</g>
 			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-10 7.9,-10 7.9,-17.9 0,-17.9 			"/>
 			<g>
 				<polygon fill="none" points="0,-17.9 7.9,-17.9 7.9,-10 0,-10 				"/>
 				<g>
-					<polygon fill="none" points="7.9,-10 0,-10 0,-17.9 7.9,-17.9 					"/>
+					<polygon fill="none" points="0,-10 7.9,-10 7.9,-17.9 0,-17.9 					"/>
+					<g>
+						<polygon fill="none" points="7.9,-17.9 0,-17.9 0,-10 7.9,-10 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="10,-15.4 17.9,-15.4 17.9,-7.5 10,-7.5 				"/>
+				<g>
+					<polygon fill="none" points="10,-7.5 17.9,-7.5 17.9,-15.4 10,-15.4 					"/>
+					<g>
+						<polygon fill="none" points="17.9,-15.4 10,-15.4 10,-7.5 17.9,-7.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="7.5,-15.4 15.4,-15.4 15.4,-7.5 7.5,-7.5 				"/>
+				<g>
+					<polygon fill="none" points="7.5,-7.5 15.4,-7.5 15.4,-15.4 7.5,-15.4 					"/>
+					<g>
+						<polygon fill="none" points="15.4,-15.4 7.5,-15.4 7.5,-7.5 15.4,-7.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="5,-15.4 12.9,-15.4 12.9,-7.5 5,-7.5 				"/>
+				<g>
+					<polygon fill="none" points="5,-7.5 12.9,-7.5 12.9,-15.4 5,-15.4 					"/>
+					<g>
+						<polygon fill="none" points="12.9,-15.4 5,-15.4 5,-7.5 12.9,-7.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="2.5,-15.4 10.4,-15.4 10.4,-7.5 2.5,-7.5 				"/>
+				<g>
+					<polygon fill="none" points="2.5,-7.5 10.4,-7.5 10.4,-15.4 2.5,-15.4 					"/>
+					<g>
+						<polygon fill="none" points="10.4,-15.4 2.5,-15.4 2.5,-7.5 10.4,-7.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="0,-15.4 7.9,-15.4 7.9,-7.5 0,-7.5 				"/>
+				<g>
+					<polygon fill="none" points="0,-7.5 7.9,-7.5 7.9,-15.4 0,-15.4 					"/>
+					<g>
+						<polygon fill="none" points="7.9,-15.4 0,-15.4 0,-7.5 7.9,-7.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="10,-12.9 17.9,-12.9 17.9,-5 10,-5 				"/>
+				<g>
+					<polygon fill="none" points="10,-5 17.9,-5 17.9,-12.9 10,-12.9 					"/>
+					<g>
+						<polygon fill="none" points="17.9,-12.9 10,-12.9 10,-5 17.9,-5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="7.5,-12.9 15.4,-12.9 15.4,-5 7.5,-5 				"/>
+				<g>
+					<polygon fill="none" points="7.5,-5 15.4,-5 15.4,-12.9 7.5,-12.9 					"/>
+					<g>
+						<polygon fill="none" points="15.4,-12.9 7.5,-12.9 7.5,-5 15.4,-5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="5,-12.9 12.9,-12.9 12.9,-5 5,-5 				"/>
+				<g>
+					<polygon fill="none" points="5,-5 12.9,-5 12.9,-12.9 5,-12.9 					"/>
+					<g>
+						<polygon fill="none" points="12.9,-12.9 5,-12.9 5,-5 12.9,-5 						"/>
+						<path fill="#010101" d="M9.4-8.8c0-0.3-0.3-0.6-0.6-0.6S8.2-9.1,8.2-8.8s0.6,0.6,0.6,0.6C9.4-8.2,9.4-8.5,9.4-8.8z"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="2.5,-12.9 10.4,-12.9 10.4,-5 2.5,-5 				"/>
+				<g>
+					<polygon fill="none" points="2.5,-5 10.4,-5 10.4,-12.9 2.5,-12.9 					"/>
+					<g>
+						<polygon fill="none" points="10.4,-12.9 2.5,-12.9 2.5,-5 10.4,-5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="0,-12.9 7.9,-12.9 7.9,-5 0,-5 				"/>
+				<g>
+					<polygon fill="none" points="0,-5 7.9,-5 7.9,-12.9 0,-12.9 					"/>
+					<g>
+						<polygon fill="none" points="7.9,-12.9 0,-12.9 0,-5 7.9,-5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="10,-10.4 17.9,-10.4 17.9,-2.5 10,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="10,-2.5 17.9,-2.5 17.9,-10.4 10,-10.4 					"/>
+					<g>
+						<polygon fill="none" points="17.9,-10.4 10,-10.4 10,-2.5 17.9,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="7.5,-10.4 15.4,-10.4 15.4,-2.5 7.5,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="7.5,-2.5 15.4,-2.5 15.4,-10.4 7.5,-10.4 					"/>
+					<g>
+						<polygon fill="none" points="15.4,-10.4 7.5,-10.4 7.5,-2.5 15.4,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="5,-10.4 12.9,-10.4 12.9,-2.5 5,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="5,-2.5 12.9,-2.5 12.9,-10.4 5,-10.4 					"/>
+					<g>
+						<polygon fill="none" points="12.9,-10.4 5,-10.4 5,-2.5 12.9,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="2.5,-10.4 10.4,-10.4 10.4,-2.5 2.5,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="2.5,-2.5 10.4,-2.5 10.4,-10.4 2.5,-10.4 					"/>
+					<g>
+						<polygon fill="none" points="10.4,-10.4 2.5,-10.4 2.5,-2.5 10.4,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="0,-10.4 7.9,-10.4 7.9,-2.5 0,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="0,-2.5 7.9,-2.5 7.9,-10.4 0,-10.4 					"/>
+					<g>
+						<polygon fill="none" points="7.9,-10.4 0,-10.4 0,-2.5 7.9,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="10,-7.9 17.9,-7.9 17.9,0 10,0 				"/>
+				<g>
+					<polygon fill="none" points="10,0 17.9,0 17.9,-7.9 10,-7.9 					"/>
+					<g>
+						<polygon fill="none" points="17.9,-7.9 10,-7.9 10,0 17.9,0 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="7.5,-7.9 15.4,-7.9 15.4,0 7.5,0 				"/>
+				<g>
+					<polygon fill="none" points="7.5,0 15.4,0 15.4,-7.9 7.5,-7.9 					"/>
+					<g>
+						<polygon fill="none" points="15.4,-7.9 7.5,-7.9 7.5,0 15.4,0 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="5,-7.9 12.9,-7.9 12.9,0 5,0 				"/>
+				<g>
+					<polygon fill="none" points="5,0 12.9,0 12.9,-7.9 5,-7.9 					"/>
+					<g>
+						<polygon fill="none" points="12.9,-7.9 5,-7.9 5,0 12.9,0 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="2.5,-7.9 10.4,-7.9 10.4,0 2.5,0 				"/>
+				<g>
+					<polygon fill="none" points="2.5,0 10.4,0 10.4,-7.9 2.5,-7.9 					"/>
+					<g>
+						<polygon fill="none" points="10.4,-7.9 2.5,-7.9 2.5,0 10.4,0 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="0,-7.9 7.9,-7.9 7.9,0 0,0 				"/>
+				<g>
+					<polygon fill="none" points="0,0 7.9,0 7.9,-7.9 0,-7.9 					"/>
+					<g>
+						<polygon fill="none" points="7.9,-7.9 0,-7.9 0,0 7.9,0 						"/>
+					</g>
 				</g>
 			</g>
 		</g>
 	</g>
 </pattern>
-<pattern  y="100" width="2.5" height="2.5" patternUnits="userSpaceOnUse" id="SVGID_4" viewBox="4.8 -7.2 2.5 2.5" overflow="visible">
+<pattern  y="100" width="2.5" height="2.5" patternUnits="userSpaceOnUse" id="SVGID_4_" viewBox="4.8 -7.3 2.5 2.5" overflow="visible">
 	<g>
-		<polygon fill="none" points="4.8,-7.2 7.2,-7.2 7.2,-4.8 4.8,-4.8 		"/>
+		<polygon fill="none" points="4.8,-4.8 7.3,-4.8 7.3,-7.3 4.8,-7.3 		"/>
 		<g>
-			<polygon fill="none" points="5,0 12,0 12,-7 5,-7 			"/>
-			<g>
-				<polygon fill="none" points="5,-7 12,-7 12,0 5,0 				"/>
-				<g>
-					<polygon fill="none" points="12,0 5,0 5,-7 12,-7 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,0 9.5,0 9.5,-7 2.5,-7 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-7 9.5,-7 9.5,0 2.5,0 				"/>
-				<g>
-					<polygon fill="none" points="9.5,0 2.5,0 2.5,-7 9.5,-7 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,0 7,0 7,-7 0,-7 			"/>
-			<g>
-				<polygon fill="none" points="0,-7 7,-7 7,0 0,0 				"/>
-				<g>
-					<polygon fill="none" points="7,0 0,0 0,-7 7,-7 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-2.5 12,-2.5 12,-9.5 5,-9.5 			"/>
-			<g>
-				<polygon fill="none" points="5,-9.5 12,-9.5 12,-2.5 5,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="12,-2.5 5,-2.5 5,-9.5 12,-9.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-2.5 9.5,-2.5 9.5,-9.5 2.5,-9.5 			"/>
-			<g>
-				<polygon fill="none" points="2.5,-9.5 9.5,-9.5 9.5,-2.5 2.5,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="9.5,-2.5 2.5,-2.5 2.5,-9.5 9.5,-9.5 					"/>
-					<path fill="#010101" d="M6.4-6.1c0,0.3-0.3,0.6-0.6,0.6c-0.3,0-0.6-0.3-0.6-0.6s0.6-0.6,0.6-0.6C6.4-6.7,6.4-6.4,6.4-6.1z"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-2.5 7,-2.5 7,-9.5 0,-9.5 			"/>
-			<g>
-				<polygon fill="none" points="0,-9.5 7,-9.5 7,-2.5 0,-2.5 				"/>
-				<g>
-					<polygon fill="none" points="7,-2.5 0,-2.5 0,-9.5 7,-9.5 					"/>
-				</g>
-			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="5,-5 12,-5 12,-12 5,-12 			"/>
+			<polygon fill="none" points="4.8,-4.8 7.2,-4.8 7.2,-7.2 4.8,-7.2 			"/>
 			<g>
 				<polygon fill="none" points="5,-12 12,-12 12,-5 5,-5 				"/>
 				<g>
-					<polygon fill="none" points="12,-5 5,-5 5,-12 12,-12 					"/>
+					<polygon fill="none" points="5,-5 12,-5 12,-12 5,-12 					"/>
+					<g>
+						<polygon fill="none" points="12,-12 5,-12 5,-5 12,-5 						"/>
+					</g>
 				</g>
 			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="2.5,-5 9.5,-5 9.5,-12 2.5,-12 			"/>
 			<g>
 				<polygon fill="none" points="2.5,-12 9.5,-12 9.5,-5 2.5,-5 				"/>
 				<g>
-					<polygon fill="none" points="9.5,-5 2.5,-5 2.5,-12 9.5,-12 					"/>
+					<polygon fill="none" points="2.5,-5 9.5,-5 9.5,-12 2.5,-12 					"/>
+					<g>
+						<polygon fill="none" points="9.5,-12 2.5,-12 2.5,-5 9.5,-5 						"/>
+					</g>
 				</g>
 			</g>
-		</g>
-		<g>
-			<polygon fill="none" points="0,-5 7,-5 7,-12 0,-12 			"/>
 			<g>
 				<polygon fill="none" points="0,-12 7,-12 7,-5 0,-5 				"/>
 				<g>
-					<polygon fill="none" points="7,-5 0,-5 0,-12 7,-12 					"/>
+					<polygon fill="none" points="0,-5 7,-5 7,-12 0,-12 					"/>
+					<g>
+						<polygon fill="none" points="7,-12 0,-12 0,-5 7,-5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="5,-9.5 12,-9.5 12,-2.5 5,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="5,-2.5 12,-2.5 12,-9.5 5,-9.5 					"/>
+					<g>
+						<polygon fill="none" points="12,-9.5 5,-9.5 5,-2.5 12,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="2.5,-9.5 9.5,-9.5 9.5,-2.5 2.5,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="2.5,-2.5 9.5,-2.5 9.5,-9.5 2.5,-9.5 					"/>
+					<g>
+						<polygon fill="none" points="9.5,-9.5 2.5,-9.5 2.5,-2.5 9.5,-2.5 						"/>
+						<path fill="#010101" d="M6.4-5.9c0-0.3-0.3-0.6-0.6-0.6c-0.3,0-0.6,0.3-0.6,0.6s0.6,0.6,0.6,0.6C6.4-5.3,6.4-5.6,6.4-5.9z"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="0,-9.5 7,-9.5 7,-2.5 0,-2.5 				"/>
+				<g>
+					<polygon fill="none" points="0,-2.5 7,-2.5 7,-9.5 0,-9.5 					"/>
+					<g>
+						<polygon fill="none" points="7,-9.5 0,-9.5 0,-2.5 7,-2.5 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="5,-7 12,-7 12,0 5,0 				"/>
+				<g>
+					<polygon fill="none" points="5,0 12,0 12,-7 5,-7 					"/>
+					<g>
+						<polygon fill="none" points="12,-7 5,-7 5,0 12,0 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="2.5,-7 9.5,-7 9.5,0 2.5,0 				"/>
+				<g>
+					<polygon fill="none" points="2.5,0 9.5,0 9.5,-7 2.5,-7 					"/>
+					<g>
+						<polygon fill="none" points="9.5,-7 2.5,-7 2.5,0 9.5,0 						"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<polygon fill="none" points="0,-7 7,-7 7,0 0,0 				"/>
+				<g>
+					<polygon fill="none" points="0,0 7,0 7,-7 0,-7 					"/>
+					<g>
+						<polygon fill="none" points="7,-7 0,-7 0,0 7,0 						"/>
+					</g>
 				</g>
 			</g>
 		</g>
@@ -877,18 +654,14 @@
 		C63.2,76.1,57.2,77.3,57.3,81.9z"/>
 </g>
 <g id="dots">
-	<pattern  id="SVGID_1_" xlink:href="#SVGID_1" patternTransform="matrix(0.2882 0 0 0.2882 -11552.0859 9396.5459)">
-	</pattern>
-	<path fill="url(#SVGID_1_)" stroke="#010101" stroke-miterlimit="10" d="M56.2,90.8c13-1.9,14-10.2,14-10.2s1.1-11.2,0-22
+	<path fill="url(#SVGID_4_)" stroke="#010101" stroke-miterlimit="10" d="M56.2,90.8c13-1.9,14-10.2,14-10.2s1.1-11.2,0-22
 		c-1.1-10.9-5-12.4-5-12.4C59.4,45,52.5,50,52.5,50v33.6L56.2,90.8z"/>
-	<pattern  id="SVGID_2_" xlink:href="#SVGID_2" patternTransform="matrix(0.2882 0 0 0.2882 -11552.0859 9396.5459)">
+	<pattern  id="SVGID_5_" xlink:href="#SVGID_2_" patternTransform="matrix(0.2882 0 0 -0.2882 -17349.8086 -20037.3594)">
 	</pattern>
-	<path fill="url(#SVGID_2_)" stroke="#010101" stroke-miterlimit="10" d="M52.6,91.2"/>
-	<pattern  id="SVGID_3_" xlink:href="#SVGID_3" patternTransform="matrix(0.2882 0 0 0.2882 -11552.1299 9396.5898)">
+	<path fill="url(#SVGID_5_)" stroke="#010101" stroke-miterlimit="10" d="M52.6,91.2"/>
+	<pattern  id="SVGID_6_" xlink:href="#SVGID_3_" patternTransform="matrix(0.2882 0 0 -0.2882 -17349.8242 -20037.2734)">
 	</pattern>
-	<path fill="url(#SVGID_3_)" stroke="#010101" stroke-miterlimit="10" d="M52.6,91.2"/>
-	<pattern  id="SVGID_4_" xlink:href="#SVGID_4" patternTransform="matrix(0.2882 0 0 0.2882 -11554.2207 9398.6807)">
-	</pattern>
+	<path fill="url(#SVGID_6_)" stroke="#010101" stroke-miterlimit="10" d="M52.6,91.2"/>
 	<path fill="url(#SVGID_4_)" stroke="#010101" stroke-miterlimit="10" d="M52.6,83.6V49.9c0,0-6.9-5-12.7-3.8c0,0-3.9,1.6-5,12.4
 		c-1.1,10.9,0,22,0,22s1,8.4,14.5,10.2L52.6,83.6z"/>
 </g>
@@ -1399,7 +1172,7 @@
 			c0,0,7.5-0.2,4.2-8.9C78,30.8,75.1,27.5,75,25z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M74.4,38.8c1.5,0.7,3.9-3,3.7-4.3"/>
 		
-			<ellipse transform="matrix(0.7903 -0.6127 0.6127 0.7903 -7.3226 52.4049)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="72.9" cy="36.9" rx="1.4" ry="1.7"/>
+			<ellipse transform="matrix(-0.6127 -0.7903 0.7903 -0.6127 88.4013 117.1235)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="72.9" cy="36.9" rx="1.7" ry="1.4"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M71.9,30.3c0,0,1.4-3.3,3-4.2"/>
 	</g>
 	<g>
@@ -1407,7 +1180,7 @@
 			c0,0,7.5-0.2,4.2-8.9C26.9,51,24.1,47.7,23.9,45.2z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M23.3,58.9c1.5,0.7,3.9-3,3.7-4.3"/>
 		
-			<ellipse transform="matrix(0.7903 -0.6127 0.6127 0.7903 -30.4067 25.3152)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="21.8" cy="57.1" rx="1.4" ry="1.7"/>
+			<ellipse transform="matrix(-0.6127 -0.7903 0.7903 -0.6127 -9.9461 109.2948)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="21.8" cy="57.1" rx="1.7" ry="1.4"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M20.9,50.4c0,0,1.4-3.3,3-4.2"/>
 	</g>
 	<g>
@@ -1415,7 +1188,7 @@
 			c0,0,4.5-0.1,2.5-5.4C79.6,51.6,77.9,49.6,77.8,48.1z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M77.4,56.4c0.9,0.4,2.3-1.8,2.2-2.6"/>
 		
-			<ellipse transform="matrix(0.7905 -0.6125 0.6125 0.7905 -18.2841 58.5479)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="76.4" cy="56" rx="0.5" ry="0.6"/>
+			<ellipse transform="matrix(-0.6125 -0.7905 0.7905 -0.6125 78.9267 150.7337)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="76.4" cy="56" rx="0.6" ry="0.5"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M76,51.3c0,0,0.8-2,1.8-2.5"/>
 	</g>
 	<g>
@@ -1423,7 +1196,7 @@
 			c0,0,4.5-0.1,2.5-5.4C73.9,90.9,72.2,88.8,72.1,87.3z"/>
 		<path fill="none" stroke="#3A97AD" stroke-miterlimit="10" d="M71.8,95.6c0.9,0.4,2.3-1.8,2.2-2.6"/>
 		
-			<ellipse transform="matrix(0.7903 -0.6127 0.6127 0.7903 -43.5475 63.2977)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="70.7" cy="95.3" rx="0.5" ry="0.6"/>
+			<ellipse transform="matrix(-0.6127 -0.7903 0.7903 -0.6127 38.733 209.572)" opacity="0.8" fill="#FFFFFF" enable-background="new    " cx="70.7" cy="95.3" rx="0.6" ry="0.5"/>
 		<path opacity="0.8" fill="#FFFFFF" enable-background="new    " d="M70.3,90.5c0,0,0.8-2,1.8-2.5"/>
 	</g>
 	<g>
